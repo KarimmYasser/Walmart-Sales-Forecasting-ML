@@ -1,5 +1,5 @@
 """
-MILESTONE 1 - Step 1.6: Exploratory Data Analysis (EDA)
+MILESTONE 1 - Step 1.4: Exploratory Data Analysis (EDA)
 ========================================================
 Task 4: Exploratory Data Analysis
 
@@ -26,7 +26,7 @@ sns.set_palette("husl")
 plt.rcParams['figure.figsize'] = (14, 6)
 
 print("="*80)
-print("STEP 1.6: EXPLORATORY DATA ANALYSIS (EDA)")
+print("STEP 1.4: EXPLORATORY DATA ANALYSIS (EDA)")
 print("="*80)
 
 # Load data
@@ -72,8 +72,8 @@ plt.xlabel('Date', fontsize=12)
 plt.ylabel('Total Weekly Sales ($)', fontsize=12)
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.2.1/01_overall_sales_trend.png', dpi=300, bbox_inches='tight')
-print("✓ Saved: visualizations/Stage1.2.1/01_overall_sales_trend.png")
+plt.savefig('visualizations/Stage1.4/01_overall_sales_trend.png', dpi=300, bbox_inches='tight')
+print("✓ Saved: visualizations/Stage1.4/01_overall_sales_trend.png")
 plt.close()
 
 # Statistics
@@ -98,8 +98,8 @@ plt.ylabel('Total Sales ($)', fontsize=12)
 for i, v in enumerate(yearly_sales['sum']):
     plt.text(yearly_sales['Year'].iloc[i], v, f'${v:,.0f}', ha='center', va='bottom', fontsize=10)
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.2.1/02_sales_by_year.png', dpi=300, bbox_inches='tight')
-print("✓ Saved: visualizations/Stage1.2.1/02_sales_by_year.png")
+plt.savefig('visualizations/Stage1.4/02_sales_by_year.png', dpi=300, bbox_inches='tight')
+print("✓ Saved: visualizations/Stage1.4/02_sales_by_year.png")
 plt.close()
 
 print(f"\n   Year-over-Year Summary:")
@@ -138,8 +138,8 @@ plt.xticks(range(1, 13), month_names, rotation=45)
 plt.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.2.1/03_monthly_seasonality.png', dpi=300, bbox_inches='tight')
-print("✓ Saved: visualizations/Stage1.2.1/03_monthly_seasonality.png")
+plt.savefig('visualizations/Stage1.4/03_monthly_seasonality.png', dpi=300, bbox_inches='tight')
+print("✓ Saved: visualizations/Stage1.4/03_monthly_seasonality.png")
 plt.close()
 
 peak_month = monthly_sales.loc[monthly_sales['mean'].idxmax(), 'Month']
@@ -162,8 +162,8 @@ plt.xticks([1, 2, 3, 4], ['Q1 (Jan-Mar)', 'Q2 (Apr-Jun)', 'Q3 (Jul-Sep)', 'Q4 (O
 for i, v in enumerate(quarterly_sales['mean']):
     plt.text(i+1, v, f'${v:,.0f}', ha='center', va='bottom', fontsize=11, fontweight='bold')
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.2.1/04_quarterly_pattern.png', dpi=300, bbox_inches='tight')
-print("✓ Saved: visualizations/Stage1.2.1/04_quarterly_pattern.png")
+plt.savefig('visualizations/Stage1.4/04_quarterly_pattern.png', dpi=300, bbox_inches='tight')
+print("✓ Saved: visualizations/Stage1.4/04_quarterly_pattern.png")
 plt.close()
 
 print(f"\n   Quarterly Summary:")
@@ -204,8 +204,8 @@ for i, v in enumerate(counts):
     plt.text(i, v, f'{int(v):,}', ha='center', va='bottom', fontsize=12, fontweight='bold')
 
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.2.1/05_holiday_impact.png', dpi=300, bbox_inches='tight')
-print("✓ Saved: visualizations/Stage1.2.1/05_holiday_impact.png")
+plt.savefig('visualizations/Stage1.4/05_holiday_impact.png', dpi=300, bbox_inches='tight')
+print("✓ Saved: visualizations/Stage1.4/05_holiday_impact.png")
 plt.close()
 
 non_holiday_avg = holiday_comparison.loc[holiday_comparison['IsHoliday']==False, 'mean'].values[0]
@@ -248,8 +248,8 @@ for i, (idx, row) in enumerate(store_type_sales.iterrows()):
     plt.text(i, row['count'], f'{int(row["count"]):,}', ha='center', va='bottom', fontsize=11, fontweight='bold')
 
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.2.1/06_store_type_comparison.png', dpi=300, bbox_inches='tight')
-print("✓ Saved: visualizations/Stage1.2.1/06_store_type_comparison.png")
+plt.savefig('visualizations/Stage1.4/06_store_type_comparison.png', dpi=300, bbox_inches='tight')
+print("✓ Saved: visualizations/Stage1.4/06_store_type_comparison.png")
 plt.close()
 
 print(f"\n   Store Type Comparison:")
@@ -297,8 +297,8 @@ plt.xticks(x, promo_df['Promotion'])
 plt.legend()
 plt.grid(axis='y', alpha=0.3)
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.2.1/07_promotion_impact.png', dpi=300, bbox_inches='tight')
-print("✓ Saved: visualizations/Stage1.2.1/07_promotion_impact.png")
+plt.savefig('visualizations/Stage1.4/07_promotion_impact.png', dpi=300, bbox_inches='tight')
+print("✓ Saved: visualizations/Stage1.4/07_promotion_impact.png")
 plt.close()
 
 print(f"\n   Promotion Impact Summary:")
@@ -327,8 +327,8 @@ sns.heatmap(correlation_data, annot=True, cmap='coolwarm', center=0, square=True
             linewidths=1, cbar_kws={"shrink": 0.8}, fmt='.3f')
 plt.title('Correlation: External Factors vs Weekly Sales', fontsize=16, fontweight='bold')
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.2.1/08_external_factors_correlation.png', dpi=300, bbox_inches='tight')
-print("✓ Saved: visualizations/Stage1.2.1/08_external_factors_correlation.png")
+plt.savefig('visualizations/Stage1.4/08_external_factors_correlation.png', dpi=300, bbox_inches='tight')
+print("✓ Saved: visualizations/Stage1.4/08_external_factors_correlation.png")
 plt.close()
 
 print(f"\n   Correlation with Weekly Sales:")
@@ -374,8 +374,8 @@ axes[1, 1].set_title(f'Unemployment vs Sales (corr: {correlation_data.loc["Unemp
 axes[1, 1].grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.2.1/09_external_factors_scatter.png', dpi=300, bbox_inches='tight')
-print("✓ Saved: visualizations/Stage1.2.1/09_external_factors_scatter.png")
+plt.savefig('visualizations/Stage1.4/09_external_factors_scatter.png', dpi=300, bbox_inches='tight')
+print("✓ Saved: visualizations/Stage1.4/09_external_factors_scatter.png")
 plt.close()
 
 # ============================================================================
@@ -402,8 +402,8 @@ plt.gca().invert_yaxis()
 for i, (idx, row) in enumerate(top_10_depts.iterrows()):
     plt.text(row['sum'], i, f' ${row["sum"]:,.0f}', va='center', fontsize=10)
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.2.1/10_top_departments.png', dpi=300, bbox_inches='tight')
-print("✓ Saved: visualizations/Stage1.2.1/10_top_departments.png")
+plt.savefig('visualizations/Stage1.4/10_top_departments.png', dpi=300, bbox_inches='tight')
+print("✓ Saved: visualizations/Stage1.4/10_top_departments.png")
 plt.close()
 
 print(f"\n   Top 10 Departments:")
