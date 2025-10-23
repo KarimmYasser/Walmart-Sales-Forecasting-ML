@@ -162,21 +162,62 @@ test_merged.csv → Same Preprocessing → Load Model → Predict → prediction
 
 ---
 
-## 🎯 Milestone 1: Data Collection & Preprocessing
+## 🎯 Milestone 1: Data Collection, Exploration, and Preprocessing
 
 ### Overview
-This milestone focuses on preparing the raw data for analysis and modeling. Data quality directly impacts model performance, so we invest significant effort here.
+This milestone prepares the data for forecasting through collection, exploration, preprocessing, and comprehensive analysis. Data quality and understanding directly impact model performance.
+
+### Official Objectives
+Collect, explore, and preprocess sales data to prepare it for analysis and model development.
+
+### Official Tasks Structure
+
+**Task 1: Data Collection** ✅ Complete
+- Acquire sales and demand data from open sources
+- Dataset should contain: historical sales, product details, customer information, seasonality, promotions, economic indicators
+
+**Task 2: Data Exploration** 🟡 In Progress
+- Perform EDA to understand sales trends, seasonality, external factors
+- Investigate relationships between products, promotions, and sales
+- Handle missing values, duplicates, outliers
+- Compute summary statistics
+
+**Task 3: Preprocessing and Feature Engineering** 🟡 In Progress
+- Handle missing data through imputation/removal
+- Manage outliers in sales data
+- Create time-based features (month, week, day)
+- Create product categories and promotion flags
+- Encode categorical variables, normalize numerical features
+- Create lag features
+
+**Task 4: Exploratory Data Analysis (EDA)** ⏳ Not Started
+- Create visualizations (line plots, bar charts, heatmaps)
+- Identify trends, seasonal patterns, correlations
+- Analyze impact of promotions on sales
+- Summarize key insights for forecasting models
+
+### Deliverables
+- [ ] **EDA Report:** Document summarizing insights and preprocessing decisions
+- [ ] **Interactive Visualizations:** EDA notebook with key trends and patterns
+- [x] **Cleaned Dataset:** Preprocessed data ready for forecasting (Partial - 40% complete)
+
+**Current Progress:** ~25% of Milestone 1 Complete
 
 ---
 
-### Step 1.1: Data Loading & Merging
+## 📋 Detailed Implementation Steps
+
+---
+
+### Step 1.1: Data Collection & Loading
 
 **📅 Completed:** October 23, 2025  
 **⏱ Time Spent:** 1 hour  
-**📄 Script:** `step_1_1_data_loading_merging.py`
+**📄 Script:** `step_1_1_data_loading_merging.py`  
+**🎯 Maps to:** Task 1: Data Collection
 
 #### Objective
-Load all four datasets and merge them into a unified dataset for analysis and modeling.
+Acquire and load Walmart sales data from Kaggle, then merge multiple data sources into a unified dataset for analysis and modeling.
 
 #### Implementation Details
 
@@ -341,14 +382,15 @@ These files will be used as input for subsequent preprocessing steps.
 
 ---
 
-### Step 1.2: Handling Missing Values (Train & Test)
+### Step 1.2: Data Exploration - Missing Values & Duplicates
 
 **📅 Completed:** October 23, 2025  
 **⏱ Time Spent:** 1.5 hours  
-**📄 Script:** `step_1_2_missing_values.py`
+**📄 Script:** `step_1_2_missing_values.py`  
+**🎯 Maps to:** Task 2: Data Exploration (Partial)
 
 #### Objective
-Address missing values in **BOTH training and test datasets** using identical preprocessing logic to ensure consistency for future predictions. Missing data can significantly impact model performance.
+Address missing values in **BOTH training and test datasets** using identical preprocessing logic. Compute summary statistics and verify data quality (no duplicates). This is part of the data exploration phase as per official requirements.
 
 #### Missing Value Analysis
 
@@ -477,28 +519,118 @@ Date       | MarkDown1 | Has_MarkDown1 | Weekly_Sales
 
 ---
 
-### Step 1.3: Outlier Detection
+### Step 1.3: Data Exploration - Outlier Detection
 
-**📅 Status:** Pending  
-**📄 Script:** `step_1_3_outliers.py` (to be created)
+**📅 Status:** Next  
+**📄 Script:** `step_1_3_outliers.py` (to be created)  
+**🎯 Maps to:** Task 2: Data Exploration (Partial)
+
+#### Objective
+Detect and analyze outliers in sales data, especially negative sales (returns) and extreme values. Decide on treatment strategy.
+
+**Planned Actions:**
+- Analyze 1,285 negative sales cases
+- Use IQR method for outlier detection
+- Create box plots by Store Type
+- Investigate extreme values (min: -$4,988, max: $693,099)
+- Document findings and treatment decisions
 
 *To be completed...*
 
 ---
 
-### Step 1.4: Feature Engineering
+### Step 1.4: Preprocessing - Feature Engineering
 
 **📅 Status:** Pending  
-**📄 Script:** `step_1_4_feature_engineering.py` (to be created)
+**📄 Script:** `step_1_4_feature_engineering.py` (to be created)  
+**🎯 Maps to:** Task 3: Preprocessing and Feature Engineering
+
+#### Objective
+Create time-based features, lag features, and interaction features as per official requirements.
+
+**Planned Actions:**
+- **Time-based features:** Month, Week, Day, Quarter, DayOfWeek, WeekOfYear, Is_Weekend, Is_Month_Start, Is_Month_End
+- **Lag features:** Sales_Lag1, Sales_Lag2, Sales_Lag4 (previous weeks' sales)
+- **Rolling statistics:** 4-week, 8-week moving averages
+- **Interaction features:** Store_Size × IsHoliday, Temperature × Season
+- **Holiday proximity:** Days until/since major holidays
+- Apply to BOTH train and test datasets
 
 *To be completed...*
 
 ---
 
-### Step 1.5: Encoding Categorical Features
+### Step 1.5: Preprocessing - Categorical Encoding & Normalization
 
 **📅 Status:** Pending  
-**📄 Script:** `step_1_5_encoding.py` (to be created)
+**📄 Script:** `step_1_5_encoding_normalization.py` (to be created)  
+**🎯 Maps to:** Task 3: Preprocessing and Feature Engineering
+
+#### Objective
+Encode categorical variables and normalize numerical features as per official requirements.
+
+**Planned Actions:**
+- One-hot encode Store Type (A, B, C)
+- Handle Store and Department IDs
+- Normalize numerical features (Temperature, Fuel_Price, CPI, Unemployment, Size)
+- Standardize feature ranges
+- Apply to BOTH datasets
+- Finalize feature set for modeling
+
+*To be completed...*
+
+---
+
+### Step 1.6: Exploratory Data Analysis (EDA)
+
+**📅 Status:** Pending  
+**📄 Script/Notebook:** `step_1_6_eda.ipynb` (to be created)  
+**🎯 Maps to:** Task 4: Exploratory Data Analysis (EDA)
+
+#### Objective
+Create comprehensive visualizations and analyze patterns to inform forecasting models as per official requirements.
+
+**Planned Visualizations:**
+- Line plots: Sales trends over time
+- Bar charts: Sales by Store Type, Department, Holiday vs Non-Holiday
+- Heatmaps: Correlation matrix between features
+- Seasonal decomposition: Trend, Seasonality, Residuals
+- Box plots: Sales distribution by categories
+- Scatter plots: External factors (Temperature, Fuel, CPI) vs Sales
+- Promotion impact analysis
+
+**Planned Analysis:**
+- Identify seasonal patterns (monthly, quarterly)
+- Analyze holiday impact on sales
+- Investigate promotional markdown effectiveness
+- Understand store type performance differences
+- Correlation analysis between all variables
+- Department-level insights
+
+**Deliverable:** Interactive EDA notebook with 10-15 key visualizations
+
+*To be completed...*
+
+---
+
+### Step 1.7: EDA Report Documentation
+
+**📅 Status:** Pending  
+**📄 Document:** `EDA_REPORT.md` (to be created)  
+**🎯 Maps to:** Deliverable - EDA Report
+
+#### Objective
+Summarize insights from data exploration and document preprocessing decisions as per official requirements.
+
+**Report Sections:**
+- Executive Summary
+- Data Overview
+- Missing Value Analysis and Treatment
+- Outlier Analysis and Treatment
+- Feature Engineering Decisions
+- Key Insights from Visualizations
+- Trends and Patterns Discovered
+- Recommendations for Forecasting Models
 
 *To be completed...*
 
@@ -526,17 +658,35 @@ Date       | MarkDown1 | Has_MarkDown1 | Weekly_Sales
 
 ## 📈 Progress Tracker
 
-### Milestone 1: Data Collection & Preprocessing
-- [x] Step 1.1: Data Loading & Merging ✅
-- [x] Step 1.2: Handling Missing Values ✅
-- [ ] Step 1.3: Outlier Detection
-- [ ] Step 1.4: Feature Engineering
-- [ ] Step 1.5: Encoding Categorical Features
+### Milestone 1: Data Collection, Exploration, and Preprocessing (~25% Complete)
 
-### Milestone 2: Data Analysis & Visualization
+**Task 1: Data Collection** ✅ 100%
+- [x] Step 1.1: Data Collection & Loading ✅
+
+**Task 2: Data Exploration** 🟡 25%
+- [x] Step 1.2: Missing Values & Duplicates ✅
+- [ ] Step 1.3: Outlier Detection (NEXT)
+- [ ] Basic Summary Statistics
+
+**Task 3: Preprocessing and Feature Engineering** 🟡 20%
+- [x] Missing data handled ✅
+- [x] Promotion flags created ✅
+- [ ] Step 1.4: Feature Engineering (time, lag features)
+- [ ] Step 1.5: Categorical Encoding & Normalization
+
+**Task 4: Exploratory Data Analysis** ❌ 0%
+- [ ] Step 1.6: EDA with Visualizations
+- [ ] Step 1.7: EDA Report
+
+**Deliverables:**
+- [ ] EDA Report (0%)
+- [ ] Interactive Visualizations (0%)
+- [x] Cleaned Dataset (40% - missing outlier handling, feature engineering, encoding)
+
+### Milestone 2: Model Development
 - [ ] Not started
 
-### Milestone 3: Model Development
+### Milestone 3: Model Evaluation & Selection
 - [ ] Not started
 
 ### Milestone 4: Deployment & Monitoring
@@ -545,9 +695,9 @@ Date       | MarkDown1 | Has_MarkDown1 | Weekly_Sales
 ### Milestone 5: Final Documentation & Presentation
 - [ ] Not started
 
-**Overall Progress:** 12% (2/17 steps completed)
+**Overall Progress:** ~10% (2 of ~20 major steps completed)
 
-**Note:** Step 1.2 processes BOTH train and test datasets to ensure consistency.
+**Note:** Following official project structure - Milestone 1 now includes EDA as Task 4 (not separate milestone).
 
 ---
 
@@ -577,10 +727,14 @@ Depi_project_Data-science/
 │   ├── test_merged.csv            ✅ Step 1.1 output
 │   ├── train_cleaned_step2.csv    ✅ Step 1.2 output (421,570 rows × 21 cols)
 │   └── test_cleaned_step2.csv     ✅ Step 1.2 output (115,064 rows × 20 cols)
-├── step_1_1_data_loading_merging.py    ✅ Completed
-├── step_1_2_missing_values.py          ✅ Completed (handles both train & test)
-├── DOCUMENTATION.md                     ✅ Main documentation
-├── PROJECT_SUMMARY.md                   ✅ Progress summary
+├── step_1_1_data_loading_merging.py       ✅ Task 1: Data Collection
+├── step_1_2_missing_values.py             ✅ Task 2: Data Exploration (Partial)
+├── step_1_3_outliers.py                   ⏳ Task 2: Outlier Detection (Next)
+├── step_1_4_feature_engineering.py        📝 Task 3: Feature Engineering (TODO)
+├── step_1_5_encoding_normalization.py     📝 Task 3: Encoding & Normalization (TODO)
+├── step_1_6_eda.ipynb                     📝 Task 4: EDA Visualizations (TODO)
+├── EDA_REPORT.md                          📝 Deliverable: EDA Report (TODO)
+├── DOCUMENTATION.md                       ✅ Main documentation
 ├── main.py
 └── README.md
 ```
