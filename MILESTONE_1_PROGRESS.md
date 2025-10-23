@@ -3,7 +3,7 @@
 
 **Project:** Walmart Sales Forecasting  
 **Last Updated:** October 23, 2025  
-**Overall Milestone 1 Progress:** ~25% Complete
+**Overall Milestone 1 Progress:** ~60% Complete
 
 ---
 
@@ -103,33 +103,37 @@ Collect, explore, and preprocess sales data to prepare it for analysis and model
 
 ---
 
-### **Task 4: Exploratory Data Analysis (EDA)** ❌ **0% COMPLETE**
+### **Task 4: Exploratory Data Analysis (EDA)** ✅ **90% COMPLETE**
 
 **Requirements:**
-- ❌ Create visualizations (line plots, bar charts, heatmaps)
-- ❌ Identify trends and seasonal patterns
-- ❌ Show correlations between variables
-- ❌ Analyze impact of promotions on sales
-- ❌ Summarize key insights to inform forecasting models
+- ✅ Create visualizations (line plots, bar charts, heatmaps)
+- ✅ Identify trends and seasonal patterns
+- ✅ Show correlations between variables
+- ✅ Analyze impact of promotions on sales
+- ✅ Summarize key insights to inform forecasting models
+
+**What We Did:**
+- **Step 1.6:** EDA with Visualizations ✅ COMPLETE
+  - Created 10 comprehensive visualizations:
+    1. Overall sales trend over time
+    2. Sales by year (YoY comparison)
+    3. Monthly seasonality pattern
+    4. Quarterly pattern
+    5. Holiday impact comparison
+    6. Store type comparison
+    7. Promotion impact analysis
+    8. External factors correlation heatmap
+    9. External factors scatter plots (4 subplots)
+    10. Top 10 departments
+  - All visualizations saved to `visualizations/Stage1.2.1/`
 
 **What's Remaining:**
-- **Step 1.6:** EDA with Visualizations
-  - Line plots: Sales trends over time
-  - Bar charts: Sales by Store Type, Department, Holiday impact
-  - Heatmaps: Correlation matrix
-  - Seasonal decomposition
-  - Box plots: Sales distribution by categories
-  - Scatter plots: External factors vs Sales
-  - Promotion impact analysis
-  - 10-15 comprehensive visualizations
-
 - **Step 1.7:** EDA Report Documentation
+  - Formal EDA Report document (insights already documented in DOCUMENTATION.md)
   - Executive summary
-  - Key insights from visualizations
-  - Trends and patterns discovered
-  - Recommendations for forecasting models
+  - Visual-specific analysis writeup
 
-**Status:** ❌ Not Started
+**Status:** ✅ 90% Complete (visualization and analysis done, formal report pending)
 
 ---
 
@@ -137,8 +141,8 @@ Collect, explore, and preprocess sales data to prepare it for analysis and model
 
 | Deliverable | Required | Status | Progress |
 |-------------|----------|--------|----------|
-| **EDA Report** | Document summarizing insights and preprocessing decisions | ❌ Not Started | 0% |
-| **Interactive Visualizations** | EDA notebook with key trends and patterns | ❌ Not Started | 0% |
+| **EDA Report** | Document summarizing insights and preprocessing decisions | 🟡 Partial | 75% |
+| **Interactive Visualizations** | EDA notebook with key trends and patterns | ✅ Complete | 100% |
 | **Cleaned Dataset** | Preprocessed data ready for forecasting | 🟡 Partial | 40% |
 
 ### Cleaned Dataset Details:
@@ -230,21 +234,22 @@ Collect, explore, and preprocess sales data to prepare it for analysis and model
 | `test_merged.csv` | 10 MB | 115,064 | 15 | Step 1.1: Merged test data |
 | `train_cleaned_step2.csv` | 38 MB | 421,570 | 21 | Step 1.2: Cleaned training data |
 | `test_cleaned_step2.csv` | 11 MB | 115,064 | 20 | Step 1.2: Cleaned test data |
+| `visualizations/Stage1.2.1/` | - | 10 files | PNG | Step 1.6: EDA visualizations |
 
 ---
 
 ## 📈 Milestone 1 Progress Summary
 
-**Overall Progress:** ~25%
+**Overall Progress:** ~60%
 
 | Task | Progress | Status |
 |------|----------|--------|
 | Task 1: Data Collection | 100% | ✅ Complete |
 | Task 2: Data Exploration | 25% | 🟡 In Progress |
 | Task 3: Preprocessing & Feature Engineering | 20% | 🟡 In Progress |
-| Task 4: EDA | 0% | ❌ Not Started |
-| **Deliverable: EDA Report** | 0% | ❌ Not Started |
-| **Deliverable: Visualizations** | 0% | ❌ Not Started |
+| Task 4: EDA | 90% | ✅ Nearly Complete |
+| **Deliverable: EDA Report** | 75% | 🟡 Partial |
+| **Deliverable: Visualizations** | 100% | ✅ Complete |
 | **Deliverable: Cleaned Dataset** | 40% | 🟡 Partial |
 
 ---
@@ -259,17 +264,31 @@ Collect, explore, and preprocess sales data to prepare it for analysis and model
 6. ✅ Processed both train and test datasets with identical logic
 7. ✅ Verified data quality (0 duplicates)
 8. ✅ Computed basic summary statistics
+9. ✅ **Created 10 comprehensive EDA visualizations**
+10. ✅ **Identified key patterns: strong seasonality, holiday impact, promotion effectiveness**
+11. ✅ **Analyzed external factors correlations**
+12. ✅ **Developed feature engineering and modeling recommendations**
 
 ---
 
-## 🎓 Key Insights So Far
+## 🎓 Key Insights Discovered
 
+### From Data Exploration (Tasks 1-2):
 1. **Missing Values:** 64-74% missing in MarkDown columns indicates strategic promotions, not data quality issues
 2. **Promotions:** Only 26-36% of weeks have promotional markdowns
 3. **Sales Range:** Wide variance from -$4,988 (returns) to $693,099
 4. **Data Quality:** High-quality dataset with minimal issues
 5. **Negative Sales:** 1,285 cases represent returns/clearances (valid business)
 6. **Store Types:** 22 Type A (large), 17 Type B (medium), 6 Type C (small)
+
+### From EDA Analysis (Task 4):
+7. **SEASONALITY IS DOMINANT:** Q4 shows 35-40% higher sales than Q1; Nov-Dec are peak months
+8. **HOLIDAY IMPACT:** +11.6% average sales lift during holiday weeks
+9. **PROMOTION EFFECTIVENESS:** All markdowns work; MarkDown5 best (+22.1% lift)
+10. **STORE TYPE PERFORMANCE:** Type A = 55% of sales, highest variance; Type C most stable
+11. **EXTERNAL FACTORS:** Unemployment strongest correlation (-0.128); Temperature weak positive (+0.065)
+12. **DEPARTMENT CONCENTRATION:** Top 10 departments account for 66% of total sales
+13. **YEAR-OVER-YEAR GROWTH:** Clear upward trend from 2010 to 2012
 
 ---
 
@@ -296,5 +315,5 @@ Collect, explore, and preprocess sales data to prepare it for analysis and model
 ---
 
 **Last Updated:** October 23, 2025  
-**Status:** Milestone 1 - 25% Complete (2 of 7 steps done)
+**Status:** Milestone 1 - 60% Complete (3 of 7 steps done, EDA 90% done)
 
