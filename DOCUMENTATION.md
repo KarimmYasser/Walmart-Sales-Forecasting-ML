@@ -56,12 +56,19 @@ Build a machine learning model to predict weekly sales for each store-department
 | `stores.csv` | 45 | 3 | Store metadata (type, size) |
 | `features.xlsx` | 8,190 | 12 | External features (temperature, markdowns, etc.) |
 
-### Processed Files (After Step 1.1)
+### Processed Files 
 
+**After Step 1.1 (Merging):**
 | File | Rows | Columns | Size | Description |
 |------|------|---------|------|-------------|
 | `train_merged.csv` | 421,570 | 16 | 34.08 MB | Training data with all features + Weekly_Sales |
 | `test_merged.csv` | 115,064 | 15 | 9.87 MB | Test data with all features (NO Weekly_Sales) |
+
+**After Step 1.2 (Missing Values Handled):**
+| File | Rows | Columns | Size | Description |
+|------|------|---------|------|-------------|
+| `train_cleaned_step2.csv` | 421,570 | 21 | ~38 MB | Clean training data, 100% complete |
+| `test_cleaned_step2.csv` | 115,064 | 20 | ~11 MB | Clean test data, 100% complete |
 
 ### Dataset Schema
 
@@ -334,27 +341,30 @@ These files will be used as input for subsequent preprocessing steps.
 
 ---
 
-### Step 1.2: Handling Missing Values
+### Step 1.2: Handling Missing Values (Train & Test)
 
 **📅 Completed:** October 23, 2025  
-**⏱ Time Spent:** 1 hour  
+**⏱ Time Spent:** 1.5 hours  
 **📄 Script:** `step_1_2_missing_values.py`
 
 #### Objective
-Address missing values in the merged dataset to prepare for modeling. Missing data can significantly impact model performance.
+Address missing values in **BOTH training and test datasets** using identical preprocessing logic to ensure consistency for future predictions. Missing data can significantly impact model performance.
 
 #### Missing Value Analysis
 
-**MarkDown Columns (Primary Issue):**
+**Training Dataset:**
 - MarkDown1: 270,889 missing (64.3%)
 - MarkDown2: 310,322 missing (73.6%)
 - MarkDown3: 284,479 missing (67.5%)
 - MarkDown4: 286,603 missing (68.0%)
 - MarkDown5: 270,138 missing (64.1%)
+- Other columns: Complete ✓
+
+**Test Dataset:**
+- Similar missing pattern in MarkDown columns (64-74%)
+- Other columns: Complete ✓
 
 **Interpretation:** Missing values represent weeks WITHOUT promotional markdowns - this is expected business behavior, not data quality issues.
-
-**Other Columns:** All complete (CPI, Unemployment, Temperature, etc.)
 
 #### Strategy Implemented
 
@@ -376,14 +386,17 @@ Address missing values in the merged dataset to prepare for modeling. Missing da
 
 #### Implementation Results
 
-**Before Cleaning:**
-- Shape: 421,570 rows × 16 columns
-- Missing values: 1,422,431 total (in MarkDown columns)
-
-**After Cleaning:**
-- Shape: 421,570 rows × 21 columns  
-- Missing values: 0 (100% complete)
+**Training Dataset:**
+- Before: 421,570 rows × 16 columns | Missing: 1,422,431
+- After: 421,570 rows × 21 columns | Missing: 0 (100% complete)
 - New columns: 5 binary indicators (Has_MarkDown1-5)
+
+**Test Dataset:**
+- Before: 115,064 rows × 15 columns | Missing: ~400,000
+- After: 115,064 rows × 20 columns | Missing: 0 (100% complete)
+- New columns: 5 binary indicators (Has_MarkDown1-5)
+
+**Critical Achievement:** Both datasets now have IDENTICAL feature structure (except train has Weekly_Sales target)
 
 **New Columns Created:**
 | Column | Description | Values | Percentage with Promotion |
@@ -419,26 +432,41 @@ Date       | MarkDown1 | Has_MarkDown1 | Weekly_Sales
 
 #### Data Persistence
 
-**Output File:** `processed_data/train_cleaned_step2.csv`
-- Size: ~38 MB
-- Rows: 421,570
-- Columns: 21
-- Quality: 100% complete (0 missing values)
+**Output Files:**
+
+1. **Training Data:** `processed_data/train_cleaned_step2.csv`
+   - Size: ~38 MB
+   - Rows: 421,570
+   - Columns: 21
+   - Quality: 100% complete (0 missing values)
+
+2. **Test Data:** `processed_data/test_cleaned_step2.csv`
+   - Size: ~11 MB
+   - Rows: 115,064
+   - Columns: 20
+   - Quality: 100% complete (0 missing values)
 
 #### Results Summary
 
 ✅ **Achievements:**
-1. Analyzed missing value patterns (64-74% in MarkDowns)
+1. Analyzed missing value patterns in both datasets (64-74% in MarkDowns)
 2. Implemented dual strategy: fill + binary indicators
-3. Created 5 new feature columns
-4. Achieved 100% data completeness
+3. Created 5 new feature columns in each dataset
+4. Achieved 100% data completeness in both datasets
 5. Preserved original data integrity
+6. **Ensured train-test preprocessing consistency**
 
 📊 **Impact:**
-- Dataset ready for modeling (no missing values)
-- Added 5 new predictive features
+- Both datasets ready for modeling (no missing values)
+- Added 5 new predictive features to each
 - Maintained business logic interpretation
-- No data loss (all 421,570 rows retained)
+- No data loss (all rows retained in both datasets)
+- Identical preprocessing ensures valid predictions
+
+🔑 **Key Success:** Train and test datasets now have matching feature structures, ensuring:
+- Model trained on train data can predict on test data
+- No feature mismatch errors during prediction
+- Consistent interpretation across datasets
 
 #### Next Steps
 
@@ -486,12 +514,13 @@ Date       | MarkDown1 | Has_MarkDown1 | Weekly_Sales
   - Identified missing value patterns
   - Saved processed data to `processed_data/`
 
-- ✅ **Completed Step 1.2:** Handling Missing Values
-  - Analyzed MarkDown columns (64-74% missing)
+- ✅ **Completed Step 1.2:** Handling Missing Values (Train & Test)
+  - Analyzed MarkDown columns in both datasets (64-74% missing)
   - Implemented dual strategy: fill with 0 + binary indicators
-  - Created 5 new feature columns (Has_MarkDown1-5)
-  - Achieved 100% data completeness
-  - Saved cleaned data: `train_cleaned_step2.csv`
+  - Created 5 new feature columns (Has_MarkDown1-5) in each dataset
+  - Achieved 100% data completeness in both datasets
+  - Ensured train-test preprocessing consistency
+  - Saved cleaned data: `train_cleaned_step2.csv` + `test_cleaned_step2.csv`
 
 ---
 
@@ -517,6 +546,8 @@ Date       | MarkDown1 | Has_MarkDown1 | Weekly_Sales
 - [ ] Not started
 
 **Overall Progress:** 12% (2/17 steps completed)
+
+**Note:** Step 1.2 processes BOTH train and test datasets to ensure consistency.
 
 ---
 
@@ -544,10 +575,12 @@ Depi_project_Data-science/
 ├── processed_data/
 │   ├── train_merged.csv           ✅ Step 1.1 output
 │   ├── test_merged.csv            ✅ Step 1.1 output
-│   └── train_cleaned_step2.csv    ✅ Step 1.2 output
+│   ├── train_cleaned_step2.csv    ✅ Step 1.2 output (421,570 rows × 21 cols)
+│   └── test_cleaned_step2.csv     ✅ Step 1.2 output (115,064 rows × 20 cols)
 ├── step_1_1_data_loading_merging.py    ✅ Completed
-├── step_1_2_missing_values.py          ✅ Completed
+├── step_1_2_missing_values.py          ✅ Completed (handles both train & test)
 ├── DOCUMENTATION.md                     ✅ Main documentation
+├── PROJECT_SUMMARY.md                   ✅ Progress summary
 ├── main.py
 └── README.md
 ```
