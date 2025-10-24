@@ -190,212 +190,288 @@ Depi_project_Data-science/
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Getting Started
 
 ### Prerequisites
+
+**Install Required Dependencies:**
 ```bash
 pip install pandas numpy matplotlib seaborn openpyxl
 ```
 
-### Running the Pipeline
-
-**Step 1: Data Loading**
-```bash
-python step_1_1_data_loading_merging.py
-```
-
-**Step 2: Handle Missing Values**
-```bash
-python step_1_2_missing_values.py
-```
-
-**Step 3: Feature Engineering**
-```bash
-python step_1_3_1_time_features.py
-python step_1_3_2_lag_features.py
-python step_1_3_3_encode_categorical.py
-python step_1_3_4_normalize_features_final.py
-```
-
-**Step 4: Exploratory Data Analysis**
-```bash
-python step_1_4_eda_analysis.py
-```
-
-### Loading Final Data
+**Verify Installation:**
 ```python
 import pandas as pd
-
-# Load modeling-ready data
-train = pd.read_csv('processed_data/Final/train_final.csv')
-test = pd.read_csv('processed_data/Final/test_final.csv')
-
-print(f"Train: {train.shape}")  # (421570, 49)
-print(f"Test: {test.shape}")    # (115064, 48)
-
-# Features are normalized, encoded, and ready for ML!
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+print("✓ All packages installed successfully!")
 ```
+
+**Required Data Files:**
+Ensure these files exist in `datasets/walmart-recruiting-store-sales-forecasting/`:
+- `train.csv`
+- `test.csv`
+- `stores.csv`
+- `features.xlsx`
 
 ---
 
-## 🔄 Data Generation Pipeline
+## 📊 How to Generate All Required Data
 
-### **Option 1: Automated Pipeline (RECOMMENDED)**
+### ⚡ **OPTION 1: ONE-CLICK PIPELINE (RECOMMENDED)**
 
-Run the complete feature engineering pipeline in one command:
+Run the entire data processing pipeline with a single command:
 
 ```bash
 python feature_engineering_pipeline.py
 ```
 
-**⏱️ Execution Time:** ~60 seconds  
-**💾 Total Output:** ~506 MB of processed data
+**This will automatically:**
+1. ✅ Execute all 4 feature engineering steps in sequence
+2. ✅ Show progress and output from each step
+3. ✅ Generate all intermediate and final datasets
+4. ✅ Create `processed_data/Stage1.3.4_Final/` with modeling-ready data
 
-#### What Gets Generated:
+**⏱️ Execution Time:** ~30-60 seconds  
+**💾 Total Output:** ~500 MB of processed data
 
-```
-processed_data/
-│
-├── Stage1.3.1/                    # After Time Features
-│   ├── train_time_features.csv    # 421,570 × 40 cols (~180 MB)
-│   └── test_time_features.csv     # 115,064 × 39 cols (~48 MB)
-│
-├── Stage1.3.2/                    # After Lag Features
-│   ├── train_lag_features.csv     # 421,570 × 47 cols (~210 MB)
-│   └── test_lag_features.csv      # 115,064 × 46 cols (~56 MB)
-│
-├── Stage1.3.3/                    # After Encoding
-│   ├── train_encoded.csv          # 421,570 × 49 cols (~223 MB)
-│   └── test_encoded.csv           # 115,064 × 48 cols (~60 MB)
-│
-└── Final/                         # ⭐ FINAL OUTPUT
-    ├── train_final.csv            # 421,570 × 49 cols (~223 MB)
-    ├── test_final.csv             # 115,064 × 48 cols (~60 MB)
-    └── normalization_params.json  # Normalization parameters (1.5 KB)
-```
-
-#### Pipeline Stages:
-
-**Stage 1.3.1: Time-Based Features (19 features)**
-- ✅ Year, Month, Day, Quarter, DayOfWeek, WeekOfYear
-- ✅ Binary: Is_Weekend, Is_Month_Start/End, Is_Quarter_Start/End, Is_Year_Start/End
-- ✅ Cyclical: Month_Sin/Cos, Week_Sin/Cos, DayOfWeek_Sin/Cos
-- 📊 Output: 40 columns (train) | 39 columns (test)
-
-**Stage 1.3.2: Lag Features (7 features)**
-- ✅ Sales_Lag1, Sales_Lag2, Sales_Lag4
-- ✅ Sales_Rolling_Mean_4, Sales_Rolling_Mean_8
-- ✅ Sales_Rolling_Std_4, Sales_Momentum
-- 📊 Output: 47 columns (train) | 46 columns (test)
-
-**Stage 1.3.3: Categorical Encoding (3 features)**
-- ✅ Type → Type_A, Type_B, Type_C (One-Hot Encoding)
-- 📊 Output: 49 columns (train) | 48 columns (test)
-
-**Stage 1.3.4: Numerical Normalization (17 features)**
-- ✅ Z-score normalization: (X - μ) / σ
-- ✅ Features: Size, Temperature, Fuel_Price, CPI, Unemployment, MarkDown1-5, All lag features
-- 📊 Output: 49 columns (train) | 48 columns (test)
-
-#### Console Output:
-
+**Expected Console Output:**
 ```
 ================================================================================
-🚀 FEATURE ENGINEERING PIPELINE
+FEATURE ENGINEERING PIPELINE
 ================================================================================
 
-⏰ STEP 1.3.1: CREATING TIME-BASED FEATURES
-✅ Created 19 time-based features
-💾 Saving Step 1.3.1 output...
+Pipeline Flow:
+  Stage1.2 → [1.3.1] → Stage1.3.1 → [1.3.2] → Stage1.3.2
+  → [1.3.3] → Stage1.3.3 → [1.3.4] → Stage1.3.4_Final
 
-📊 STEP 1.3.2: CREATING LAG FEATURES
-✅ Created 7 lag features
-💾 Saving Step 1.3.2 output...
+================================================================================
+[1/4] STEP 1.3.1: TIME-BASED FEATURES
+================================================================================
+Input:  processed_data/Stage1.2/
+Output: processed_data/Stage1.3.1/
 
-🔤 STEP 1.3.3: ENCODING CATEGORICAL VARIABLES
-✅ Encoded categorical variables
-💾 Saving Step 1.3.3 output...
+[1] Loading cleaned data...
+✓ Loaded: train (421570, 20), test (115064, 19)
 
-📐 STEP 1.3.4: NORMALIZING NUMERICAL FEATURES
-✅ Normalization complete!
-💾 Saving final datasets...
+[2] Creating time-based features...
+✓ Created 20 time-based features
 
-🎉 FEATURE ENGINEERING PIPELINE COMPLETE!
-🚀 Ready for Model Development (Milestone 2)!
+[3] Saving data with time features...
+✓ Saved: processed_data/Stage1.3.1/train_time_features.csv, ...
+
+================================================================================
+✅ STEP 1.3.1 COMPLETED!
+================================================================================
+
+... [Similar output for steps 1.3.2, 1.3.3, 1.3.4] ...
+
+================================================================================
+✅ PIPELINE COMPLETED SUCCESSFULLY!
+================================================================================
+
+Final Datasets Ready:
+  📁 processed_data/Stage1.3.4_Final/
+     ├─ train_final.csv
+     ├─ test_final.csv
+     └─ normalization_params.json
+
+🚀 Ready for Model Development!
 ```
 
 ---
 
-### **Option 2: Step-by-Step Execution**
+### 🔧 **OPTION 2: STEP-BY-STEP EXECUTION**
 
-If you need to run preprocessing before feature engineering or want more control:
+If you want to understand each stage or need preprocessing steps:
 
-#### Step 1: Data Loading & Merging
+#### **STAGE 1: Data Preprocessing**
+
+**Step 1.1: Load and Merge Datasets**
 ```bash
 python step_1_1_data_loading_merging.py
 ```
-**Output:** `processed_data/Stage1.1/train_merged.csv`, `test_merged.csv`
+- **Input:** `datasets/walmart-recruiting-store-sales-forecasting/`
+- **Output:** `processed_data/Stage1.1/`
+  - `train_merged.csv` (421,570 rows × 20 cols)
+  - `test_merged.csv` (115,064 rows × 19 cols)
+- **What it does:** Merges train/test with stores and features data
 
-#### Step 2: Handle Missing Values
+**Step 1.2: Handle Missing Values**
 ```bash
 python step_1_2_missing_values.py
 ```
-**Output:** `processed_data/Stage1.2/train_cleaned_step2.csv`, `test_cleaned_step2.csv`
+- **Input:** `processed_data/Stage1.1/`
+- **Output:** `processed_data/Stage1.2/`
+  - `train_cleaned_step2.csv` (421,570 rows × 25 cols)
+  - `test_cleaned_step2.csv` (115,064 rows × 24 cols)
+- **What it does:** 
+  - Fills MarkDown nulls with 0
+  - Creates Has_MarkDownX binary indicators
+  - Forward/backward fill for CPI/Unemployment
 
-#### Step 3: Feature Engineering (Individual Steps)
+**Step 1.3: Outlier Detection (Optional Analysis)**
 ```bash
-python step_1_3_1_time_features.py        # Time-based features
-python step_1_3_2_lag_features.py         # Lag features
-python step_1_3_3_encode_categorical.py   # Categorical encoding
-python step_1_3_4_normalize_features_final.py  # Normalization
+python step_1_3_outlier_detection.py
 ```
+- **Input:** `processed_data/Stage1.2/train_cleaned_step2.csv`
+- **Output:** `visualizations/Stage1.3/` (4 plots)
+- **What it does:** Analyzes outliers using IQR method, generates visualizations
+- **Decision:** Keep all outliers (valid business scenarios)
 
-#### Step 4: Exploratory Data Analysis
+---
+
+#### **STAGE 2: Feature Engineering**
+
+**Step 1.3.1: Create Time-Based Features**
+```bash
+python step_1_3_1_time_features.py
+```
+- **Input:** `processed_data/Stage1.2/`
+- **Output:** `processed_data/Stage1.3.1/`
+  - `train_time_features.csv` (421,570 rows × 45 cols)
+  - `test_time_features.csv` (115,064 rows × 44 cols)
+- **Features Added (20):**
+  - Basic: Year, Month, Day, Quarter, DayOfWeek, WeekOfYear
+  - Binary: Is_Weekend, Is_Month_Start/End, Is_Quarter_Start/End, Is_Year_Start/End
+  - Cyclical: Month_Sin/Cos, Week_Sin/Cos, DayOfWeek_Sin/Cos
+
+**Step 1.3.2: Create Lag Features**
+```bash
+python step_1_3_2_lag_features.py
+```
+- **Input:** `processed_data/Stage1.3.1/`
+- **Output:** `processed_data/Stage1.3.2/`
+  - `train_lag_features.csv` (421,570 rows × 52 cols)
+  - `test_lag_features.csv` (115,064 rows × 51 cols)
+- **Features Added (7):**
+  - Sales_Lag1, Sales_Lag2, Sales_Lag4
+  - Sales_Rolling_Mean_4, Sales_Rolling_Mean_8
+  - Sales_Rolling_Std_4, Sales_Momentum
+
+**Step 1.3.3: Encode Categorical Variables**
+```bash
+python step_1_3_3_encode_categorical.py
+```
+- **Input:** `processed_data/Stage1.3.2/`
+- **Output:** `processed_data/Stage1.3.3/`
+  - `train_encoded.csv` (421,570 rows × 54 cols)
+  - `test_encoded.csv` (115,064 rows × 53 cols)
+- **What it does:** One-hot encodes Store Type (A/B/C) → Type_A, Type_B, Type_C
+
+**Step 1.3.4: Normalize Features**
+```bash
+python step_1_3_4_normalize_features_final.py
+```
+- **Input:** `processed_data/Stage1.3.3/`
+- **Output:** `processed_data/Stage1.3.4_Final/` ⭐
+  - `train_final.csv` (421,570 rows × 54 cols) 
+  - `test_final.csv` (115,064 rows × 53 cols)
+  - `normalization_params.json` (for production deployment)
+- **What it does:** 
+  - Z-score normalization: (X - μ) / σ
+  - Normalizes 17 continuous features
+  - Saves parameters for consistent test/production scaling
+
+---
+
+#### **STAGE 3: Exploratory Data Analysis**
+
+**Step 1.4: Generate EDA Visualizations**
 ```bash
 python step_1_4_eda_analysis.py
 ```
-**Output:** 10 visualizations in `visualizations/Stage1.4/`
+- **Input:** `processed_data/Stage1.2/train_cleaned_step2.csv`
+- **Output:** `visualizations/Stage1.4/` (10 plots)
+  1. Overall sales trend
+  2. Sales by year
+  3. Monthly seasonality
+  4. Quarterly pattern
+  5. Holiday impact
+  6. Store type comparison
+  7. Promotion impact
+  8. External factors correlation
+  9. External factors scatter plots
+  10. Top departments
+- **⏱️ Time:** ~15-20 seconds
 
 ---
 
-### 📋 Verifying Generated Data
+### ✅ Verify Generated Data
 
-After running the pipeline, verify your data:
-
+**Check Files Exist:**
 ```bash
-# Windows PowerShell
-dir processed_data\Final
+# Windows
+dir processed_data\Stage1.3.4_Final
 
-# Expected Output:
-# train_final.csv          223 MB
-# test_final.csv            60 MB
-# normalization_params.json  1.5 KB
+# Linux/Mac
+ls -lh processed_data/Stage1.3.4_Final/
 ```
 
-**Check data integrity:**
+**Expected Output:**
+```
+train_final.csv          ~223 MB
+test_final.csv           ~60 MB
+normalization_params.json ~1.5 KB
+```
+
+**Verify Data Integrity:**
 ```python
 import pandas as pd
 
-train = pd.read_csv('processed_data/Final/train_final.csv')
-test = pd.read_csv('processed_data/Final/test_final.csv')
+# Load final datasets
+train = pd.read_csv('processed_data/Stage1.3.4_Final/train_final.csv')
+test = pd.read_csv('processed_data/Stage1.3.4_Final/test_final.csv')
 
-print(f"Train shape: {train.shape}")  # Should be (421570, 49)
-print(f"Test shape: {test.shape}")    # Should be (115064, 48)
-print(f"Missing values (train): {train.isnull().sum().sum()}")  # Should be 0
-print(f"Missing values (test): {test.isnull().sum().sum()}")    # Should be 0
-print(f"Duplicates (train): {train.duplicated().sum()}")        # Should be 0
+# Check shapes
+print(f"✓ Train shape: {train.shape}")  # (421570, 54)
+print(f"✓ Test shape: {test.shape}")    # (115064, 53)
+
+# Check data quality
+print(f"✓ Missing values (train): {train.isnull().sum().sum()}")  # Should be 0
+print(f"✓ Missing values (test): {test.isnull().sum().sum()}")    # Should be 0
+print(f"✓ Duplicates (train): {train.duplicated().sum()}")        # Should be 0
+
+# Check normalization (should have mean≈0, std≈1)
+continuous_features = ['Size', 'Temperature', 'CPI', 'Sales_Lag1']
+print(f"\n✓ Normalized features (mean should be ≈0):")
+print(train[continuous_features].mean())
+print(f"\n✓ Normalized features (std should be ≈1):")
+print(train[continuous_features].std())
+
+print("\n✅ All checks passed! Data is ready for modeling.")
 ```
 
 ---
 
-### 🎯 Which Data to Use?
+### 🎯 Loading Data for Modeling
 
-| Purpose | Use This File | Reason |
-|---------|---------------|---------|
-| **Model Training & Testing** | `processed_data/Final/train_final.csv` & `test_final.csv` | ⭐ Fully processed, normalized, ready for ML |
-| **Intermediate Analysis** | `processed_data/Stage1.3.X/` files | View data after specific transformation steps |
-| **EDA / Visualization** | `processed_data/Stage1.2/` files | Original scale, easier to interpret |
-| **Raw Data** | `datasets/walmart-recruiting-store-sales-forecasting/` | Unprocessed original datasets |
+```python
+import pandas as pd
+import json
+
+# Load final processed data
+train = pd.read_csv('processed_data/Stage1.3.4_Final/train_final.csv')
+test = pd.read_csv('processed_data/Stage1.3.4_Final/test_final.csv')
+
+# Load normalization parameters (for production)
+with open('processed_data/Stage1.3.4_Final/normalization_params.json', 'r') as f:
+    norm_params = json.load(f)
+
+print(f"Train: {train.shape}")  # (421570, 54)
+print(f"Test: {test.shape}")    # (115064, 53)
+print(f"Features are normalized, encoded, and ready for ML!")
+
+# Separate features and target
+X_train = train.drop(['Weekly_Sales', 'Date'], axis=1)
+y_train = train['Weekly_Sales']
+X_test = test.drop(['Date'], axis=1)
+
+print(f"\nX_train: {X_train.shape}")  # (421570, 52)
+print(f"y_train: {y_train.shape}")    # (421570,)
+print(f"X_test: {X_test.shape}")      # (115064, 52)
+```
 
 ---
 

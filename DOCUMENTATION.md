@@ -521,8 +521,6 @@ Date       | MarkDown1 | Has_MarkDown1 | Weekly_Sales
 
 ### Step 1.3.1: Feature Engineering - Time-Based Features
 
-**📅 Completed:** October 23, 2025  
-**⏱ Time Spent:** 1 hour  
 **📄 Script:** `step_1_3_1_time_features.py`  
 **🎯 Maps to:** Task 3: Preprocessing and Feature Engineering
 
@@ -622,8 +620,6 @@ Date: 2010-02-05
 
 ### Step 1.3.2: Feature Engineering - Lag Features
 
-**📅 Completed:** October 23, 2025  
-**⏱ Time Spent:** 1.5 hours  
 **📄 Script:** `step_1_3_2_lag_features.py`  
 **🎯 Maps to:** Task 3: Preprocessing and Feature Engineering
 
@@ -731,8 +727,6 @@ Week 5 (2010-02-05):
 
 ### Step 1.3.3: Feature Engineering - Categorical Encoding
 
-**📅 Completed:** October 23, 2025  
-**⏱ Time Spent:** 45 minutes  
 **📄 Script:** `step_1_3_3_encode_categorical.py`  
 **🎯 Maps to:** Task 3: Preprocessing and Feature Engineering
 
@@ -824,8 +818,6 @@ train = train.drop('Type', axis=1)
 
 ### Step 1.3.4: Feature Engineering - Normalize Numerical Features
 
-**📅 Completed:** October 23, 2025  
-**⏱ Time Spent:** 1 hour  
 **📄 Script:** `step_1_3_4_normalize_features_final.py`  
 **🎯 Maps to:** Task 3: Preprocessing and Feature Engineering (FINAL STEP)
 
@@ -1082,8 +1074,6 @@ python feature_engineering_pipeline.py
 
 ### Step 1.4: Exploratory Data Analysis (EDA)
 
-**📅 Completed:** October 23, 2025  
-**⏱ Time Spent:** 2 hours  
 **📄 Script:** `step_1_4_eda_analysis.py`  
 **🎯 Maps to:** Task 4: Exploratory Data Analysis (EDA)
 
@@ -1589,16 +1579,4 @@ Depi_project_Data-science/
 └── README.md                               📝 Project readme
 ```
 
----
-
-## 📞 Contact & Notes
-
-**Questions or Issues?**
-- Document any blockers or questions here
-- Keep track of decisions made and their rationale
-
----
-
-*This documentation is updated continuously as the project progresses.*  
-*Last Updated: October 23, 2025*
 
