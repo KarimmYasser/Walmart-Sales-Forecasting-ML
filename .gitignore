@@ -1,0 +1,382 @@
+# ============================================================================
+# DATA FILES - Exclude all data files from git
+# ============================================================================
+
+# CSV files (datasets and processed data)
+*.csv
+
+# JSON files (parameters, configs, outputs)
+*.json
+
+# Excel files
+*.xlsx
+*.xls
+
+# Pickle files
+*.pkl
+*.pickle
+
+# HDF5 files
+*.h5
+*.hdf5
+
+# Parquet files
+*.parquet
+
+# NumPy files
+*.npy
+*.npz
+
+# ============================================================================
+# DATA DIRECTORIES - Exclude entire data folders
+# ============================================================================
+
+# Raw datasets
+datasets/
+data/
+raw_data/
+
+# Processed data
+processed_data/
+preprocessed/
+cleaned_data/
+
+# Model outputs
+models/
+saved_models/
+checkpoints/
+
+# Outputs and results
+outputs/
+results/
+predictions/
+
+# ============================================================================
+# VISUALIZATIONS - Large image files
+# ============================================================================
+
+# Visualization outputs (uncomment if you want to exclude them)
+# visualizations/
+# plots/
+# figures/
+
+# Image files (if generated dynamically)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.pdf
+
+# ============================================================================
+# PYTHON - Standard Python gitignore
+# ============================================================================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# ============================================================================
+# IDEs and EDITORS
+# ============================================================================
+
+# VSCode
+.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# ============================================================================
+# OPERATING SYSTEM FILES
+# ============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ============================================================================
+# MACHINE LEARNING SPECIFIC
+# ============================================================================
+
+# TensorFlow
+*.ckpt
+*.index
+*.meta
+events.out.tfevents.*
+
+# PyTorch
+*.pth
+*.pt
+
+# Scikit-learn
+*.joblib
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# Weights & Biases
+wandb/
+
+# DVC
+.dvc/
+.dvcignore
+
+# ============================================================================
+# LOGS AND TEMPORARY FILES
+# ============================================================================
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+
+# ============================================================================
+# ARCHIVES
+# ============================================================================
+
+# Compressed files
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+*.bz2
+*.gz
+
+# ============================================================================
+# MISCELLANEOUS
+# ============================================================================
+
+# Secrets and credentials
+*.key
+*.pem
+secrets.py
+credentials.py
+
+# Large files
+*.bin
+
+# Jupyter Notebook outputs (optional - uncomment if you don't want outputs tracked)
+# *.ipynb
+
+# ============================================================================
+# EXCEPTIONS - Files to KEEP in git (even if they match patterns above)
+# ============================================================================
+
+# Keep specific important JSON files
+!requirements.txt
+!package.json
+!tsconfig.json
+
+# Keep small sample datasets if needed (uncomment and specify)
+# !datasets/sample_data.csv
+# !processed_data/Final/normalization_params.json
+
+# Keep specific configuration files
+# !config.json
+# !settings.json
+
+# Keep documentation images
+# !docs/**/*.png
+# !README_assets/**/*.png
+
+# ============================================================================
+# PROJECT-SPECIFIC ADDITIONS
+# ============================================================================
+
+# Stage 2 outputs (if you want to exclude them)
+stage2/outputs/
+
+# Notebook outputs
+# EDA_Analysis.ipynb
+
+# Add any other project-specific patterns here
+
