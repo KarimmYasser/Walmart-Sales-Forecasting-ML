@@ -5,11 +5,11 @@
 **Start Date:** October 23, 2025  
 **Last Updated:** October 24, 2025  
 **Team:** Data Science Team  
-**Status:** ✅ Milestone 1 Complete | 🔬 Advanced Analysis Complete | 🚀 Ready for Modeling
+**Status:** Milestone 1 Complete | Advanced Analysis Complete | Ready for Modeling
 
 ---
 
-## 📑 Table of Contents
+## Table of Contents
 
 1. [Project Overview](#project-overview)
 2. [Dataset Description](#dataset-description)
@@ -27,7 +27,7 @@
 
 ---
 
-## 📊 Project Overview
+## Project Overview
 
 ### Business Problem
 Walmart needs to forecast weekly sales across 45 stores and 99 departments to optimize:
@@ -52,7 +52,7 @@ Build a machine learning model to predict weekly sales for each store-department
 
 ---
 
-## 📦 Dataset Description
+## Dataset Description
 
 ### Source Files
 
@@ -111,7 +111,7 @@ Build a machine learning model to predict weekly sales for each store-department
 
 ---
 
-## 🎯 Understanding Train vs Test Data
+## Understanding Train vs Test Data
 
 ### Critical Difference
 
@@ -119,7 +119,7 @@ Build a machine learning model to predict weekly sales for each store-department
 
 | Aspect | train_merged.csv | test_merged.csv |
 |--------|------------------|-----------------|
-| **Has Weekly_Sales?** | ✅ YES (Target variable) | ❌ NO (We must predict this!) |
+| **Has Weekly_Sales?** | YES (Target variable) | NO (We must predict this!) |
 | **Rows** | 421,570 | 115,064 |
 | **Columns** | 16 | 15 |
 | **Date Range** | 2010-02-05 to 2012-10-26 | 2012-11-02 to 2013-07-26 |
@@ -169,7 +169,7 @@ test_merged.csv → Same Preprocessing → Load Model → Predict → prediction
 
 ---
 
-## 🎯 Milestone 1: Data Collection, Exploration, and Preprocessing
+## Milestone 1: Data Collection, Exploration, and Preprocessing
 
 ### Overview
 This milestone prepares the data for forecasting through collection, exploration, preprocessing, and comprehensive analysis. Data quality and understanding directly impact model performance.
@@ -179,17 +179,17 @@ Collect, explore, and preprocess sales data to prepare it for analysis and model
 
 ### Official Tasks Structure
 
-**Task 1: Data Collection** ✅ Complete
+**Task 1: Data Collection** Complete
 - Acquire sales and demand data from open sources
 - Dataset should contain: historical sales, product details, customer information, seasonality, promotions, economic indicators
 
-**Task 2: Data Exploration** 🟡 In Progress
+**Task 2: Data Exploration** In Progress
 - Perform EDA to understand sales trends, seasonality, external factors
 - Investigate relationships between products, promotions, and sales
 - Handle missing values, duplicates, outliers
 - Compute summary statistics
 
-**Task 3: Preprocessing and Feature Engineering** 🟡 In Progress
+**Task 3: Preprocessing and Feature Engineering** In Progress
 - Handle missing data through imputation/removal
 - Manage outliers in sales data
 - Create time-based features (month, week, day)
@@ -197,7 +197,7 @@ Collect, explore, and preprocess sales data to prepare it for analysis and model
 - Encode categorical variables, normalize numerical features
 - Create lag features
 
-**Task 4: Exploratory Data Analysis (EDA)** ⏳ Not Started
+**Task 4: Exploratory Data Analysis (EDA)** Not Started
 - Create visualizations (line plots, bar charts, heatmaps)
 - Identify trends, seasonal patterns, correlations
 - Analyze impact of promotions on sales
@@ -212,16 +212,16 @@ Collect, explore, and preprocess sales data to prepare it for analysis and model
 
 ---
 
-## 📋 Detailed Implementation Steps
+## Detailed Implementation Steps
 
 ---
 
 ### Step 1.1: Data Collection & Loading
 
-**📅 Completed:** October 23, 2025  
-**⏱ Time Spent:** 1 hour  
-**📄 Script:** `step_1_1_data_loading_merging.py`  
-**🎯 Maps to:** Task 1: Data Collection
+**Completed:** October 23, 2025  
+**Time Spent:** 1 hour  
+**Script:** `step_1_1_data_loading_merging.py`  
+**Maps to:** Task 1: Data Collection
 
 #### Objective
 Acquire and load Walmart sales data from Kaggle, then merge multiple data sources into a unified dataset for analysis and modeling.
@@ -250,17 +250,17 @@ features = pd.read_excel('datasets/walmart-recruiting-store-sales-forecasting/fe
 ##### 2. Data Quality Checks
 Before merging, performed validation checks:
 
-✅ **Duplicate Check:**
+**Duplicate Check:**
 - Train: 0 duplicates on (Store, Dept, Date)
 - Features: 0 duplicates on (Store, Date)
 
-✅ **Missing Values Check:**
+**Missing Values Check:**
 - Train: No missing values ✓
 - Test: No missing values ✓
 - Stores: No missing values ✓
 - Features: Significant missing in MarkDown columns (addressed in Step 1.2)
 
-⚠️ **Sales Data Anomalies:**
+**Sales Data Anomalies:**
 - Found negative sales values (returns/clearances)
 - Min Sales: $-4,988.94
 - Max Sales: $693,099.36
@@ -345,20 +345,20 @@ These files will be used as input for subsequent preprocessing steps.
 
 #### Results Summary
 
-✅ **Achievements:**
+**Achievements:**
 1. Successfully loaded all 4 datasets
 2. Performed data quality validation
 3. Merged datasets with proper join logic
 4. Created unified training and test datasets
 5. Saved processed data for next steps
 
-📊 **Statistics:**
+**Statistics:**
 - Training Records: 421,570
 - Test Records: 115,064
 - Features per Record: 17 (train), 16 (test)
 - Data Coverage: 3.5 years
 
-⚠️ **Issues Identified:**
+**Issues Identified:**
 1. Significant missing values in MarkDown columns → **Address in Step 1.2**
 2. Some missing CPI/Unemployment values → **Address in Step 1.2**
 3. Negative sales values exist → **Analyze in Step 1.3**
@@ -391,10 +391,10 @@ These files will be used as input for subsequent preprocessing steps.
 
 ### Step 1.2: Data Exploration - Missing Values & Duplicates
 
-**📅 Completed:** October 23, 2025  
-**⏱ Time Spent:** 1.5 hours  
-**📄 Script:** `step_1_2_missing_values.py`  
-**🎯 Maps to:** Task 2: Data Exploration (Partial)
+**Completed:** October 23, 2025  
+**Time Spent:** 1.5 hours  
+**Script:** `step_1_2_missing_values.py`  
+**Maps to:** Task 2: Data Exploration (Partial)
 
 #### Objective
 Address missing values in **BOTH training and test datasets** using identical preprocessing logic. Compute summary statistics and verify data quality (no duplicates). This is part of the data exploration phase as per official requirements.
@@ -497,7 +497,7 @@ Date       | MarkDown1 | Has_MarkDown1 | Weekly_Sales
 
 #### Results Summary
 
-✅ **Achievements:**
+**Achievements:**
 1. Analyzed missing value patterns in both datasets (64-74% in MarkDowns)
 2. Implemented dual strategy: fill + binary indicators
 3. Created 5 new feature columns in each dataset
@@ -505,14 +505,14 @@ Date       | MarkDown1 | Has_MarkDown1 | Weekly_Sales
 5. Preserved original data integrity
 6. **Ensured train-test preprocessing consistency**
 
-📊 **Impact:**
+**Impact:**
 - Both datasets ready for modeling (no missing values)
 - Added 5 new predictive features to each
 - Maintained business logic interpretation
 - No data loss (all rows retained in both datasets)
 - Identical preprocessing ensures valid predictions
 
-🔑 **Key Success:** Train and test datasets now have matching feature structures, ensuring:
+**Key Success:** Train and test datasets now have matching feature structures, ensuring:
 - Model trained on train data can predict on test data
 - No feature mismatch errors during prediction
 - Consistent interpretation across datasets
@@ -528,8 +528,8 @@ Date       | MarkDown1 | Has_MarkDown1 | Weekly_Sales
 
 ### Step 1.3.1: Feature Engineering - Time-Based Features
 
-**📄 Script:** `step_1_3_1_time_features.py`  
-**🎯 Maps to:** Task 3: Preprocessing and Feature Engineering
+**Script:** `step_1_3_1_time_features.py`  
+**Maps to:** Task 3: Preprocessing and Feature Engineering
 
 #### Objective
 Extract and engineer time-based features from the Date column to help models capture temporal patterns, seasonality, and cyclical behaviors.
@@ -621,14 +621,14 @@ Date: 2010-02-05
 └─ Month_Cos: 0.500
 ```
 
-✅ **Success:** Time features successfully created for both datasets
+**Success:** Time features successfully created for both datasets
 
 ---
 
 ### Step 1.3.2: Feature Engineering - Lag Features
 
-**📄 Script:** `step_1_3_2_lag_features.py`  
-**🎯 Maps to:** Task 3: Preprocessing and Feature Engineering
+**Script:** `step_1_3_2_lag_features.py`  
+**Maps to:** Task 3: Preprocessing and Feature Engineering
 
 #### Objective
 Create historical sales features (lag and rolling statistics) to capture temporal dependencies and trends in weekly sales patterns.
@@ -728,14 +728,14 @@ Week 5 (2010-02-05):
 - Sales_Rolling_Mean_4 correlation: 0.52 (excellent predictor)
 - Confirms lag features capture meaningful patterns
 
-✅ **Success:** Lag features successfully created for both datasets
+**Success:** Lag features successfully created for both datasets
 
 ---
 
 ### Step 1.3.3: Feature Engineering - Categorical Encoding
 
-**📄 Script:** `step_1_3_3_encode_categorical.py`  
-**🎯 Maps to:** Task 3: Preprocessing and Feature Engineering
+**Script:** `step_1_3_3_encode_categorical.py`  
+**Maps to:** Task 3: Preprocessing and Feature Engineering
 
 #### Objective
 Encode categorical variable `Type` (Store Type) into numerical format using One-Hot Encoding so machine learning models can process them.
@@ -819,14 +819,14 @@ train = train.drop('Type', axis=1)
 - Column order preserved
 - Ready for modeling
 
-✅ **Success:** Categorical encoding completed for both datasets
+**Success:** Categorical encoding completed for both datasets
 
 ---
 
 ### Step 1.3.4: Feature Engineering - Normalize Numerical Features
 
-**📄 Script:** `step_1_3_4_normalize_features_final.py`  
-**🎯 Maps to:** Task 3: Preprocessing and Feature Engineering (FINAL STEP)
+**Script:** `step_1_3_4_normalize_features_final.py`  
+**Maps to:** Task 3: Preprocessing and Feature Engineering (FINAL STEP)
 
 #### Objective
 Normalize numerical features to standardize value ranges across all features, ensuring models treat all features fairly and improving convergence speed.
@@ -969,15 +969,15 @@ Contains mean (μ) and std (σ) for all 17 normalized features:
 | CPI | 0.0000 | 1.0000 | -1.15 | 1.43 |
 | Sales_Lag1 | 0.0000 | 1.0000 | -0.92 | 29.86 |
 
-✅ **All features now have mean≈0, std≈1**
+**All features now have mean≈0, std≈1**
 
 #### Feature Engineering Summary
 
 **Complete Pipeline:**
-1. ✅ Step 1.3.1: Added 20 time-based features
-2. ✅ Step 1.3.2: Added 7 lag/rolling features
-3. ✅ Step 1.3.3: Encoded categorical Type (3 features)
-4. ✅ Step 1.3.4: Normalized 17 numerical features
+1. Step 1.3.1: Added 20 time-based features
+2. Step 1.3.2: Added 7 lag/rolling features
+3. Step 1.3.3: Encoded categorical Type (3 features)
+4. Step 1.3.4: Normalized 17 numerical features
 
 **Final Dataset Ready for Modeling:**
 - **Total Features:** 49 (train), 48 (test)
@@ -991,17 +991,17 @@ Contains mean (μ) and std (σ) for all 17 normalized features:
   - Encoded Categories: 3
   - Holiday: 1
 
-**Train-Test Consistency:** ✅ All preprocessing applied identically to both datasets
+**Train-Test Consistency:** All preprocessing applied identically to both datasets
 
-✅ **SUCCESS:** Feature engineering complete! Dataset ready for Milestone 2 (Model Development)
+**SUCCESS:** Feature engineering complete! Dataset ready for Milestone 2 (Model Development)
 
 ---
 
-### 🔧 Consolidated Feature Engineering Pipeline
+### Consolidated Feature Engineering Pipeline
 
-**📅 Created:** October 24, 2025  
-**📄 Script:** `feature_engineering_pipeline.py`  
-**🎯 Purpose:** Execute all feature engineering steps (1.3.1 through 1.3.4) in a single automated pipeline
+**Created:** October 24, 2025  
+**Script:** `feature_engineering_pipeline.py`  
+**Purpose:** Execute all feature engineering steps (1.3.1 through 1.3.4) in a single automated pipeline
 
 #### Overview
 

@@ -73,5 +73,5 @@ test.to_csv(test_output, index=False)
 print(f"✓ Saved: {train_output}, {test_output}, {params_path}")
 
 print("\n" + "="*80)
-print("✅ STEP 1.3.4 COMPLETED!")
+print("STEP 1.3.4 COMPLETED!")
 print("="*80)
