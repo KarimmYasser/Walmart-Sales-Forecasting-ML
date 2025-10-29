@@ -1,9 +1,9 @@
 # Walmart Sales Forecasting Project
 
-**AI & Data Science Track - Round 2**  
+**AI & Data Science Track - Round 3**  
 **Project Type:** Time Series Forecasting  
-**Dataset:** Walmart Recruiting Store Sales Forecasting (Kaggle)  
-**Status:** Milestone 1 Complete (85%) - Ready for Model Development
+**Dataset:** [Walmart Recruiting Store Sales Forecasting (Kaggle)](https://www.kaggle.com/competitions/walmart-recruiting-store-sales-forecasting)  
+**Status:** Milestone 1 & 2 Complete - Ready for Model Development
 
 ---
 
@@ -28,6 +28,8 @@ This project develops a machine learning system to forecast weekly sales for Wal
 ---
 
 ## Dataset Summary
+
+**Source:** [Kaggle - Walmart Recruiting Store Sales Forecasting](https://www.kaggle.com/competitions/walmart-recruiting-store-sales-forecasting)
 
 | Dataset | Records | Columns | Date Range | Description |
 |---------|---------|---------|------------|-------------|
@@ -224,12 +226,19 @@ Depi_project_Data-science/
 
 ### Prerequisites
 
-**Install Required Dependencies:**
+**1. Install Required Dependencies:**
 ```bash
 pip install pandas numpy matplotlib seaborn openpyxl
 ```
 
-**Verify Installation:**
+**2. Download Dataset:**
+
+Download the dataset from Kaggle:
+- **URL:** [https://www.kaggle.com/competitions/walmart-recruiting-store-sales-forecasting](https://www.kaggle.com/competitions/walmart-recruiting-store-sales-forecasting)
+- **Files Needed:** `train.csv`, `test.csv`, `stores.csv`, `features.xlsx`
+- **Location:** Place all files in `Datasets/walmart-recruiting-store-sales-forecasting/`
+
+**3. Verify Installation:**
 ```python
 import pandas as pd
 import numpy as np
@@ -238,8 +247,8 @@ import seaborn as sns
 print("All packages installed successfully!")
 ```
 
-**Required Data Files:**
-Ensure these files exist in `datasets/walmart-recruiting-store-sales-forecasting/`:
+**4. Verify Data Files:**
+Ensure these files exist in `Datasets/walmart-recruiting-store-sales-forecasting/`:
 - `train.csv`
 - `test.csv`
 - `stores.csv`
@@ -641,7 +650,7 @@ print(f"X_test: {X_test.shape}")      # (115064, 52)
 ## Team
 
 **Data Science Team**  
-**Project:** AI & Data Science Track - Round 2  
+**Project:** AI & Data Science Track - Round 3  
 **Institution:** DEPI (Digital Egypt Pioneers Initiative)
 
 ---
@@ -653,14 +662,6 @@ For detailed implementation steps, code explanations, and complete analysis, see
 - **[stage2/README.md](stage2/README.md)** - Stage 2 documentation  
 - **[stage2/DATA_ANALYSIS_REPORT.md](stage2/DATA_ANALYSIS_REPORT.md)** - Comprehensive analysis report
 - **[stage2/FEATURE_ENGINEERING_SUMMARY.md](stage2/FEATURE_ENGINEERING_SUMMARY.md)** - Feature catalog
-
----
-
-## Contact
-
-For questions or collaboration:
-- Project Repository: DEPI Data Science Project
-- Last Updated: October 29, 2025
 
 ---
 
