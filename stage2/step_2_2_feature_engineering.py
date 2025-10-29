@@ -31,8 +31,8 @@ print("="*80)
 # 1. LOAD DATA
 # ============================================================================
 print("\n[1/8] Loading processed data...")
-train = pd.read_csv('processed_data/Final/train_final.csv')
-test = pd.read_csv('processed_data/Final/test_final.csv')
+train = pd.read_csv('processed_data/Stage1.3.4_Final/train_final.csv')
+test = pd.read_csv('processed_data/Stage1.3.4_Final/test_final.csv')
 
 # Convert Date to datetime
 train['Date'] = pd.to_datetime(train['Date'])
