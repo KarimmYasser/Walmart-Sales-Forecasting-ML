@@ -55,11 +55,25 @@ This project develops a machine learning system to forecast weekly sales for Wal
 - **Task 4: EDA** - Comprehensive analysis with actionable insights
 
 **Deliverables:**
-- Cleaned Dataset (100%): `processed_data/Final/train_final.csv` & `test_final.csv`
-- Interactive Visualizations (100%): 10 professional visualizations
-- EDA Report (85%): Analysis complete, formal writeup pending
+- Cleaned Dataset (100%): `stage1/processed_data/Stage1.3.4_Final/train_final.csv` & `test_final.csv`
+- Interactive Visualizations (100%): 24 professional visualizations (14 Stage1 + 10 Stage2)
+- EDA Report (100%): Complete with PDF, DOCX, and MD formats
 
-### Milestone 2: Model Development (Next Phase)
+### Milestone 2: Advanced Analysis & Enhanced Features (Complete)
+
+**Completed:**
+- Advanced time series decomposition and stationarity testing
+- Enhanced feature engineering (42 new features, 91 total)
+- 10 advanced visualizations showing demand patterns
+- Comprehensive analysis reports
+
+**Deliverables:**
+- Enhanced Dataset: `stage2/outputs/enhanced_features/train_enhanced.csv` (91 features)
+- Analysis Report: `stage2/DATA_ANALYSIS_REPORT.md`
+- Feature Documentation: `stage2/FEATURE_ENGINEERING_SUMMARY.md`
+- Advanced Visualizations: `stage2/outputs/visualizations/` (10 plots)
+
+### Milestone 3: Model Development (Next Phase)
 
 - Build baseline models (naive forecasting)
 - Train advanced models (Random Forest, XGBoost, LSTM)
@@ -150,42 +164,58 @@ This project develops a machine learning system to forecast weekly sales for Wal
 ```
 Depi_project_Data-science/
 │
-├── datasets/                          # Raw data
+├── Datasets/                          # Raw data
 │   └── walmart-recruiting-store-sales-forecasting/
 │       ├── train.csv
 │       ├── test.csv
 │       ├── stores.csv
 │       └── features.xlsx
 │
-├── processed_data/                    # Processed data pipeline
-│   ├── Stage1.1/                      # Merged data
-│   ├── Stage1.2/                      # Missing values handled
-│   ├── Stage1.3.1/                    # Time features added
-│   ├── Stage1.3.2/                    # Lag features added
-│   ├── Stage1.3.3/                    # Categorical encoded
-│   └── Final/                         # READY FOR MODELING
-│       ├── train_final.csv            # 421,570 × 49
-│       ├── test_final.csv             # 115,064 × 48
-│       └── normalization_params.json  # For production
-│
-├── visualizations/                    # EDA outputs
-│   └── Stage1.4/
-│       ├── 01_overall_sales_trend.png
-│       ├── 05_holiday_impact.png
-│       └── ... (10 visualizations)
-│
-├── Scripts/                           # Milestone 1 scripts
+├── stage1/                            # Stage 1: Data Preprocessing & Feature Engineering
 │   ├── step_1_1_data_loading_merging.py
 │   ├── step_1_2_missing_values.py
-│   ├── step_1_4_eda_analysis.py
 │   ├── step_1_3_1_time_features.py
 │   ├── step_1_3_2_lag_features.py
 │   ├── step_1_3_3_encode_categorical.py
-│   └── step_1_3_4_normalize_features_final.py
+│   ├── step_1_3_4_normalize_features_final.py
+│   ├── step_1_3_outlier_detection.py
+│   ├── step_1_4_eda_analysis.py
+│   ├── Stage1_pipline_runner.py       # One-click Stage 1 execution
+│   ├── processed_data/                # Stage 1 outputs
+│   │   ├── Stage1.1/                  # Merged data
+│   │   ├── Stage1.2/                  # Missing values handled
+│   │   ├── Stage1.3.1/                # Time features
+│   │   ├── Stage1.3.2/                # Lag features
+│   │   ├── Stage1.3.3/                # Categorical encoded
+│   │   └── Stage1.3.4_Final/          # READY FOR MODELING
+│   │       ├── train_final.csv        # 421,570 × 54
+│   │       ├── test_final.csv         # 115,064 × 53
+│   │       └── normalization_params.json
+│   └── visualizations/                # Stage 1 visualizations
+│       ├── Stage1.3/                  # Outlier detection (4 plots)
+│       └── Stage1.4/                  # EDA analysis (10 plots)
 │
-├── DOCUMENTATION.md                   # Complete project documentation
-├── README.md                          # This file
-└── main.py                           # Initial exploration script
+├── stage2/                            # Stage 2: Advanced Analysis
+│   ├── step_2_1_advanced_analysis.py
+│   ├── step_2_2_feature_engineering.py
+│   ├── step_2_3_advanced_visualizations.py
+│   ├── Stage2_pipline_runner.py       # One-click Stage 2 execution
+│   ├── Milestone_2_Complete_Analysis.ipynb
+│   ├── outputs/
+│   │   ├── analysis_results/          # Statistical results
+│   │   ├── enhanced_features/         # 91-feature datasets
+│   │   └── visualizations/            # 10 advanced plots
+│   ├── DATA_ANALYSIS_REPORT.md
+│   ├── FEATURE_ENGINEERING_SUMMARY.md
+│   └── README.md
+│
+├── Milestone_1_Deliverables/         # Formal deliverables
+│   ├── EDA_Analysis_notebook/
+│   └── EDA-REPORT/
+│
+├── README.md                          # This file (project overview)
+├── requirements.txt                   # Python dependencies
+└── .gitignore                        # Git configuration
 ```
 
 ---
@@ -224,60 +254,77 @@ Ensure these files exist in `datasets/walmart-recruiting-store-sales-forecasting
 Run the entire data processing pipeline with a single command:
 
 ```bash
-python feature_engineering_pipeline.py
+# Run Stage 1 Pipeline (Data Preprocessing & Feature Engineering)
+cd stage1
+python Stage1_pipline_runner.py
+cd ..
+
+# Run Stage 2 Pipeline (Advanced Analysis)
+cd stage2
+python Stage2_pipline_runner.py
+cd ..
 ```
 
-**This will automatically:**
+**Stage 1 Pipeline will:**
 1. Execute all 4 feature engineering steps in sequence
 2. Show progress and output from each step
 3. Generate all intermediate and final datasets
-4. Create `processed_data/Stage1.3.4_Final/` with modeling-ready data
+4. Create `stage1/processed_data/Stage1.3.4_Final/` with modeling-ready data
 
-**Execution Time:** ~30-60 seconds  
-**Total Output:** ~500 MB of processed data
+**Stage 2 Pipeline will:**
+1. Perform advanced time series analysis
+2. Create enhanced features (91 total features)
+3. Generate 10 advanced visualizations
+4. Produce comprehensive analysis reports
 
-**Expected Console Output:**
+**Execution Time:** 
+- Stage 1: ~1-2 minutes
+- Stage 2: ~2-3 minutes
+**Total Output:** ~800 MB of processed data
+
+**Expected Console Output (Stage 1):**
 ```
 ================================================================================
-FEATURE ENGINEERING PIPELINE
+STAGE 1 PIPELINE - FEATURE ENGINEERING
 ================================================================================
 
 Pipeline Flow:
-  Stage1.2 → [1.3.1] → Stage1.3.1 → [1.3.2] → Stage1.3.2
-  → [1.3.3] → Stage1.3.3 → [1.3.4] → Stage1.3.4_Final
+  Stage1.2 -> [1.3.1] -> Time Features -> [1.3.2] -> Lag Features
+  -> [1.3.3] -> Encoding -> [1.3.4] -> Normalization -> Final
 
 ================================================================================
 [1/4] STEP 1.3.1: TIME-BASED FEATURES
 ================================================================================
-Input:  processed_data/Stage1.2/
-Output: processed_data/Stage1.3.1/
+Task: Extract temporal features (Year, Month, Quarter, cyclical encodings)
+Input:  processed_data/Stage1.2/train_cleaned_step2.csv
+Output: processed_data/Stage1.3.1/train_time_features.csv
 
 [1] Loading cleaned data...
-Loaded: train (421570, 20), test (115064, 19)
-
 [2] Creating time-based features...
-Created 20 time-based features
-
 [3] Saving data with time features...
-Saved: processed_data/Stage1.3.1/train_time_features.csv, ...
 
 ================================================================================
-STEP 1.3.1 COMPLETED!
+STEP 1.3.1 COMPLETED
 ================================================================================
 
 ... [Similar output for steps 1.3.2, 1.3.3, 1.3.4] ...
 
 ================================================================================
-PIPELINE COMPLETED SUCCESSFULLY!
+STAGE 1 PIPELINE COMPLETED SUCCESSFULLY
 ================================================================================
 
-Final Datasets Ready:
-  processed_data/Stage1.3.4_Final/
-     ├─ train_final.csv
-     ├─ test_final.csv
-     └─ normalization_params.json
+Summary:
+- Total features created: 38 (from 16 original)
+- Final feature count: 54 (train), 53 (test)
+- Data quality: 100% complete, 0 missing values
 
-Ready for Model Development!
+Final datasets available at:
+  stage1/processed_data/Stage1.3.4_Final/
+     - train_final.csv (421,570 rows x 54 features)
+     - test_final.csv (115,064 rows x 53 features)
+     - normalization_params.json
+
+Ready for Stage 2 or Model Development!
 ```
 
 ---
@@ -290,9 +337,10 @@ If you want to understand each stage or need preprocessing steps:
 
 **Step 1.1: Load and Merge Datasets**
 ```bash
+cd stage1
 python step_1_1_data_loading_merging.py
 ```
-- **Input:** `datasets/walmart-recruiting-store-sales-forecasting/`
+- **Input:** `../Datasets/walmart-recruiting-store-sales-forecasting/`
 - **Output:** `processed_data/Stage1.1/`
   - `train_merged.csv` (421,570 rows × 20 cols)
   - `test_merged.csv` (115,064 rows × 19 cols)
@@ -326,6 +374,7 @@ python step_1_3_outlier_detection.py
 
 **Step 1.3.1: Create Time-Based Features**
 ```bash
+cd stage1
 python step_1_3_1_time_features.py
 ```
 - **Input:** `processed_data/Stage1.2/`
@@ -339,6 +388,7 @@ python step_1_3_1_time_features.py
 
 **Step 1.3.2: Create Lag Features**
 ```bash
+cd stage1
 python step_1_3_2_lag_features.py
 ```
 - **Input:** `processed_data/Stage1.3.1/`
@@ -352,6 +402,7 @@ python step_1_3_2_lag_features.py
 
 **Step 1.3.3: Encode Categorical Variables**
 ```bash
+cd stage1
 python step_1_3_3_encode_categorical.py
 ```
 - **Input:** `processed_data/Stage1.3.2/`
@@ -362,10 +413,11 @@ python step_1_3_3_encode_categorical.py
 
 **Step 1.3.4: Normalize Features**
 ```bash
+cd stage1
 python step_1_3_4_normalize_features_final.py
 ```
 - **Input:** `processed_data/Stage1.3.3/`
-- **Output:** `processed_data/Stage1.3.4_Final/` ⭐
+- **Output:** `processed_data/Stage1.3.4_Final/` (READY FOR MODELING)
   - `train_final.csv` (421,570 rows × 54 cols) 
   - `test_final.csv` (115,064 rows × 53 cols)
   - `normalization_params.json` (for production deployment)
@@ -380,6 +432,7 @@ python step_1_3_4_normalize_features_final.py
 
 **Step 1.4: Generate EDA Visualizations**
 ```bash
+cd stage1
 python step_1_4_eda_analysis.py
 ```
 - **Input:** `processed_data/Stage1.2/train_cleaned_step2.csv`
@@ -403,16 +456,16 @@ python step_1_4_eda_analysis.py
 **Check Files Exist:**
 ```bash
 # Windows
-dir processed_data\Stage1.3.4_Final
+dir stage1\processed_data\Stage1.3.4_Final
 
 # Linux/Mac
-ls -lh processed_data/Stage1.3.4_Final/
+ls -lh stage1/processed_data/Stage1.3.4_Final/
 ```
 
 **Expected Output:**
 ```
-train_final.csv          ~223 MB
-test_final.csv           ~60 MB
+train_final.csv           ~57 MB
+test_final.csv            ~16 MB
 normalization_params.json ~1.5 KB
 ```
 
@@ -421,8 +474,8 @@ normalization_params.json ~1.5 KB
 import pandas as pd
 
 # Load final datasets
-train = pd.read_csv('processed_data/Stage1.3.4_Final/train_final.csv')
-test = pd.read_csv('processed_data/Stage1.3.4_Final/test_final.csv')
+train = pd.read_csv('stage1/processed_data/Stage1.3.4_Final/train_final.csv')
+test = pd.read_csv('stage1/processed_data/Stage1.3.4_Final/test_final.csv')
 
 # Check shapes
 print(f"Train shape: {train.shape}")  # (421570, 54)
@@ -452,11 +505,11 @@ import pandas as pd
 import json
 
 # Load final processed data
-train = pd.read_csv('processed_data/Stage1.3.4_Final/train_final.csv')
-test = pd.read_csv('processed_data/Stage1.3.4_Final/test_final.csv')
+train = pd.read_csv('stage1/processed_data/Stage1.3.4_Final/train_final.csv')
+test = pd.read_csv('stage1/processed_data/Stage1.3.4_Final/test_final.csv')
 
 # Load normalization parameters (for production)
-with open('processed_data/Stage1.3.4_Final/normalization_params.json', 'r') as f:
+with open('stage1/processed_data/Stage1.3.4_Final/normalization_params.json', 'r') as f:
     norm_params = json.load(f)
 
 print(f"Train: {train.shape}")  # (421570, 54)
@@ -477,6 +530,8 @@ print(f"X_test: {X_test.shape}")      # (115064, 52)
 
 ## Feature Engineering Pipeline
 
+### Stage 1: Core Feature Engineering (38 features created)
+
 ### 1. **Time-Based Features (20)**
 - Basic: Year, Month, Day, Quarter, DayOfWeek, WeekOfYear
 - Binary: Is_Weekend, Is_Month_Start/End, Is_Quarter_Start/End, Is_Year_Start/End
@@ -491,9 +546,42 @@ print(f"X_test: {X_test.shape}")      # (115064, 52)
 ### 3. **Categorical Encoding (3)**
 - Type_A, Type_B, Type_C (one-hot encoded store types)
 
-### 4. **Normalization (17 features)**
+### 4. **Promotion Indicators (5)**
+- Has_MarkDown1-5 (binary flags for promotional activity)
+
+### 5. **Normalization (17 features)**
 - Z-Score: (x - μ) / σ for all continuous features
 - Preserves patterns while standardizing scale
+
+**Total Stage 1 Features:** 54 (train), 53 (test)
+
+---
+
+### Stage 2: Enhanced Feature Engineering (42 additional features)
+
+### 6. **Advanced Rolling Statistics (9)**
+- EMA_4, EMA_8, EMA_12 (exponential moving averages)
+- Sales_Rolling_Min/Max/Range_4
+- Sales_Trend_4, Sales_CV_4, Sales_Acceleration
+
+### 7. **Seasonal Features (9)**
+- Holiday_Season, Days_To_Christmas, Days_To_Thanksgiving
+- Is_Holiday_Week, Season (meteorological)
+
+### 8. **Store Performance Metrics (11)**
+- Store_Avg_Sales, Dept_Avg_Sales, StoreDept_Avg_Sales
+- Deviations from averages
+
+### 9. **Promotional Intensity (4)**
+- Total_MarkDown, Active_Promotions, Promo_Intensity
+
+### 10. **Economic Interactions (4)**
+- CPI_Unemployment_Interaction, Temp_Holiday_Interaction
+
+### 11. **Time Aggregations (5)**
+- Monthly_Sales, Quarterly_Sales, YoY_Growth
+
+**Total Stage 2 Features:** 91 (train), 73 (test)
 
 ---
 
@@ -503,7 +591,7 @@ print(f"X_test: {X_test.shape}")      # (115064, 52)
 - **0 missing values** (100% complete)
 - **0 duplicates**
 - **421,570 training examples**
-- **49 engineered features**
+- **54 Stage 1 features | 91 Stage 2 enhanced features**
 
 ### Patterns Discovered
 - Strong seasonality (Q4 peak)
@@ -561,15 +649,18 @@ print(f"X_test: {X_test.shape}")      # (115064, 52)
 ## Documentation
 
 For detailed implementation steps, code explanations, and complete analysis, see:
-- **[DOCUMENTATION.md](DOCUMENTATION.md)** - Complete project documentation (55KB, comprehensive)
+- **[stage1/README.md](stage1/README.md)** - Complete Stage 1 documentation
+- **[stage2/README.md](stage2/README.md)** - Stage 2 documentation  
+- **[stage2/DATA_ANALYSIS_REPORT.md](stage2/DATA_ANALYSIS_REPORT.md)** - Comprehensive analysis report
+- **[stage2/FEATURE_ENGINEERING_SUMMARY.md](stage2/FEATURE_ENGINEERING_SUMMARY.md)** - Feature catalog
 
 ---
 
 ## Contact
 
 For questions or collaboration:
-- Project Repository: `D:\projects\Depi_project_Data-science`
-- Last Updated: October 23, 2025
+- Project Repository: DEPI Data Science Project
+- Last Updated: October 29, 2025
 
 ---
 
@@ -579,4 +670,4 @@ This project is developed for educational purposes as part of the DEPI AI & Data
 
 ---
 
-**Status:** Milestone 1 Complete | Ready for Model Development | Dataset: 421K training examples, 49 features
+**Status:** Milestone 1 & 2 Complete | Ready for Model Development | Dataset: 421K training examples, 54-91 features
