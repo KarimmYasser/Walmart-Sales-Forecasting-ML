@@ -21,6 +21,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from datetime import datetime
+import os
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -42,6 +43,9 @@ train = train.sort_values('Date').reset_index(drop=True)
 
 print(f"✓ Loaded: {train.shape[0]:,} rows × {train.shape[1]} columns")
 print(f"✓ Date range: {train['Date'].min()} to {train['Date'].max()}")
+
+# Create output directory if it doesn't exist
+os.makedirs('stage2/outputs/visualizations', exist_ok=True)
 
 # ============================================================================
 # 2. HISTORICAL TRENDS WITH EMA

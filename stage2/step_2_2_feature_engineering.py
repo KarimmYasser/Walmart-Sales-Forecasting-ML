@@ -20,6 +20,7 @@ import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
 import json
+import os
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -294,6 +295,10 @@ test = create_time_aggregations(test, has_sales=False)
 # 8. SAVE ENHANCED DATASETS
 # ============================================================================
 print("\n[8/8] Saving enhanced datasets...")
+
+# Create output directory if it doesn't exist
+output_dir = 'stage2/outputs/enhanced_features'
+os.makedirs(output_dir, exist_ok=True)
 
 # Save to stage2 outputs
 train.to_csv('stage2/outputs/enhanced_features/train_enhanced.csv', index=False)

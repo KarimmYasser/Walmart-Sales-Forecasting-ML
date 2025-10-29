@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from datetime import datetime
 import json
+import os
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -200,6 +201,10 @@ correlation_data = train[available_features].copy()
 
 # Calculate correlation matrix
 corr_matrix = correlation_data.corr()
+
+# Create output directories if they don't exist
+os.makedirs('stage2/outputs/analysis_results', exist_ok=True)
+os.makedirs('stage2/outputs/visualizations', exist_ok=True)
 
 # Save full correlation matrix
 corr_matrix.to_csv('stage2/outputs/analysis_results/correlation_matrix.csv')

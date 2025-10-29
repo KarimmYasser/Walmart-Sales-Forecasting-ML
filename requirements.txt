@@ -6,7 +6,7 @@
 # ============================================================================
 
 # Core Data Processing
-pandas`         # Data manipulation and analysis
+pandas          # Data manipulation and analysis
 numpy           # Numerical computing
 
 # Visualization
