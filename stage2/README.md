@@ -98,8 +98,9 @@ stage2/
 ## 🚀 How to Run
 
 ### Prerequisites
-Ensure Milestone 1 is complete (data in `processed_data/Final/`)
+Ensure Stage 1 is complete (data in `../stage1/processed_data/Stage1.3.4_Final/`)
 
+**From project root:**
 ```bash
 cd stage2
 ```
@@ -117,7 +118,16 @@ python step_2_2_feature_engineering.py
 python step_2_3_advanced_visualizations.py
 ```
 
-**Total Runtime:** ~3-5 minutes
+**Total Runtime:** ~2-3 minutes
+
+### Or Run the Complete Pipeline
+
+```bash
+# From stage2/ directory
+python Stage2_pipline_runner.py
+```
+
+This will execute all three steps sequentially with comprehensive progress tracking.
 
 ---
 
@@ -273,7 +283,7 @@ python step_2_3_advanced_visualizations.py
 
 ---
 
-**Last Updated:** October 24, 2025  
-**Version:** 1.0  
+**Last Updated:** October 29, 2025  
+**Version:** 1.1  
 **License:** MIT
 

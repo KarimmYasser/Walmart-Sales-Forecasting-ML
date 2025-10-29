@@ -8,7 +8,7 @@ This script performs:
 3. Correlation Analysis (features vs sales)
 
 Input: processed_data/Final/train_final.csv
-Output: stage2/outputs/analysis_results/
+Output: outputs/analysis_results/
 ============================================================================
 """
 
@@ -26,12 +26,23 @@ print("="*80)
 print("MILESTONE 2 - TASK 2.1: ADVANCED DATA ANALYSIS")
 print("="*80)
 
+# Determine correct path to Stage 1 output (works from stage2/ or project root)
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(script_dir)
+stage1_output = os.path.join(project_root, 'stage1', 'processed_data', 'Stage1.3.4_Final')
+
 # Load data and create output directories
-train = pd.read_csv('processed_data/Stage1.3.4_Final/train_final.csv')
+train_path = os.path.join(stage1_output, 'train_final.csv')
+print(f"\nLoading data from: {train_path}")
+train = pd.read_csv(train_path)    
 train['Date'] = pd.to_datetime(train['Date'])
 train = train.sort_values(['Store', 'Dept', 'Date']).reset_index(drop=True)
-os.makedirs('stage2/outputs/analysis_results', exist_ok=True)
-os.makedirs('stage2/outputs/visualizations', exist_ok=True)
+
+# Create output directories relative to script location
+output_base = os.path.join(script_dir, 'outputs')
+os.makedirs(os.path.join(output_base, 'analysis_results'), exist_ok=True)
+os.makedirs(os.path.join(output_base, 'visualizations'), exist_ok=True)
+print(f"Output directory: {output_base}\n")
 
 # ============================================================================
 # 2. TIME SERIES DECOMPOSITION
@@ -87,7 +98,8 @@ axes[3].set_xlabel('Date', fontsize=11)
 axes[3].grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('stage2/outputs/visualizations/01_time_series_decomposition.png', dpi=300, bbox_inches='tight')
+save_path = os.path.join(output_base, 'visualizations', '01_time_series_decomposition.png')
+plt.savefig(save_path, dpi=300, bbox_inches='tight')
 plt.close()
 
 # ============================================================================
@@ -143,7 +155,8 @@ def adf_test_manual(series):
 adf_results = adf_test_manual(weekly_sales['Weekly_Sales'])
 
 # Save ADF results
-with open('stage2/outputs/analysis_results/adf_test_results.json', 'w') as f:
+adf_path = os.path.join(output_base, 'analysis_results', 'adf_test_results.json')
+with open(adf_path, 'w') as f:
     json.dump(adf_results, f, indent=4)
 
 # ============================================================================
@@ -165,9 +178,11 @@ correlation_data = train[available_features].copy()
 corr_matrix = correlation_data.corr()
 
 # Save correlation results
-corr_matrix.to_csv('stage2/outputs/analysis_results/correlation_matrix.csv')
+corr_path = os.path.join(output_base, 'analysis_results', 'correlation_matrix.csv')
+sales_corr_path = os.path.join(output_base, 'analysis_results', 'sales_correlations.csv')
+corr_matrix.to_csv(corr_path)
 sales_correlations = corr_matrix['Weekly_Sales'].sort_values(ascending=False)
-sales_correlations.to_csv('stage2/outputs/analysis_results/sales_correlations.csv')
+sales_correlations.to_csv(sales_corr_path)
 
 # Visualize correlation heatmap (top features only)
 top_features = ['Weekly_Sales'] + list(sales_correlations.drop('Weekly_Sales').abs().nlargest(10).index)
@@ -178,7 +193,8 @@ sns.heatmap(top_corr, annot=True, fmt='.3f', cmap='RdBu_r', center=0,
             square=True, linewidths=1, cbar_kws={"shrink": 0.8})
 plt.title('Correlation Heatmap - Top Features vs Weekly Sales', fontsize=16, fontweight='bold', pad=20)
 plt.tight_layout()
-plt.savefig('stage2/outputs/visualizations/02_correlation_heatmap.png', dpi=300, bbox_inches='tight')
+save_path = os.path.join(output_base, 'visualizations', '02_correlation_heatmap.png')
+plt.savefig(save_path, dpi=300, bbox_inches='tight')
 plt.close()
 
 # ============================================================================
@@ -195,7 +211,8 @@ holiday_stats = train.groupby('IsHoliday')['Weekly_Sales'].agg([
     ('max', 'max')
 ]).round(2)
 
-holiday_stats.to_csv('stage2/outputs/analysis_results/holiday_impact_stats.csv')
+holiday_path = os.path.join(output_base, 'analysis_results', 'holiday_impact_stats.csv')
+holiday_stats.to_csv(holiday_path)
 
 # Calculate percentage difference
 non_holiday_mean = holiday_stats.loc[False, 'mean']
@@ -226,7 +243,8 @@ for i, v in enumerate([non_holiday_mean, holiday_mean]):
 
 plt.suptitle('Holiday Impact on Sales', fontsize=16, fontweight='bold', y=1.02)
 plt.tight_layout()
-plt.savefig('stage2/outputs/visualizations/03_holiday_impact.png', dpi=300, bbox_inches='tight')
+save_path = os.path.join(output_base, 'visualizations', '03_holiday_impact.png')
+plt.savefig(save_path, dpi=300, bbox_inches='tight')
 plt.close()
 
 print("\n" + "="*80)

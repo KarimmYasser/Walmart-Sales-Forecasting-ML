@@ -12,7 +12,7 @@ This script creates advanced features beyond Milestone 1:
 7. Economic Indicator Interactions
 
 Input: processed_data/Final/train_final.csv, test_final.csv
-Output: stage2/outputs/enhanced_features/
+Output: outputs/enhanced_features/
 ============================================================================
 """
 
@@ -29,8 +29,8 @@ print("MILESTONE 2 - TASK 2.2: ENHANCED FEATURE ENGINEERING")
 print("="*80)
 
 # Load and prepare data
-train = pd.read_csv('processed_data/Stage1.3.4_Final/train_final.csv')
-test = pd.read_csv('processed_data/Stage1.3.4_Final/test_final.csv')
+train = pd.read_csv('../stage1/processed_data/Stage1.3.4_Final/train_final.csv')
+test = pd.read_csv('../stage1/processed_data/Stage1.3.4_Final/test_final.csv')
 train['Date'] = pd.to_datetime(train['Date'])
 test['Date'] = pd.to_datetime(test['Date'])
 train = train.sort_values(['Store', 'Dept', 'Date']).reset_index(drop=True)
@@ -175,9 +175,9 @@ train = create_time_aggregations(train, has_sales=True)
 test = create_time_aggregations(test, has_sales=False)
 
 # Save Enhanced Datasets
-os.makedirs('stage2/outputs/enhanced_features', exist_ok=True)
-train.to_csv('stage2/outputs/enhanced_features/train_enhanced.csv', index=False)
-test.to_csv('stage2/outputs/enhanced_features/test_enhanced.csv', index=False)
+os.makedirs('outputs/enhanced_features', exist_ok=True)
+train.to_csv('outputs/enhanced_features/train_enhanced.csv', index=False)
+test.to_csv('outputs/enhanced_features/test_enhanced.csv', index=False)
 
 # Create feature summary
 new_features = {
@@ -222,7 +222,7 @@ feature_summary = {
     'total_features_now': train.shape[1]
 }
 
-with open('stage2/outputs/enhanced_features/feature_summary.json', 'w') as f:
+with open('outputs/enhanced_features/feature_summary.json', 'w') as f:
     json.dump(feature_summary, f, indent=4, default=str)
 
 print("\n" + "="*80)

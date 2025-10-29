@@ -11,8 +11,8 @@ This script creates advanced visualizations:
 6. External factor impact visualizations
 7. Interactive dashboard-style reports
 
-Input: stage2/outputs/enhanced_features/train_enhanced.csv
-Output: stage2/outputs/visualizations/
+Input: outputs/enhanced_features/train_enhanced.csv
+Output: outputs/visualizations/
 ============================================================================
 """
 
@@ -34,10 +34,10 @@ print("MILESTONE 2 - TASK 2.3: ADVANCED VISUALIZATIONS")
 print("="*80)
 
 # Load data and create output directory
-train = pd.read_csv('stage2/outputs/enhanced_features/train_enhanced.csv')
+train = pd.read_csv('outputs/enhanced_features/train_enhanced.csv')
 train['Date'] = pd.to_datetime(train['Date'])
 train = train.sort_values('Date').reset_index(drop=True)
-os.makedirs('stage2/outputs/visualizations', exist_ok=True)
+os.makedirs('outputs/visualizations', exist_ok=True)
 
 # Historical Trends with EMA
 print("\n[1/7] Historical trends...")
@@ -76,7 +76,7 @@ ax.grid(True, alpha=0.3)
 ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'${x/1e6:.1f}M'))
 
 plt.tight_layout()
-plt.savefig('stage2/outputs/visualizations/04_historical_trends_ema.png', dpi=300, bbox_inches='tight')
+plt.savefig('outputs/visualizations/04_historical_trends_ema.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 # Seasonal Patterns
@@ -136,7 +136,7 @@ axes[1, 1].set_xticklabels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
 
 plt.suptitle('Seasonal Patterns Analysis', fontsize=18, fontweight='bold', y=1.00)
 plt.tight_layout()
-plt.savefig('stage2/outputs/visualizations/05_seasonal_patterns.png', dpi=300, bbox_inches='tight')
+plt.savefig('outputs/visualizations/05_seasonal_patterns.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 # Store Type Performance
@@ -196,7 +196,7 @@ for i, v in enumerate(avg_size):
 
 plt.suptitle('Store Type Performance Comparison', fontsize=18, fontweight='bold', y=1.02)
 plt.tight_layout()
-plt.savefig('stage2/outputs/visualizations/06_store_type_performance.png', dpi=300, bbox_inches='tight')
+plt.savefig('outputs/visualizations/06_store_type_performance.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 # Department Performance Heatmap
@@ -222,7 +222,7 @@ plt.ylabel('Department', fontsize=12, fontweight='bold')
 plt.xticks(range(12), ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
                         'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'])
 plt.tight_layout()
-plt.savefig('stage2/outputs/visualizations/07_department_performance_heatmap.png', dpi=300, bbox_inches='tight')
+plt.savefig('outputs/visualizations/07_department_performance_heatmap.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 # Promotional Effectiveness
@@ -273,7 +273,7 @@ axes[2].set_xticklabels(axes[2].get_xticklabels(), rotation=0)
 
 plt.suptitle('Promotional Effectiveness Analysis', fontsize=18, fontweight='bold', y=1.02)
 plt.tight_layout()
-plt.savefig('stage2/outputs/visualizations/08_promotional_effectiveness.png', dpi=300, bbox_inches='tight')
+plt.savefig('outputs/visualizations/08_promotional_effectiveness.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 # External Factors Impact
@@ -322,7 +322,7 @@ axes[1, 1].grid(True, alpha=0.3)
 
 plt.suptitle('External Factors Impact on Sales', fontsize=18, fontweight='bold', y=1.00)
 plt.tight_layout()
-plt.savefig('stage2/outputs/visualizations/09_external_factors_impact.png', dpi=300, bbox_inches='tight')
+plt.savefig('outputs/visualizations/09_external_factors_impact.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 # Comprehensive Dashboard
@@ -400,7 +400,7 @@ ax7.grid(axis='y', alpha=0.3)
 
 plt.suptitle('WALMART SALES FORECASTING - COMPREHENSIVE DASHBOARD', 
              fontsize=20, fontweight='bold', y=0.995)
-plt.savefig('stage2/outputs/visualizations/10_comprehensive_dashboard.png', dpi=300, bbox_inches='tight')
+plt.savefig('outputs/visualizations/10_comprehensive_dashboard.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 print("\n" + "="*80)
