@@ -1,4 +1,4 @@
-# 🛒 Walmart Sales Forecasting Project
+# Walmart Sales Forecasting Project
 
 **AI & Data Science Track - Round 2**  
 **Project Type:** Time Series Forecasting  
@@ -7,18 +7,18 @@
 
 ---
 
-## 📋 Project Overview
+## Project Overview
 
 This project develops a machine learning system to forecast weekly sales for Walmart stores across 45 locations and 99 departments. The goal is to predict future sales using historical data, store characteristics, external factors, and promotional activities.
 
-### 🎯 Business Objectives
+### Business Objectives
 
 - **Inventory Optimization**: Prevent stockouts and overstocking
 - **Staff Scheduling**: Allocate resources based on predicted demand
 - **Marketing Planning**: Time promotions for maximum impact
 - **Financial Forecasting**: Accurate revenue projections
 
-### 📊 Success Metrics
+### Success Metrics
 
 - **MAE (Mean Absolute Error)**: < $3,000 per week
 - **RMSE (Root Mean Square Error)**: < $5,000 per week
@@ -27,7 +27,7 @@ This project develops a machine learning system to forecast weekly sales for Wal
 
 ---
 
-## 📁 Dataset Summary
+## Dataset Summary
 
 | Dataset | Records | Columns | Date Range | Description |
 |---------|---------|---------|------------|-------------|
@@ -44,43 +44,43 @@ This project develops a machine learning system to forecast weekly sales for Wal
 
 ---
 
-## 🎯 Project Milestones
+## Project Milestones
 
-### ✅ Milestone 1: Data Collection, Exploration & Preprocessing (85% Complete)
+### Milestone 1: Data Collection, Exploration & Preprocessing (85% Complete)
 
 **Completed:**
-- ✅ **Task 1: Data Collection** - Acquired and merged 4 datasets
-- ✅ **Task 2: Data Exploration** - EDA with 10 visualizations, missing value analysis
-- ✅ **Task 3: Feature Engineering** - 20 time features, 7 lag features, encoding, normalization
-- ✅ **Task 4: EDA** - Comprehensive analysis with actionable insights
+- **Task 1: Data Collection** - Acquired and merged 4 datasets
+- **Task 2: Data Exploration** - EDA with 10 visualizations, missing value analysis
+- **Task 3: Feature Engineering** - 20 time features, 7 lag features, encoding, normalization
+- **Task 4: EDA** - Comprehensive analysis with actionable insights
 
 **Deliverables:**
-- ✅ Cleaned Dataset (100%): `processed_data/Final/train_final.csv` & `test_final.csv`
-- ✅ Interactive Visualizations (100%): 10 professional visualizations
-- 🟡 EDA Report (85%): Analysis complete, formal writeup pending
+- Cleaned Dataset (100%): `processed_data/Final/train_final.csv` & `test_final.csv`
+- Interactive Visualizations (100%): 10 professional visualizations
+- EDA Report (85%): Analysis complete, formal writeup pending
 
-### ⏳ Milestone 2: Model Development (Next Phase)
+### Milestone 2: Model Development (Next Phase)
 
 - Build baseline models (naive forecasting)
 - Train advanced models (Random Forest, XGBoost, LSTM)
 - Hyperparameter tuning
 - Model evaluation and comparison
 
-### ⏳ Milestone 3: Model Evaluation & Selection
+### Milestone 3: Model Evaluation & Selection
 
 - Cross-validation for time series
 - Performance metrics analysis
 - Best model selection
 - Error analysis
 
-### ⏳ Milestone 4: Deployment & Monitoring
+### Milestone 4: Deployment & Monitoring
 
 - Deploy model (Flask/Streamlit)
 - Create prediction API
 - Set up monitoring for drift
 - Production testing
 
-### ⏳ Milestone 5: Final Documentation & Presentation
+### Milestone 5: Final Documentation & Presentation
 
 - Final report
 - Presentation slides
@@ -89,42 +89,42 @@ This project develops a machine learning system to forecast weekly sales for Wal
 
 ---
 
-## 🔑 Key Insights from EDA
+## Key Insights from EDA
 
-### 📈 Seasonality (Critical!)
+### Seasonality (Critical!)
 - **Q4 sales are 35-40% higher than Q1** - Strong holiday surge
 - November and December are peak months
 - Models must capture seasonal patterns
 
-### 🎉 Holiday Impact
+### Holiday Impact
 - **+11.6% sales lift** during holiday weeks
 - Consistent across all store types
 - IsHoliday is a strong predictor
 
-### 💰 Promotion Effectiveness
+### Promotion Effectiveness
 - **All markdowns increase sales** (positive ROI)
 - MarkDown5: +22.1% lift (most effective)
 - MarkDown1: +18.9% lift (second best)
 - Promotion features are valuable predictors
 
-### 🏪 Store Types
+### Store Types
 - **Type A (Large)**: 55% of sales, highest variance
 - **Type B (Medium)**: 30% of sales, stable performance
 - **Type C (Small)**: 15% of sales, most consistent
 - Store type segmentation is critical
 
-### 📊 External Factors
+### External Factors
 - **Unemployment**: Strongest correlation (-0.128)
 - Temperature, Fuel Price: Minimal impact
 - CPI: Moderate correlation
 
-### 🎯 Department Concentration
+### Department Concentration
 - **Top 10 departments = 66% of total sales**
 - Power law distribution suggests focused forecasting
 
 ---
 
-## 🛠️ Technical Stack
+## Technical Stack
 
 **Languages & Libraries:**
 - Python 3.12
@@ -145,7 +145,7 @@ This project develops a machine learning system to forecast weekly sales for Wal
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 Depi_project_Data-science/
@@ -163,7 +163,7 @@ Depi_project_Data-science/
 │   ├── Stage1.3.1/                    # Time features added
 │   ├── Stage1.3.2/                    # Lag features added
 │   ├── Stage1.3.3/                    # Categorical encoded
-│   └── Final/                         # ⭐ READY FOR MODELING
+│   └── Final/                         # READY FOR MODELING
 │       ├── train_final.csv            # 421,570 × 49
 │       ├── test_final.csv             # 115,064 × 48
 │       └── normalization_params.json  # For production
@@ -183,14 +183,14 @@ Depi_project_Data-science/
 │   ├── step_1_3_3_encode_categorical.py
 │   └── step_1_3_4_normalize_features_final.py
 │
-├── DOCUMENTATION.md                   # 📘 Complete project documentation
-├── README.md                          # 📄 This file
+├── DOCUMENTATION.md                   # Complete project documentation
+├── README.md                          # This file
 └── main.py                           # Initial exploration script
 ```
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -205,7 +205,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-print("✓ All packages installed successfully!")
+print("All packages installed successfully!")
 ```
 
 **Required Data Files:**
@@ -217,9 +217,9 @@ Ensure these files exist in `datasets/walmart-recruiting-store-sales-forecasting
 
 ---
 
-## 📊 How to Generate All Required Data
+## How to Generate All Required Data
 
-### ⚡ **OPTION 1: ONE-CLICK PIPELINE (RECOMMENDED)**
+### **OPTION 1: ONE-CLICK PIPELINE (RECOMMENDED)**
 
 Run the entire data processing pipeline with a single command:
 
@@ -228,13 +228,13 @@ python feature_engineering_pipeline.py
 ```
 
 **This will automatically:**
-1. ✅ Execute all 4 feature engineering steps in sequence
-2. ✅ Show progress and output from each step
-3. ✅ Generate all intermediate and final datasets
-4. ✅ Create `processed_data/Stage1.3.4_Final/` with modeling-ready data
+1. Execute all 4 feature engineering steps in sequence
+2. Show progress and output from each step
+3. Generate all intermediate and final datasets
+4. Create `processed_data/Stage1.3.4_Final/` with modeling-ready data
 
-**⏱️ Execution Time:** ~30-60 seconds  
-**💾 Total Output:** ~500 MB of processed data
+**Execution Time:** ~30-60 seconds  
+**Total Output:** ~500 MB of processed data
 
 **Expected Console Output:**
 ```
@@ -253,36 +253,36 @@ Input:  processed_data/Stage1.2/
 Output: processed_data/Stage1.3.1/
 
 [1] Loading cleaned data...
-✓ Loaded: train (421570, 20), test (115064, 19)
+Loaded: train (421570, 20), test (115064, 19)
 
 [2] Creating time-based features...
-✓ Created 20 time-based features
+Created 20 time-based features
 
 [3] Saving data with time features...
-✓ Saved: processed_data/Stage1.3.1/train_time_features.csv, ...
+Saved: processed_data/Stage1.3.1/train_time_features.csv, ...
 
 ================================================================================
-✅ STEP 1.3.1 COMPLETED!
+STEP 1.3.1 COMPLETED!
 ================================================================================
 
 ... [Similar output for steps 1.3.2, 1.3.3, 1.3.4] ...
 
 ================================================================================
-✅ PIPELINE COMPLETED SUCCESSFULLY!
+PIPELINE COMPLETED SUCCESSFULLY!
 ================================================================================
 
 Final Datasets Ready:
-  📁 processed_data/Stage1.3.4_Final/
+  processed_data/Stage1.3.4_Final/
      ├─ train_final.csv
      ├─ test_final.csv
      └─ normalization_params.json
 
-🚀 Ready for Model Development!
+Ready for Model Development!
 ```
 
 ---
 
-### 🔧 **OPTION 2: STEP-BY-STEP EXECUTION**
+### **OPTION 2: STEP-BY-STEP EXECUTION**
 
 If you want to understand each stage or need preprocessing steps:
 
@@ -394,11 +394,11 @@ python step_1_4_eda_analysis.py
   8. External factors correlation
   9. External factors scatter plots
   10. Top departments
-- **⏱️ Time:** ~15-20 seconds
+- **Time:** ~15-20 seconds
 
 ---
 
-### ✅ Verify Generated Data
+### Verify Generated Data
 
 **Check Files Exist:**
 ```bash
@@ -425,27 +425,27 @@ train = pd.read_csv('processed_data/Stage1.3.4_Final/train_final.csv')
 test = pd.read_csv('processed_data/Stage1.3.4_Final/test_final.csv')
 
 # Check shapes
-print(f"✓ Train shape: {train.shape}")  # (421570, 54)
-print(f"✓ Test shape: {test.shape}")    # (115064, 53)
+print(f"Train shape: {train.shape}")  # (421570, 54)
+print(f"Test shape: {test.shape}")    # (115064, 53)
 
 # Check data quality
-print(f"✓ Missing values (train): {train.isnull().sum().sum()}")  # Should be 0
-print(f"✓ Missing values (test): {test.isnull().sum().sum()}")    # Should be 0
-print(f"✓ Duplicates (train): {train.duplicated().sum()}")        # Should be 0
+print(f"Missing values (train): {train.isnull().sum().sum()}")  # Should be 0
+print(f"Missing values (test): {test.isnull().sum().sum()}")    # Should be 0
+print(f"Duplicates (train): {train.duplicated().sum()}")        # Should be 0
 
 # Check normalization (should have mean≈0, std≈1)
 continuous_features = ['Size', 'Temperature', 'CPI', 'Sales_Lag1']
-print(f"\n✓ Normalized features (mean should be ≈0):")
+print(f"\nNormalized features (mean should be ≈0):")
 print(train[continuous_features].mean())
-print(f"\n✓ Normalized features (std should be ≈1):")
+print(f"\nNormalized features (std should be ≈1):")
 print(train[continuous_features].std())
 
-print("\n✅ All checks passed! Data is ready for modeling.")
+print("\nAll checks passed! Data is ready for modeling.")
 ```
 
 ---
 
-### 🎯 Loading Data for Modeling
+### Loading Data for Modeling
 
 ```python
 import pandas as pd
@@ -475,7 +475,7 @@ print(f"X_test: {X_test.shape}")      # (115064, 52)
 
 ---
 
-## 📊 Feature Engineering Pipeline
+## Feature Engineering Pipeline
 
 ### 1. **Time-Based Features (20)**
 - Basic: Year, Month, Day, Quarter, DayOfWeek, WeekOfYear
@@ -497,31 +497,31 @@ print(f"X_test: {X_test.shape}")      # (115064, 52)
 
 ---
 
-## 📈 Results & Insights
+## Results & Insights
 
 ### Data Quality
-- ✅ **0 missing values** (100% complete)
-- ✅ **0 duplicates**
-- ✅ **421,570 training examples**
-- ✅ **49 engineered features**
+- **0 missing values** (100% complete)
+- **0 duplicates**
+- **421,570 training examples**
+- **49 engineered features**
 
 ### Patterns Discovered
-- 📊 Strong seasonality (Q4 peak)
-- 🎉 Consistent holiday lift (+11.6%)
-- 💰 Effective promotions (up to +22% lift)
-- 🏪 Clear store type differences
-- 📉 Economic indicators matter (Unemployment -0.128 correlation)
+- Strong seasonality (Q4 peak)
+- Consistent holiday lift (+11.6%)
+- Effective promotions (up to +22% lift)
+- Clear store type differences
+- Economic indicators matter (Unemployment -0.128 correlation)
 
 ### Data Readiness
-- ✅ All preprocessing complete
-- ✅ Features normalized (mean=0, std=1)
-- ✅ Train-test consistency maintained
-- ✅ No data leakage
-- ✅ Production parameters saved
+- All preprocessing complete
+- Features normalized (mean=0, std=1)
+- Train-test consistency maintained
+- No data leakage
+- Production parameters saved
 
 ---
 
-## 🎓 Key Learnings
+## Key Learnings
 
 1. **Seasonality is Dominant**: Q4 surge must be captured by models
 2. **Holidays Matter**: Simple IsHoliday flag provides +11.6% predictive power
@@ -532,7 +532,7 @@ print(f"X_test: {X_test.shape}")      # (115064, 52)
 
 ---
 
-## 📝 Next Steps
+## Next Steps
 
 ### Immediate (Milestone 2)
 1. **Build Baseline Model** - Naive forecasting for comparison
@@ -550,7 +550,7 @@ print(f"X_test: {X_test.shape}")      # (115064, 52)
 
 ---
 
-## 👥 Team
+## Team
 
 **Data Science Team**  
 **Project:** AI & Data Science Track - Round 2  
@@ -558,14 +558,14 @@ print(f"X_test: {X_test.shape}")      # (115064, 52)
 
 ---
 
-## 📚 Documentation
+## Documentation
 
 For detailed implementation steps, code explanations, and complete analysis, see:
 - **[DOCUMENTATION.md](DOCUMENTATION.md)** - Complete project documentation (55KB, comprehensive)
 
 ---
 
-## 📧 Contact
+## Contact
 
 For questions or collaboration:
 - Project Repository: `D:\projects\Depi_project_Data-science`
@@ -573,10 +573,10 @@ For questions or collaboration:
 
 ---
 
-## ⚖️ License
+## License
 
 This project is developed for educational purposes as part of the DEPI AI & Data Science Track.
 
 ---
 
-**Status:** ✅ Milestone 1 Complete | 🚀 Ready for Model Development | 📊 Dataset: 421K training examples, 49 features
+**Status:** Milestone 1 Complete | Ready for Model Development | Dataset: 421K training examples, 49 features

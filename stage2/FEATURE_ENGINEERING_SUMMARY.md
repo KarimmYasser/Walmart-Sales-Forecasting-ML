@@ -1,10 +1,4 @@
-# 🔧 Milestone 2: Feature Engineering Summary
-
-**Project:** Walmart Sales Forecasting  
-**Milestone:** 2 - Advanced Data Analysis and Feature Engineering  
-**Date:** October 24, 2025  
-
----
+# Milestone 2: Feature Engineering Summary
 
 ## Executive Summary
 
@@ -106,23 +100,23 @@ This document summarizes all feature engineering performed across Milestone 1 an
 | `DayOfWeek_Sin` | sin(2π × Day/7) | Circular day encoding |
 | `DayOfWeek_Cos` | cos(2π × Day/7) | Sun→Mon continuity |
 
-**Expected Impact:** 🔥🔥🔥 (High) - Essential for capturing seasonality and time-based patterns
+**Expected Impact:** HIGH - Essential for capturing seasonality and time-based patterns
 
 ### 2.3 Lag and Rolling Features (7)
 
 | Feature | Window | Calculation | Correlation | Expected Impact |
 |---------|--------|-------------|-------------|-----------------|
-| `Sales_Lag1` | 1 week | Previous week's sales | +0.9438 | 🔥🔥🔥🔥🔥 |
-| `Sales_Lag2` | 2 weeks | Sales from 2 weeks ago | +0.9260 | 🔥🔥🔥🔥🔥 |
-| `Sales_Lag4` | 4 weeks | Sales from 4 weeks ago | +0.9135 | 🔥🔥🔥🔥🔥 |
-| `Sales_Rolling_Mean_4` | 4 weeks | Moving average | +0.9758 | 🔥🔥🔥🔥🔥 |
-| `Sales_Rolling_Mean_8` | 8 weeks | Moving average | +0.9648 | 🔥🔥🔥🔥🔥 |
-| `Sales_Rolling_Std_4` | 4 weeks | Rolling std deviation | +0.4834 | 🔥🔥🔥 |
-| `Sales_Momentum` | - | Lag1 - Lag2 (velocity) | Moderate | 🔥🔥 |
+| `Sales_Lag1` | 1 week | Previous week's sales | +0.9438 | CRITICAL |
+| `Sales_Lag2` | 2 weeks | Sales from 2 weeks ago | +0.9260 | CRITICAL |
+| `Sales_Lag4` | 4 weeks | Sales from 4 weeks ago | +0.9135 | CRITICAL |
+| `Sales_Rolling_Mean_4` | 4 weeks | Moving average | +0.9758 | CRITICAL |
+| `Sales_Rolling_Mean_8` | 8 weeks | Moving average | +0.9648 | CRITICAL |
+| `Sales_Rolling_Std_4` | 4 weeks | Rolling std deviation | +0.4834 | HIGH |
+| `Sales_Momentum` | - | Lag1 - Lag2 (velocity) | Moderate | MODERATE |
 
 **Calculation Level:** Per Store-Department combination  
 **Missing Values:** Forward-filled for first few weeks  
-**Expected Impact:** 🔥🔥🔥🔥🔥 (Critical) - Strongest predictors identified
+**Expected Impact:** CRITICAL - Strongest predictors identified
 
 ### 2.4 Categorical Encoding (3)
 
@@ -134,7 +128,7 @@ This document summarizes all feature engineering performed across Milestone 1 an
 | `Type_B` | 0/1 | 17 stores | Mid-size stores |
 | `Type_C` | 0/1 | 6 stores | Small format stores |
 
-**Expected Impact:** 🔥🔥 (Moderate) - Captures store format differences
+**Expected Impact:** MODERATE - Captures store format differences
 
 ### 2.5 Normalized Features (17)
 
@@ -147,7 +141,7 @@ This document summarizes all feature engineering performed across Milestone 1 an
 
 **Parameters Saved:** `normalization_params.json` (train statistics only)
 
-**Expected Impact:** 🔥🔥🔥 (High) - Essential for gradient-based models, helps prevent feature domination
+**Expected Impact:** HIGH - Essential for gradient-based models, helps prevent feature domination
 
 ---
 
@@ -157,15 +151,15 @@ This document summarizes all feature engineering performed across Milestone 1 an
 
 | Feature | Type | Window | Description | Expected Impact |
 |---------|------|--------|-------------|-----------------|
-| `Sales_EMA_4` | EMA | 4 weeks | Exponential moving avg | 🔥🔥🔥🔥 |
-| `Sales_EMA_8` | EMA | 8 weeks | Exponential moving avg | 🔥🔥🔥🔥 |
-| `Sales_EMA_12` | EMA | 12 weeks | Exponential moving avg | 🔥🔥🔥🔥 |
-| `Sales_Rolling_Min_4` | Min | 4 weeks | Minimum sales in window | 🔥🔥 |
-| `Sales_Rolling_Max_4` | Max | 4 weeks | Maximum sales in window | 🔥🔥 |
-| `Sales_Rolling_Range_4` | Range | 4 weeks | Max - Min | 🔥🔥 |
-| `Sales_Trend` | Trend | - | EMA_4 - EMA_12 | 🔥🔥🔥 |
-| `Sales_CV_4` | Volatility | 4 weeks | Coefficient of variation | 🔥🔥 |
-| `Sales_Acceleration` | Derivative | - | Change in momentum | 🔥 |
+| `Sales_EMA_4` | EMA | 4 weeks | Exponential moving avg | HIGH |
+| `Sales_EMA_8` | EMA | 8 weeks | Exponential moving avg | HIGH |
+| `Sales_EMA_12` | EMA | 12 weeks | Exponential moving avg | HIGH |
+| `Sales_Rolling_Min_4` | Min | 4 weeks | Minimum sales in window | MODERATE |
+| `Sales_Rolling_Max_4` | Max | 4 weeks | Maximum sales in window | MODERATE |
+| `Sales_Rolling_Range_4` | Range | 4 weeks | Max - Min | MODERATE |
+| `Sales_Trend` | Trend | - | EMA_4 - EMA_12 | HIGH |
+| `Sales_CV_4` | Volatility | 4 weeks | Coefficient of variation | MODERATE |
+| `Sales_Acceleration` | Derivative | - | Change in momentum | LOW |
 
 **Rationale:**
 - **EMAs** give more weight to recent observations → better for trending data
@@ -178,15 +172,15 @@ This document summarizes all feature engineering performed across Milestone 1 an
 
 | Feature | Type | Description | Expected Impact |
 |---------|------|-------------|-----------------|
-| `Is_Holiday_Season` | Binary | Nov-Dec flag | 🔥🔥🔥🔥 |
-| `Is_BackToSchool_Season` | Binary | Jul-Aug flag | 🔥🔥🔥 |
-| `Is_SuperBowl_Week` | Binary | Early Feb flag | 🔥🔥 |
-| `Days_To_Thanksgiving` | Integer | Days until Thanksgiving | 🔥🔥🔥 |
-| `Days_To_Christmas` | Integer | Days until Christmas | 🔥🔥🔥🔥 |
-| `Season_Winter` | Binary | Dec-Feb | 🔥🔥 |
-| `Season_Spring` | Binary | Mar-May | 🔥 |
-| `Season_Summer` | Binary | Jun-Aug | 🔥🔥 |
-| `Season_Fall` | Binary | Sep-Nov | 🔥🔥🔥 |
+| `Is_Holiday_Season` | Binary | Nov-Dec flag | HIGH |
+| `Is_BackToSchool_Season` | Binary | Jul-Aug flag | HIGH |
+| `Is_SuperBowl_Week` | Binary | Early Feb flag | MODERATE |
+| `Days_To_Thanksgiving` | Integer | Days until Thanksgiving | HIGH |
+| `Days_To_Christmas` | Integer | Days until Christmas | HIGH |
+| `Season_Winter` | Binary | Dec-Feb | MODERATE |
+| `Season_Spring` | Binary | Mar-May | LOW |
+| `Season_Summer` | Binary | Jun-Aug | MODERATE |
+| `Season_Fall` | Binary | Sep-Nov | HIGH |
 
 **Rationale:**
 - **Holiday Season** captures Black Friday/Christmas surge
@@ -198,17 +192,17 @@ This document summarizes all feature engineering performed across Milestone 1 an
 
 | Feature | Granularity | Statistic | Expected Impact |
 |---------|-------------|-----------|-----------------|
-| `Store_Avg_Sales` | Store | Mean | 🔥🔥🔥 |
-| `Store_Std_Sales` | Store | Std Dev | 🔥🔥 |
-| `Store_Min_Sales` | Store | Min | 🔥 |
-| `Store_Max_Sales` | Store | Max | 🔥 |
-| `Dept_Avg_Sales` | Department | Mean | 🔥🔥🔥 |
-| `Dept_Std_Sales` | Department | Std Dev | 🔥🔥 |
-| `StoreDept_Avg_Sales` | Store-Dept | Mean | 🔥🔥🔥🔥 |
-| `StoreDept_Std_Sales` | Store-Dept | Std Dev | 🔥🔥 |
-| `Sales_Deviation_From_Store_Avg` | Store | Deviation | 🔥🔥 |
-| `Sales_Deviation_From_Dept_Avg` | Department | Deviation | 🔥🔥 |
-| `Sales_Deviation_From_StoreDept_Avg` | Store-Dept | Deviation | 🔥🔥🔥 |
+| `Store_Avg_Sales` | Store | Mean | HIGH |
+| `Store_Std_Sales` | Store | Std Dev | MODERATE |
+| `Store_Min_Sales` | Store | Min | LOW |
+| `Store_Max_Sales` | Store | Max | LOW |
+| `Dept_Avg_Sales` | Department | Mean | HIGH |
+| `Dept_Std_Sales` | Department | Std Dev | MODERATE |
+| `StoreDept_Avg_Sales` | Store-Dept | Mean | HIGH |
+| `StoreDept_Std_Sales` | Store-Dept | Std Dev | MODERATE |
+| `Sales_Deviation_From_Store_Avg` | Store | Deviation | MODERATE |
+| `Sales_Deviation_From_Dept_Avg` | Department | Deviation | MODERATE |
+| `Sales_Deviation_From_StoreDept_Avg` | Store-Dept | Deviation | HIGH |
 
 **Rationale:**
 - **Hierarchical Statistics** provide context at store, department, and store-dept levels
@@ -221,10 +215,10 @@ This document summarizes all feature engineering performed across Milestone 1 an
 
 | Feature | Formula | Description | Expected Impact |
 |---------|---------|-------------|-----------------|
-| `Total_MarkDown` | Sum(MarkDown1-5) | Total promotional discount | 🔥🔥🔥 |
-| `Num_Active_MarkDowns` | Sum(Has_MarkDownX) | Number of active promotions | 🔥🔥 |
-| `Promo_Intensity` | Total_MarkDown / Size | Promotion density | 🔥🔥 |
-| `Total_MarkDown_Rolling_4` | Rolling(Total_MarkDown, 4) | Recent promo trend | 🔥🔥 |
+| `Total_MarkDown` | Sum(MarkDown1-5) | Total promotional discount | HIGH |
+| `Num_Active_MarkDowns` | Sum(Has_MarkDownX) | Number of active promotions | MODERATE |
+| `Promo_Intensity` | Total_MarkDown / Size | Promotion density | MODERATE |
+| `Total_MarkDown_Rolling_4` | Rolling(Total_MarkDown, 4) | Recent promo trend | MODERATE |
 
 **Rationale:**
 - **Total_MarkDown** aggregates all promotional activity
@@ -236,10 +230,10 @@ This document summarizes all feature engineering performed across Milestone 1 an
 
 | Feature | Formula | Interpretation | Expected Impact |
 |---------|---------|----------------|-----------------|
-| `Economic_Stress` | CPI × Unemployment | Consumer hardship indicator | 🔥🔥 |
-| `Holiday_Temperature` | Temperature × IsHoliday | Holiday weather effect | 🔥 |
-| `Spending_Power` | Fuel_Price × Unemployment | Disposable income proxy | 🔥 |
-| `Store_Purchasing_Power` | Size × CPI | Store-level economic context | 🔥 |
+| `Economic_Stress` | CPI × Unemployment | Consumer hardship indicator | MODERATE |
+| `Holiday_Temperature` | Temperature × IsHoliday | Holiday weather effect | LOW |
+| `Spending_Power` | Fuel_Price × Unemployment | Disposable income proxy | LOW |
+| `Store_Purchasing_Power` | Size × CPI | Store-level economic context | LOW |
 
 **Rationale:**
 - Individual economic indicators show weak correlations (< 0.03)
@@ -250,11 +244,11 @@ This document summarizes all feature engineering performed across Milestone 1 an
 
 | Feature | Granularity | Aggregation | Expected Impact |
 |---------|-------------|-------------|-----------------|
-| `Month_Store_Avg_Sales` | Store-Month | Mean | 🔥🔥🔥 |
-| `Month_Store_Total_Sales` | Store-Month | Sum | 🔥🔥 |
-| `Quarter_Store_Avg_Sales` | Store-Quarter | Mean | 🔥🔥🔥 |
-| `Quarter_Store_Total_Sales` | Store-Quarter | Sum | 🔥🔥 |
-| `Store_Sales_YoY_Growth` | Year-over-Year | Pct Change | 🔥🔥 |
+| `Month_Store_Avg_Sales` | Store-Month | Mean | HIGH |
+| `Month_Store_Total_Sales` | Store-Month | Sum | MODERATE |
+| `Quarter_Store_Avg_Sales` | Store-Quarter | Mean | HIGH |
+| `Quarter_Store_Total_Sales` | Store-Quarter | Sum | MODERATE |
+| `Store_Sales_YoY_Growth` | Year-over-Year | Pct Change | MODERATE |
 
 **Rationale:**
 - **Monthly/Quarterly aggregations** smooth out weekly noise
@@ -278,7 +272,7 @@ This document summarizes all feature engineering performed across Milestone 1 an
 | `Sales_Lag4` | +0.9135 | Monthly cycle (4-week lag) |
 | `StoreDept_Avg_Sales` | High | Store-Dept baseline |
 
-**Expected Model Impact:** 🔥🔥🔥🔥🔥 (Critical)  
+**Expected Model Impact:** CRITICAL  
 **Removal Risk:** Model performance would degrade by **30-50%**
 
 ### 4.2 High-Value Features
@@ -287,13 +281,13 @@ This document summarizes all feature engineering performed across Milestone 1 an
 
 | Feature Group | Count | Impact |
 |---------------|-------|--------|
-| Time-Based (Month, Quarter, Cyclical) | 13 | 🔥🔥🔥🔥 |
-| Seasonal Indicators (Holiday Season, Days_To_Christmas) | 5 | 🔥🔥🔥🔥 |
-| EMAs (4, 8, 12) | 3 | 🔥🔥🔥🔥 |
-| Store/Dept Statistics | 6 | 🔥🔥🔥 |
-| Promotional Features (Total_MarkDown) | 2 | 🔥🔥🔥 |
+| Time-Based (Month, Quarter, Cyclical) | 13 | HIGH |
+| Seasonal Indicators (Holiday Season, Days_To_Christmas) | 5 | HIGH |
+| EMAs (4, 8, 12) | 3 | HIGH |
+| Store/Dept Statistics | 6 | HIGH |
+| Promotional Features (Total_MarkDown) | 2 | HIGH |
 
-**Expected Model Impact:** 🔥🔥🔥🔥 (High)  
+**Expected Model Impact:** HIGH  
 **Removal Risk:** Model performance would degrade by **10-20%**
 
 ### 4.3 Moderate-Value Features
@@ -383,10 +377,10 @@ This document summarizes all feature engineering performed across Milestone 1 an
 ### 6.1 Data Consistency
 
 **Train-Test Alignment:**
-- ✅ All features calculated identically for train and test
-- ✅ Normalization uses **train statistics only** (no data leakage)
-- ✅ Store/Dept statistics calculated from train only
-- ✅ Lag features properly handled at train-test boundary
+- All features calculated identically for train and test
+- Normalization uses **train statistics only** (no data leakage)
+- Store/Dept statistics calculated from train only
+- Lag features properly handled at train-test boundary
 
 ### 6.2 Memory Optimization
 
@@ -454,25 +448,18 @@ This document summarizes all feature engineering performed across Milestone 1 an
 
 ### 8.2 Key Achievements
 
-✅ **Comprehensive Feature Set:** Covers temporal, lag, categorical, and interaction features  
-✅ **No Data Leakage:** Strict train-test separation maintained  
-✅ **Scalable Pipeline:** Automated feature generation for both datasets  
-✅ **Memory Efficient:** Handled large dataset without errors  
-✅ **Well-Documented:** Detailed rationale for each feature category
+- **Comprehensive Feature Set:** Covers temporal, lag, categorical, and interaction features  
+- **No Data Leakage:** Strict train-test separation maintained  
+- **Scalable Pipeline:** Automated feature generation for both datasets  
+- **Memory Efficient:** Handled large dataset without errors  
+- **Well-Documented:** Detailed rationale for each feature category
 
 ### 8.3 Next Steps
 
-1. ✅ **Feature Selection:** Use SHAP/permutation importance in model training
-2. ✅ **Model Development:** Test baseline → intermediate → advanced models
-3. ✅ **Hyperparameter Tuning:** Optimize models with best feature sets
-4. ✅ **Ensemble:** Combine models for robust forecasting
-5. ✅ **Deployment:** Select final feature set for production
+1. **Feature Selection:** Use SHAP/permutation importance in model training
+2. **Model Development:** Test baseline → intermediate → advanced models
+3. **Hyperparameter Tuning:** Optimize models with best feature sets
+4. **Ensemble:** Combine models for robust forecasting
+5. **Deployment:** Select final feature set for production
 
----
-
-**Document Prepared By:** Data Science Team  
-**Date:** October 24, 2025  
-**Milestone:** 2 - Feature Engineering  
-**Status:** ✅ Complete  
-**Files:** `train_enhanced.csv` (421,570 × 91), `test_enhanced.csv` (115,064 × 73)
 

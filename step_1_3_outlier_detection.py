@@ -97,5 +97,5 @@ print("✓ Saved 4 visualization files")
 print("\n[4] Decision: Keep all outliers (valid business scenarios)")
 
 print("\n" + "="*80)
-print("✅ STEP 1.3 COMPLETED!")
+print("STEP 1.3 COMPLETED!")
 print("="*80)

@@ -8,8 +8,6 @@ Missing Value Strategy:
 - MarkDown columns (64-74% missing): Fill with 0 + create binary indicators
 - Other columns: Forward/backward fill if needed
 
-Author: Data Science Team
-Date: October 23, 2025
 """
 
 import pandas as pd

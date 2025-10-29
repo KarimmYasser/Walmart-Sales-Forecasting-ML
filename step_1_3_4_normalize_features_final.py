@@ -6,8 +6,6 @@ Task 3: Preprocessing and Feature Engineering (Final Step)
 Normalize numerical features to standardize ranges for ML models.
 Using manual Z-score normalization (no sklearn dependency).
 
-Author: Data Science Team
-Date: October 23, 2025
 """
 
 import pandas as pd
@@ -75,5 +73,5 @@ test.to_csv(test_output, index=False)
 print(f"✓ Saved: {train_output}, {test_output}, {params_path}")
 
 print("\n" + "="*80)
-print("✅ STEP 1.3.4 COMPLETED!")
+print("STEP 1.3.4 COMPLETED!")
 print("="*80)

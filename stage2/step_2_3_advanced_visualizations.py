@@ -21,6 +21,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from datetime import datetime
+import os
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -32,23 +33,15 @@ print("="*80)
 print("MILESTONE 2 - TASK 2.3: ADVANCED VISUALIZATIONS")
 print("="*80)
 
-# ============================================================================
-# 1. LOAD DATA
-# ============================================================================
-print("\n[1/8] Loading enhanced data...")
+# Load data and create output directory
 train = pd.read_csv('stage2/outputs/enhanced_features/train_enhanced.csv')
 train['Date'] = pd.to_datetime(train['Date'])
 train = train.sort_values('Date').reset_index(drop=True)
+os.makedirs('stage2/outputs/visualizations', exist_ok=True)
 
-print(f"✓ Loaded: {train.shape[0]:,} rows × {train.shape[1]} columns")
-print(f"✓ Date range: {train['Date'].min()} to {train['Date'].max()}")
+# Historical Trends with EMA
+print("\n[1/7] Historical trends...")
 
-# ============================================================================
-# 2. HISTORICAL TRENDS WITH EMA
-# ============================================================================
-print("\n[2/8] Creating historical trends visualization...")
-
-# Aggregate weekly sales
 weekly_sales = train.groupby('Date')['Weekly_Sales'].sum().reset_index()
 
 fig, ax = plt.subplots(figsize=(16, 6))
@@ -86,12 +79,8 @@ plt.tight_layout()
 plt.savefig('stage2/outputs/visualizations/04_historical_trends_ema.png', dpi=300, bbox_inches='tight')
 plt.close()
 
-print("✓ Saved: stage2/outputs/visualizations/04_historical_trends_ema.png")
-
-# ============================================================================
-# 3. SEASONAL PATTERNS BY MONTH
-# ============================================================================
-print("\n[3/8] Creating seasonal patterns visualization...")
+# Seasonal Patterns
+print("[2/7] Seasonal patterns...")
 
 monthly_stats = train.groupby('Month').agg({
     'Weekly_Sales': ['mean', 'sum', 'std'],
@@ -150,12 +139,8 @@ plt.tight_layout()
 plt.savefig('stage2/outputs/visualizations/05_seasonal_patterns.png', dpi=300, bbox_inches='tight')
 plt.close()
 
-print("✓ Saved: stage2/outputs/visualizations/05_seasonal_patterns.png")
-
-# ============================================================================
-# 4. STORE TYPE PERFORMANCE COMPARISON
-# ============================================================================
-print("\n[4/8] Creating store type performance comparison...")
+# Store Type Performance
+print("[3/7] Store type performance...")
 
 # Determine store type
 train['StoreType'] = train.apply(lambda row: 
@@ -214,12 +199,8 @@ plt.tight_layout()
 plt.savefig('stage2/outputs/visualizations/06_store_type_performance.png', dpi=300, bbox_inches='tight')
 plt.close()
 
-print("✓ Saved: stage2/outputs/visualizations/06_store_type_performance.png")
-
-# ============================================================================
-# 5. TOP DEPARTMENTS PERFORMANCE HEATMAP
-# ============================================================================
-print("\n[5/8] Creating department performance heatmap...")
+# Department Performance Heatmap
+print("[4/7] Department heatmap...")
 
 # Get top 20 departments by total sales
 top_depts = train.groupby('Dept')['Weekly_Sales'].sum().nlargest(20).index
@@ -244,12 +225,8 @@ plt.tight_layout()
 plt.savefig('stage2/outputs/visualizations/07_department_performance_heatmap.png', dpi=300, bbox_inches='tight')
 plt.close()
 
-print("✓ Saved: stage2/outputs/visualizations/07_department_performance_heatmap.png")
-
-# ============================================================================
-# 6. PROMOTIONAL EFFECTIVENESS ANALYSIS
-# ============================================================================
-print("\n[6/8] Creating promotional effectiveness visualization...")
+# Promotional Effectiveness
+print("[5/7] Promotional effectiveness...")
 
 # Compare sales with and without promotions
 promo_comparison = train.copy()
@@ -299,12 +276,8 @@ plt.tight_layout()
 plt.savefig('stage2/outputs/visualizations/08_promotional_effectiveness.png', dpi=300, bbox_inches='tight')
 plt.close()
 
-print("✓ Saved: stage2/outputs/visualizations/08_promotional_effectiveness.png")
-
-# ============================================================================
-# 7. EXTERNAL FACTORS IMPACT
-# ============================================================================
-print("\n[7/8] Creating external factors impact visualization...")
+# External Factors Impact
+print("[6/7] External factors...")
 
 fig, axes = plt.subplots(2, 2, figsize=(16, 12))
 
@@ -352,12 +325,8 @@ plt.tight_layout()
 plt.savefig('stage2/outputs/visualizations/09_external_factors_impact.png', dpi=300, bbox_inches='tight')
 plt.close()
 
-print("✓ Saved: stage2/outputs/visualizations/09_external_factors_impact.png")
-
-# ============================================================================
-# 8. COMPREHENSIVE DASHBOARD
-# ============================================================================
-print("\n[8/8] Creating comprehensive dashboard...")
+# Comprehensive Dashboard
+print("[7/7] Comprehensive dashboard...")
 
 fig = plt.figure(figsize=(20, 12))
 gs = fig.add_gridspec(3, 3, hspace=0.3, wspace=0.3)
@@ -434,24 +403,7 @@ plt.suptitle('WALMART SALES FORECASTING - COMPREHENSIVE DASHBOARD',
 plt.savefig('stage2/outputs/visualizations/10_comprehensive_dashboard.png', dpi=300, bbox_inches='tight')
 plt.close()
 
-print("✓ Saved: stage2/outputs/visualizations/10_comprehensive_dashboard.png")
-
-# ============================================================================
-# SUMMARY
-# ============================================================================
 print("\n" + "="*80)
-print("ADVANCED VISUALIZATIONS COMPLETE")
+print("TASK 2.3 COMPLETE - Advanced Visualizations (7 plots created)")
 print("="*80)
-print("\n📊 Visualizations Created:")
-print("  1. 04_historical_trends_ema.png - Sales trends with EMAs")
-print("  2. 05_seasonal_patterns.png - Monthly patterns and seasonality")
-print("  3. 06_store_type_performance.png - Store type comparisons")
-print("  4. 07_department_performance_heatmap.png - Top departments heatmap")
-print("  5. 08_promotional_effectiveness.png - Promotion impact analysis")
-print("  6. 09_external_factors_impact.png - External factors correlations")
-print("  7. 10_comprehensive_dashboard.png - Multi-panel dashboard")
-print("\n📁 All files saved to: stage2/outputs/visualizations/")
-print("="*80)
-
-print("\n✅ Task 2.3 Complete! Ready for Documentation (Tasks 2.4 & 2.5)")
 

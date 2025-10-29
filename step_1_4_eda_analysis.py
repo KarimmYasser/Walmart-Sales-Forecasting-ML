@@ -225,5 +225,5 @@ plt.close()
 print("✓ Created 10 visualization files")
 
 print("\n" + "="*80)
-print("✅ EXPLORATORY DATA ANALYSIS COMPLETED!")
+print("EXPLORATORY DATA ANALYSIS COMPLETED!")
 print("="*80)
