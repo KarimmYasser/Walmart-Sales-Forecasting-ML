@@ -1,6 +1,6 @@
 # Walmart Sales Forecasting Project
 
-**AI & Data Science Track - Round 2**  
+**AI & Data Science Track - Round 3**  
 **Project Type:** Time Series Forecasting  
 **Dataset:** [Walmart Recruiting Store Sales Forecasting (Kaggle)](https://www.kaggle.com/competitions/walmart-recruiting-store-sales-forecasting)  
 **Status:** Milestone 1 & 2 Complete - Ready for Model Development
@@ -650,7 +650,7 @@ print(f"X_test: {X_test.shape}")      # (115064, 52)
 ## Team
 
 **Data Science Team**  
-**Project:** AI & Data Science Track - Round 2  
+**Project:** AI & Data Science Track - Round 3  
 **Institution:** DEPI (Digital Egypt Pioneers Initiative)
 
 ---
@@ -662,14 +662,6 @@ For detailed implementation steps, code explanations, and complete analysis, see
 - **[stage2/README.md](stage2/README.md)** - Stage 2 documentation  
 - **[stage2/DATA_ANALYSIS_REPORT.md](stage2/DATA_ANALYSIS_REPORT.md)** - Comprehensive analysis report
 - **[stage2/FEATURE_ENGINEERING_SUMMARY.md](stage2/FEATURE_ENGINEERING_SUMMARY.md)** - Feature catalog
-
----
-
-## Contact
-
-For questions or collaboration:
-- Project Repository: DEPI Data Science Project
-- Last Updated: October 29, 2025
 
 ---
 
