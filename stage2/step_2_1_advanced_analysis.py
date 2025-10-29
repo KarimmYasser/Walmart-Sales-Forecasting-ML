@@ -40,6 +40,10 @@ train = train.sort_values(['Store', 'Dept', 'Date']).reset_index(drop=True)
 print(f"✓ Date range: {train['Date'].min()} to {train['Date'].max()}")
 print(f"✓ Stores: {train['Store'].nunique()}, Departments: {train['Dept'].nunique()}")
 
+# Create output directories if they don't exist
+os.makedirs('stage2/outputs/analysis_results', exist_ok=True)
+os.makedirs('stage2/outputs/visualizations', exist_ok=True)
+
 # ============================================================================
 # 2. TIME SERIES DECOMPOSITION
 # ============================================================================
@@ -201,10 +205,6 @@ correlation_data = train[available_features].copy()
 
 # Calculate correlation matrix
 corr_matrix = correlation_data.corr()
-
-# Create output directories if they don't exist
-os.makedirs('stage2/outputs/analysis_results', exist_ok=True)
-os.makedirs('stage2/outputs/visualizations', exist_ok=True)
 
 # Save full correlation matrix
 corr_matrix.to_csv('stage2/outputs/analysis_results/correlation_matrix.csv')
