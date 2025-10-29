@@ -1,16 +1,3 @@
-"""
-Feature Engineering Pipeline - Steps 1.3.1 through 1.3.4
-=========================================================
-This script runs all feature engineering steps sequentially.
-
-Pipeline Flow:
-  Stage1.2 → [Step 1.3.1] → Stage1.3.1 → [Step 1.3.2] → Stage1.3.2 
-  → [Step 1.3.3] → Stage1.3.3 → [Step 1.3.4] → Stage1.3.4_Final
-
-Input:  processed_data/Stage1.2/train_cleaned_step2.csv & test_cleaned_step2.csv
-Output: processed_data/Stage1.3.4_Final/train_final.csv & test_final.csv
-"""
-
 import os
 import sys
 
