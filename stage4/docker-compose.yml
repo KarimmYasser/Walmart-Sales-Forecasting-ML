@@ -3,15 +3,19 @@ version: "3.8"
 services:
   # FastAPI Service
   api:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: sales_forecasting_api
     ports:
       - "8000:8000"
     volumes:
       - ./models:/app/models
       - ./monitoring/logs:/app/monitoring/logs
+      - ../stage3/ML_models:/app/stage3/ML_models:ro
     environment:
       - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app:/app/stage3/ML_models
     command: uvicorn deployment.api:app --host 0.0.0.0 --port 8000 --reload
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
@@ -23,15 +27,19 @@ services:
 
   # Streamlit Dashboard
   dashboard:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: sales_forecasting_dashboard
     ports:
       - "8501:8501"
     volumes:
       - ./models:/app/models
       - ./monitoring/logs:/app/monitoring/logs
+      - ../stage3/ML_models:/app/stage3/ML_models:ro
     environment:
       - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app:/app/stage3/ML_models
     command: streamlit run dashboard/app.py --server.port 8501 --server.address 0.0.0.0
     depends_on:
       - api
