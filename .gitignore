@@ -12,9 +12,10 @@
 *.xlsx
 *.xls
 
-# Pickle files
+# Pickle files (exclude all except the specific model)
 *.pkl
 *.pickle
+!stage4/models/best_model.pkl
 
 # HDF5 files
 *.h5
