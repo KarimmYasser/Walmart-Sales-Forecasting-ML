@@ -1,18 +1,17 @@
 # ============================================================================
 # Walmart Sales Forecasting Project - Complete Dependencies
 # ============================================================================
-# For Streamlit Cloud deployment and full project functionality
-# Compatible with Python 3.13
+# For Streamlit Cloud deployment - Python 3.13 compatible
+# Tested versions for Python 3.13
 # ============================================================================
 
-# Core ML Libraries
-scikit-learn>=1.3.0
-xgboost>=2.0.0
-lightgbm>=4.1.0
-pandas>=2.1.0
-numpy>=1.26.0
+# Core Data & ML
+numpy>=1.26.0,<3.0.0
+pandas>=2.1.0,<3.0.0
+scikit-learn>=1.5.0
+joblib>=1.3.0
 
-# Dashboard & Visualization
+# Visualization
 streamlit>=1.28.0
 plotly>=5.18.0
 matplotlib>=3.8.0
@@ -22,12 +21,11 @@ seaborn>=0.13.0
 python-dateutil>=2.8.0
 openpyxl>=3.0.0
 
-# Monitoring & Logging
+# Additional ML (optional - remove if causing issues)
+xgboost>=2.0.0
+lightgbm>=4.1.0
 scipy>=1.11.0
-psutil>=5.9.0
 
 # Utilities
-python-dotenv>=1.0.0
-pyyaml>=6.0.0
-joblib>=1.3.0
+psutil>=5.9.0
 
