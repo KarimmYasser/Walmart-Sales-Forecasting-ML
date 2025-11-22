@@ -257,11 +257,15 @@ def log_best_model_to_mlflow():
     """
     
     import sys
-    sys.path.append('../stage3/ML_models')
+    from pathlib import Path
     
-    from Best_model import train_best_random_forest, data
-    from Config import RANDOM_FOREST_PARAMS
-    from Feature_Engineering import FeatureSelector
+    # Add stage3/ML_models to path using absolute path
+    PROJECT_ROOT = Path(__file__).parent.parent.parent
+    sys.path.insert(0, str(PROJECT_ROOT / 'stage3' / 'ML_models'))
+    
+    from Best_model import train_best_random_forest, data  # type: ignore
+    from Config import RANDOM_FOREST_PARAMS  # type: ignore
+    from Feature_Engineering import FeatureSelector  # type: ignore
     
     print("\n" + "="*70)
     print("LOGGING BEST MODEL TO MLFLOW")

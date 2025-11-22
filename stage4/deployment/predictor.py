@@ -11,11 +11,13 @@ from pathlib import Path
 import sys
 import os
 
-# Add stage3 to path for imports
-stage3_path = str(Path(__file__).parent.parent.parent / 'stage3' / 'ML_models')
-sys.path.append(stage3_path)
+# Add stage3 to path for imports using absolute path
+PROJECT_ROOT = Path(__file__).parent.parent.parent
+stage3_path = str(PROJECT_ROOT / 'stage3' / 'ML_models')
+if stage3_path not in sys.path:
+    sys.path.insert(0, stage3_path)
 
-from Feature_Engineering import FeatureSelector
+from Feature_Engineering import FeatureSelector  # type: ignore
 
 
 class SalesPredictor:
