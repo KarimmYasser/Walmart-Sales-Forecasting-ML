@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+  # FastAPI Service
+  api:
+    build: .
+    container_name: sales_forecasting_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models
+      - ./monitoring/logs:/app/monitoring/logs
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: uvicorn deployment.api:app --host 0.0.0.0 --port 8000 --reload
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - sales_forecast_network
+
+  # Streamlit Dashboard
+  dashboard:
+    build: .
+    container_name: sales_forecasting_dashboard
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./models:/app/models
+      - ./monitoring/logs:/app/monitoring/logs
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: streamlit run dashboard/app.py --server.port 8501 --server.address 0.0.0.0
+    depends_on:
+      - api
+    networks:
+      - sales_forecast_network
+
+  # MLflow Server
+  mlflow:
+    build: .
+    container_name: sales_forecasting_mlflow
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlruns:/app/mlruns
+      - ./models:/app/models
+    command: mlflow ui --host 0.0.0.0 --port 5000
+    networks:
+      - sales_forecast_network
+
+networks:
+  sales_forecast_network:
+    driver: bridge
+
+volumes:
+  models:
+  logs:
+  mlruns:

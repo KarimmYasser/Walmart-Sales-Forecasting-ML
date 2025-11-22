@@ -5,7 +5,12 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from Forecaster import SalesForecaster
 from Feature_Engineering import FeatureSelector
 from Best_model import train_best_random_forest, data
-df = pd.read_csv(r"D:\Downloads\Depi_project_Data-science\stage1\processed_data\Stage1.3.4_Final\train_final.csv")
+from pathlib import Path
+
+# Get correct path to training data
+PROJECT_ROOT = Path(__file__).parent.parent.parent
+DATA_PATH = PROJECT_ROOT / 'stage1' / 'processed_data' / 'Stage1.3.4_Final' / 'train_final.csv'
+df = pd.read_csv(DATA_PATH)
 
 # Main function demonstrating usage of the SalesForecaster class.
 def main():
