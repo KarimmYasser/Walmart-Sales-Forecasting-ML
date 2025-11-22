@@ -2,7 +2,7 @@
 # Includes Nginx reverse proxy for single-domain deployment
 # Access: http://your-domain/ (dashboard) and http://your-domain/api/ (API)
 
-version: '3.8'
+version: "3.8"
 
 services:
   # Nginx Reverse Proxy
@@ -11,7 +11,7 @@ services:
     container_name: sales_forecast_nginx
     ports:
       - "80:80"
-      - "443:443"  # For HTTPS (requires SSL certificates)
+      - "443:443" # For HTTPS (requires SSL certificates)
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       # Uncomment for SSL certificates
@@ -94,7 +94,6 @@ services:
 networks:
   sales_forecast_network:
     driver: bridge
-
 # Optional: Add persistent volumes for data
 # volumes:
 #   model_data:
