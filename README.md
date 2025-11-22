@@ -173,13 +173,13 @@ This project develops a machine learning system to forecast weekly sales for Wal
 - **Q&A Prep**: `stage5/Presentation/Q&A_Preparation.md` (anticipated questions)
 - **Business Impact**: `stage5/Business_Impact/` (ROI analysis, use cases, success metrics)
 - **Future Work**: `stage5/Future_Work/Improvement_Roadmap.md` (12-24 month plan)
-- **Deployment Guides**: 
+- **Deployment Guides**:
   - `DEPLOYMENT_GUIDE.md` (comprehensive local setup)
   - `QUICK_START_GUIDE.md` (5-minute quickstart)
   - `stage4/DOCKER_DEPLOYMENT.md` (containerized deployment)
   - `CLOUD_DEPLOYMENT_GUIDE.md` (production cloud setup)
   - `FREE_DEPLOYMENT_GUIDE.md` (Streamlit Cloud, Hugging Face Spaces)
-- **Repositories**: 
+- **Repositories**:
   - Main: [github.com/KarimmYasser/Walmart-Sales-Forecasting-ML](https://github.com/KarimmYasser/Walmart-Sales-Forecasting-ML)
   - Original: [github.com/ahmedhaithamamer/Depi_project_Data-science](https://github.com/ahmedhaithamamer/Depi_project_Data-science)
 
@@ -411,6 +411,7 @@ Depi_project_Data-science/
 👉 **[https://walmart-sales-forecasting-ml.streamlit.app/](https://walmart-sales-forecasting-ml.streamlit.app/)**
 
 Features:
+
 - 🔮 Make sales predictions (single & multi-week)
 - 📈 View model performance metrics
 - 🔍 Monitor model health & drift detection
@@ -977,18 +978,19 @@ print(f"X_test: {X_test.shape}")      # (115064, 52)
 
 ### Deployment Options
 
-| Option | Platform | Cost | Setup Time | Use Case |
-|--------|----------|------|------------|----------|
-| **Live Demo** | Streamlit Cloud | FREE | 0 min | Quick demo, presentations |
-| **Local** | Your machine | FREE | 5 min | Development, testing |
-| **Docker** | Any server | FREE/Paid | 10 min | Production, scalability |
-| **Cloud** | AWS/Azure/GCP | Paid | 30 min | Enterprise deployment |
+| Option        | Platform        | Cost      | Setup Time | Use Case                  |
+| ------------- | --------------- | --------- | ---------- | ------------------------- |
+| **Live Demo** | Streamlit Cloud | FREE      | 0 min      | Quick demo, presentations |
+| **Local**     | Your machine    | FREE      | 5 min      | Development, testing      |
+| **Docker**    | Any server      | FREE/Paid | 10 min     | Production, scalability   |
+| **Cloud**     | AWS/Azure/GCP   | Paid      | 30 min     | Enterprise deployment     |
 
 ---
 
 ## 📖 Documentation Hub
 
 ### Quick Start Guides
+
 - 🚀 **[QUICK_START_GUIDE.md](QUICK_START_GUIDE.md)** - 5-minute setup
 - 📊 **[DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)** - Comprehensive deployment
 - 🐳 **[stage4/DOCKER_DEPLOYMENT.md](stage4/DOCKER_DEPLOYMENT.md)** - Docker setup
@@ -996,6 +998,7 @@ print(f"X_test: {X_test.shape}")      # (115064, 52)
 - 🆓 **[FREE_DEPLOYMENT_GUIDE.md](FREE_DEPLOYMENT_GUIDE.md)** - Free hosting options
 
 ### Stage Documentation
+
 - 📁 **[stage1/README.md](stage1/README.md)** - Data preprocessing & feature engineering
 - 📁 **[stage2/README.md](stage2/README.md)** - Advanced analysis
 - 📁 **[stage3/README.md](stage3/README.md)** - Model development
@@ -1003,6 +1006,7 @@ print(f"X_test: {X_test.shape}")      # (115064, 52)
 - 📁 **[stage5/README.md](stage5/README.md)** - Documentation & presentation
 
 ### Detailed Reports
+
 - 📈 **[stage5/Final_Report/Final_Project_Report.md](stage5/Final_Report/Final_Project_Report.md)** - 50+ page comprehensive report
 - 📋 **[stage5/Final_Report/Executive_Summary.md](stage5/Final_Report/Executive_Summary.md)** - 2-page business summary
 - 🎤 **[stage5/Presentation/Stakeholder_Presentation.md](stage5/Presentation/Stakeholder_Presentation.md)** - 28-slide presentation
@@ -1010,6 +1014,7 @@ print(f"X_test: {X_test.shape}")      # (115064, 52)
 - 🔮 **[stage5/Future_Work/Improvement_Roadmap.md](stage5/Future_Work/Improvement_Roadmap.md)** - 12-24 month roadmap
 
 ### Analysis Reports
+
 - 📊 **[stage2/DATA_ANALYSIS_REPORT.md](stage2/DATA_ANALYSIS_REPORT.md)** - Comprehensive data analysis
 - 🔧 **[stage2/FEATURE_ENGINEERING_SUMMARY.md](stage2/FEATURE_ENGINEERING_SUMMARY.md)** - Feature catalog
 - 📝 **[stage1/Milestone_1_Deliverables/EDA-REPORT/EDA_REPORT.md](stage1/Milestone_1_Deliverables/EDA-REPORT/EDA_REPORT.md)** - 50+ page EDA
@@ -1019,6 +1024,7 @@ print(f"X_test: {X_test.shape}")      # (115064, 52)
 ## 🎯 Project Highlights
 
 ### Innovation & Technical Excellence
+
 - ✅ **99.96% R² Accuracy** - Exceptional predictive performance
 - ✅ **121MB Production Model** - Deployed via Git LFS
 - ✅ **44 Engineered Features** - Advanced feature engineering
@@ -1026,12 +1032,14 @@ print(f"X_test: {X_test.shape}")      # (115064, 52)
 - ✅ **Complete MLOps Pipeline** - From data to production
 
 ### Business Impact
+
 - ✅ **$7.1M Projected ROI** - 3-year benefit analysis
 - ✅ **96.95% Error Reduction** - vs baseline models
 - ✅ **35% Stockout Reduction** - Improved inventory management
 - ✅ **20% Labor Cost Optimization** - Better staff scheduling
 
 ### Best Practices Implemented
+
 - ✅ **Reproducible Pipeline** - One-click execution scripts
 - ✅ **Version Control** - Complete Git history with 100+ commits
 - ✅ **Documentation** - 200+ pages of comprehensive docs
@@ -1048,6 +1056,7 @@ print(f"X_test: {X_test.shape}")      # (115064, 52)
 **Duration:** 5 Milestones (Complete End-to-End Pipeline)
 
 **Repositories:**
+
 - **Main**: [github.com/KarimmYasser/Walmart-Sales-Forecasting-ML](https://github.com/KarimmYasser/Walmart-Sales-Forecasting-ML)
 - **Original**: [github.com/ahmedhaithamamer/Depi_project_Data-science](https://github.com/ahmedhaithamamer/Depi_project_Data-science)
 
@@ -1068,13 +1077,13 @@ This project is developed for **educational purposes** as part of the DEPI AI & 
 
 **Status:** ✅ **ALL 5 MILESTONES COMPLETE - PRODUCTION READY**
 
-| Milestone | Status | Completion |
-|-----------|--------|------------|
-| Stage 1: Data Preprocessing | ✅ Complete | 100% |
-| Stage 2: Advanced Analysis | ✅ Complete | 100% |
-| Stage 3: Model Development | ✅ Complete | 100% |
-| Stage 4: MLOps & Deployment | ✅ Complete | 100% |
-| Stage 5: Documentation | ✅ Complete | 100% |
+| Milestone                   | Status      | Completion |
+| --------------------------- | ----------- | ---------- |
+| Stage 1: Data Preprocessing | ✅ Complete | 100%       |
+| Stage 2: Advanced Analysis  | ✅ Complete | 100%       |
+| Stage 3: Model Development  | ✅ Complete | 100%       |
+| Stage 4: MLOps & Deployment | ✅ Complete | 100%       |
+| Stage 5: Documentation      | ✅ Complete | 100%       |
 
 **Last Updated:** November 2025  
 **Model Version:** 1.0 (Production)  
