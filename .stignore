@@ -1,0 +1,38 @@
+# Streamlit ignore patterns
+# Reduce file watching overhead
+
+# Ignore all stage directories except stage4/dashboard
+stage1/
+stage2/
+stage3/
+stage4/deployment/
+stage4/mlops/
+stage4/monitoring/
+stage4/models/
+stage4/mlruns/
+
+# Ignore datasets
+datasets/
+
+# Ignore git
+.git/
+.github/
+
+# Ignore documentation
+stage5/
+*.md
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Ignore notebooks
+*.ipynb
+
+# Ignore large files
+*.pkl
+*.csv
+*.xlsx
