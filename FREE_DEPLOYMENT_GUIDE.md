@@ -9,6 +9,7 @@ Complete guide for deploying your Walmart Sales Forecasting project **100% FREE*
 ### **Option 1: Render.com (RECOMMENDED)** ⭐
 
 **Why:**
+
 - ✅ 100% FREE tier (no credit card required)
 - ✅ Supports Docker
 - ✅ Can deploy both API and Dashboard
@@ -17,6 +18,7 @@ Complete guide for deploying your Walmart Sales Forecasting project **100% FREE*
 - ✅ Auto-deploy on git push
 
 **Limitations:**
+
 - Sleeps after 15 min inactivity (wakes on first request ~30s)
 - 512MB RAM per service
 
@@ -25,12 +27,14 @@ Complete guide for deploying your Walmart Sales Forecasting project **100% FREE*
 ### **Option 2: Streamlit Cloud + PythonAnywhere**
 
 **Why:**
+
 - ✅ 100% FREE
 - ✅ Dashboard on Streamlit Cloud (free)
 - ✅ API on PythonAnywhere (free tier)
 - ✅ Both have educational programs
 
 **Limitations:**
+
 - Two separate URLs
 - PythonAnywhere: 100k API calls/day limit
 
@@ -39,12 +43,14 @@ Complete guide for deploying your Walmart Sales Forecasting project **100% FREE*
 ### **Option 3: Hugging Face Spaces**
 
 **Why:**
+
 - ✅ 100% FREE
 - ✅ GPU support (free tier)
 - ✅ Great for ML models
 - ✅ Community visibility
 
 **Limitations:**
+
 - Primarily for Gradio/Streamlit demos
 - 16GB storage limit
 
@@ -55,6 +61,7 @@ Complete guide for deploying your Walmart Sales Forecasting project **100% FREE*
 ### Step 1: Prepare Your Repository
 
 Your GitHub repo is already ready! Just make sure `stage4/` has:
+
 - ✅ `Dockerfile` (already exists)
 - ✅ `requirements.txt` (already exists)
 - ✅ `docker-compose.production.yml` (already exists)
@@ -82,6 +89,7 @@ Your GitHub repo is already ready! Just make sure `stage4/` has:
 4. Click **"Create Web Service"**
 
 **Your API will be live at:**
+
 ```
 https://walmart-forecast-api.onrender.com
 ```
@@ -103,6 +111,7 @@ https://walmart-forecast-api.onrender.com
 4. Click **"Create Web Service"**
 
 **Your Dashboard will be live at:**
+
 ```
 https://walmart-forecast-dashboard.onrender.com
 ```
@@ -155,6 +164,7 @@ if __name__ == "__main__":
 5. Click **"Deploy"**
 
 **Done! Your app will be at:**
+
 ```
 https://ahmedhaithamamer-depi-project-data-science.streamlit.app
 ```
@@ -178,11 +188,13 @@ https://ahmedhaithamamer-depi-project-data-science.streamlit.app
 5. Configure WSGI file to run FastAPI
 
 **Your API will be at:**
+
 ```
 https://yourusername.pythonanywhere.com
 ```
 
 **Free Tier:**
+
 - 512MB storage
 - 100k API calls/day
 - Enough for educational projects!
@@ -223,11 +235,13 @@ git push
 ```
 
 **Your app will be live at:**
+
 ```
 https://huggingface.co/spaces/yourusername/walmart-sales-forecasting
 ```
 
 **Benefits:**
+
 - ✅ Free GPU
 - ✅ Great for portfolio
 - ✅ Community visibility
@@ -237,12 +251,12 @@ https://huggingface.co/spaces/yourusername/walmart-sales-forecasting
 
 ## 📊 Comparison: Free Platforms
 
-| Platform | API | Dashboard | Setup Time | Auto-Deploy | Portfolio Visibility |
-|----------|-----|-----------|------------|-------------|----------------------|
-| **Render.com** | ✅ | ✅ | 10 min | ✅ | ⭐⭐⭐ |
-| **Streamlit Cloud** | ❌ | ✅ | 5 min | ✅ | ⭐⭐⭐⭐ |
-| **Hugging Face** | ❌ | ✅ | 10 min | ✅ | ⭐⭐⭐⭐⭐ |
-| **PythonAnywhere** | ✅ | ❌ | 15 min | ❌ | ⭐⭐ |
+| Platform            | API | Dashboard | Setup Time | Auto-Deploy | Portfolio Visibility |
+| ------------------- | --- | --------- | ---------- | ----------- | -------------------- |
+| **Render.com**      | ✅  | ✅        | 10 min     | ✅          | ⭐⭐⭐               |
+| **Streamlit Cloud** | ❌  | ✅        | 5 min      | ✅          | ⭐⭐⭐⭐             |
+| **Hugging Face**    | ❌  | ✅        | 10 min     | ✅          | ⭐⭐⭐⭐⭐           |
+| **PythonAnywhere**  | ✅  | ❌        | 15 min     | ❌          | ⭐⭐                 |
 
 ---
 
@@ -264,6 +278,7 @@ https://huggingface.co/spaces/yourusername/walmart-sales-forecasting
 ```
 
 **Why:**
+
 - ✅ 100% FREE forever
 - ✅ Great for showing to professors/recruiters
 - ✅ Community engagement on Hugging Face
@@ -279,6 +294,7 @@ https://huggingface.co/spaces/yourusername/walmart-sales-forecasting
 ```
 
 **Why:**
+
 - ✅ Fastest deployment (5 minutes)
 - ✅ All-in-one solution
 - ✅ Perfect for class presentations
@@ -340,6 +356,7 @@ Free services sleep after inactivity. Use UptimeRobot (free) to ping every 5 min
 ### Reduce Cold Start Time
 
 In your `Dockerfile`, add:
+
 ```dockerfile
 # Cache model loading
 RUN python -c "import joblib; import pandas as pd; import numpy as np"
@@ -348,6 +365,7 @@ RUN python -c "import joblib; import pandas as pd; import numpy as np"
 ### Optimize for Low Memory
 
 Free tiers have 512MB RAM. In `stage4/deployment/api.py`:
+
 ```python
 # Load model lazily
 @lru_cache(maxsize=1)
@@ -362,6 +380,7 @@ def get_model():
 ### What to Include in Your Project Report
 
 1. **Live Demo Links:**
+
    ```
    Dashboard: https://your-app.streamlit.app
    API: https://your-api.onrender.com
@@ -369,6 +388,7 @@ def get_model():
    ```
 
 2. **Deployment Architecture Diagram:**
+
    - Show free services used
    - Explain why you chose them
    - Cost-benefit analysis
@@ -398,6 +418,7 @@ def get_model():
 ### Out of Memory Error
 
 **Reduce model size:**
+
 ```python
 # In training, reduce model complexity
 RandomForestRegressor(
@@ -409,10 +430,12 @@ RandomForestRegressor(
 ### Deployment Fails
 
 **Check logs:**
+
 - Render: Click on service → "Logs" tab
 - Streamlit: Click "Manage app" → "Logs"
 
 **Common fix:**
+
 ```bash
 # Ensure requirements.txt has all dependencies
 pip freeze > requirements.txt
@@ -428,18 +451,21 @@ git push
 **Ready to deploy for free? Choose your path:**
 
 ### 🏃 **FASTEST (5 minutes):**
+
 ```bash
 # Deploy to Streamlit Cloud
 # See "Quickest Deployment" section above
 ```
 
 ### 🏆 **BEST FOR PORTFOLIO (10 minutes):**
+
 ```bash
 # Deploy to Hugging Face Spaces
 # See "Hugging Face Spaces" section above
 ```
 
 ### ⚖️ **MOST COMPLETE (15 minutes):**
+
 ```bash
 # Deploy to Render.com (API + Dashboard)
 # See "Quick Start: Render.com" section above
@@ -450,12 +476,14 @@ git push
 ## 📞 Support
 
 **Free Platform Docs:**
+
 - Render: https://render.com/docs
 - Streamlit Cloud: https://docs.streamlit.io/streamlit-community-cloud
 - Hugging Face: https://huggingface.co/docs/hub/spaces
 - PythonAnywhere: https://help.pythonanywhere.com/
 
 **Community Help:**
+
 - Streamlit Forum: https://discuss.streamlit.io/
 - Hugging Face Discord: https://discord.gg/huggingface
 
