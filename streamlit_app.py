@@ -17,9 +17,8 @@ stage3_path = Path(__file__).parent / 'stage3' / 'ML_models'
 sys.path.insert(0, str(stage3_path))
 
 # Import and run the dashboard
-if __name__ == "__main__":
-    # Import after path setup
-    from deployment import dashboard
-    
-    # The dashboard will run automatically when this script is executed
-    # Streamlit Cloud will detect and run this file
+# Import after path setup (lint warning is expected - paths are set dynamically at runtime)
+from dashboard.app import *  # type: ignore
+
+# The dashboard will run automatically when this script is executed
+# Streamlit Cloud will detect and run this file
