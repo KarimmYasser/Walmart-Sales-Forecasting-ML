@@ -5,8 +5,11 @@
 **Dataset:** [Walmart Recruiting Store Sales Forecasting (Kaggle)](https://www.kaggle.com/competitions/walmart-recruiting-store-sales-forecasting)  
 **Status:** ✅ **ALL 5 MILESTONES COMPLETE - PRODUCTION READY**
 
+## 🚀 **[LIVE DEMO](https://walmart-sales-forecasting-ml.streamlit.app/)** | [Dashboard](https://walmart-sales-forecasting-ml.streamlit.app/)
+
 ## 🎯 Quick Links
 
+- 🌐 **[Live Dashboard](https://walmart-sales-forecasting-ml.streamlit.app/)** - Interactive Streamlit deployment
 - 📊 **[Deployment Guide](DEPLOYMENT_GUIDE.md)** - Start here for running the system
 - 🐳 **[Docker Deployment](stage4/DOCKER_DEPLOYMENT.md)** - Containerized deployment
 - 🚀 **[Quick Start Guide](QUICK_START_GUIDE.md)** - Commands and examples
