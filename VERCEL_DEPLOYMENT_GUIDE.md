@@ -2,7 +2,8 @@
 
 Complete guide for deploying the Walmart Sales Forecasting API to Vercel.
 
-> **⚠️ Important Limitations**: 
+> **⚠️ Important Limitations**:
+>
 > - Vercel is optimized for serverless functions and has a **50MB limit** per function
 > - The trained model file (best_model.pkl) is ~200MB, which **exceeds Vercel's limit**
 > - **Recommended Alternative**: Deploy to a cloud VM (Azure, AWS, GCP) for full functionality
@@ -62,11 +63,13 @@ vercel --prod
 #### Step 4: Access Your API
 
 After deployment, Vercel will provide a URL like:
+
 ```
 https://walmart-sales-forecasting.vercel.app
 ```
 
 Test endpoints:
+
 - Health: `https://your-app.vercel.app/health`
 - API Docs: `https://your-app.vercel.app/docs`
 - Predict: `https://your-app.vercel.app/predict` (POST)
@@ -78,6 +81,7 @@ Test endpoints:
 Deploy API on Vercel with model hosted externally.
 
 #### Architecture:
+
 ```
 ┌─────────────────┐
 │  Vercel (API)   │ ──→ Lightweight endpoints
@@ -93,6 +97,7 @@ Deploy API on Vercel with model hosted externally.
 #### Step 1: Upload Model to Cloud Storage
 
 **Azure Blob Storage:**
+
 ```bash
 # Install Azure CLI
 az storage blob upload \
@@ -103,6 +108,7 @@ az storage blob upload \
 ```
 
 **AWS S3:**
+
 ```bash
 aws s3 cp stage4/models/best_model.pkl \
   s3://your-bucket/models/best_model.pkl
@@ -111,6 +117,7 @@ aws s3 cp stage4/models/best_model.pkl \
 #### Step 2: Update Predictor to Load from URL
 
 Modify `stage4/deployment/predictor.py`:
+
 ```python
 import requests
 
@@ -151,6 +158,7 @@ railway up
 ```
 
 **Advantages:**
+
 - Supports Docker containers (no size limits)
 - Can run both API and Dashboard
 - Similar pricing to Vercel
@@ -173,6 +181,7 @@ railway up
 ## 🔧 Vercel Configuration Files
 
 ### vercel.json
+
 ```json
 {
   "version": 2,
@@ -196,6 +205,7 @@ railway up
 ```
 
 ### requirements-vercel.txt
+
 ```txt
 fastapi==0.104.1
 uvicorn==0.24.0
@@ -211,14 +221,14 @@ python-multipart==0.0.6
 
 ## 📊 Comparison: Vercel vs Alternatives
 
-| Feature | Vercel | Railway | Render | Cloud VM |
-|---------|--------|---------|--------|----------|
-| **Model Size Limit** | 50MB ❌ | No limit ✅ | No limit ✅ | No limit ✅ |
-| **Dashboard Support** | No ❌ | Yes ✅ | Yes ✅ | Yes ✅ |
-| **Docker Support** | No ❌ | Yes ✅ | Yes ✅ | Yes ✅ |
-| **Free Tier** | Yes ✅ | $5/month | Yes ✅ | From $5/month |
-| **Ease of Use** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ |
-| **Setup Time** | 5 min | 10 min | 10 min | 15 min |
+| Feature               | Vercel     | Railway     | Render      | Cloud VM      |
+| --------------------- | ---------- | ----------- | ----------- | ------------- |
+| **Model Size Limit**  | 50MB ❌    | No limit ✅ | No limit ✅ | No limit ✅   |
+| **Dashboard Support** | No ❌      | Yes ✅      | Yes ✅      | Yes ✅        |
+| **Docker Support**    | No ❌      | Yes ✅      | Yes ✅      | Yes ✅        |
+| **Free Tier**         | Yes ✅     | $5/month    | Yes ✅      | From $5/month |
+| **Ease of Use**       | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐    | ⭐⭐⭐⭐    | ⭐⭐⭐        |
+| **Setup Time**        | 5 min      | 10 min      | 10 min      | 15 min        |
 
 ---
 
@@ -229,6 +239,7 @@ Given your requirements (API + Dashboard on same server), here's the best approa
 ### **Best Option: Railway.app**
 
 **Why:**
+
 - ✅ Supports Docker (no size limits)
 - ✅ Can deploy both API and Dashboard
 - ✅ Single domain with routing
@@ -260,6 +271,7 @@ railway domain
 ```
 
 **Access:**
+
 - Dashboard: `https://your-app.up.railway.app/`
 - API: `https://your-app.up.railway.app/api/`
 
@@ -284,6 +296,7 @@ vercel --prod --force
 ### Cold Start Issues
 
 Vercel serverless functions "sleep" after inactivity:
+
 - First request may take 10-30 seconds
 - Subsequent requests are faster
 - Consider keeping warm with a cron job
@@ -317,10 +330,12 @@ railway domain
 ## 📞 Support
 
 **Vercel Issues:**
+
 - Vercel Docs: https://vercel.com/docs
 - Community: https://github.com/vercel/vercel/discussions
 
 **Alternative Platforms:**
+
 - Railway: https://railway.app/
 - Render: https://render.com/
 - Cloud VM Guide: See `CLOUD_DEPLOYMENT_GUIDE.md`
@@ -332,12 +347,14 @@ railway domain
 **For this project, I recommend:**
 
 1. **Best Choice**: Deploy to **Railway.app** or **Render.com**
+
    - Supports full Docker setup
    - Both API and Dashboard
    - Single domain
    - Easy to use
 
 2. **Second Choice**: Deploy to **Cloud VM** (Azure/AWS/GCP)
+
    - Most control
    - Best performance
    - See `CLOUD_DEPLOYMENT_GUIDE.md`
