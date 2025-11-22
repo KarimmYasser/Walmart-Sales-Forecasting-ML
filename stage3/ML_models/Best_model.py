@@ -8,9 +8,15 @@ from Config import RANDOM_FOREST_PARAMS, TRAIN_TEST_SPLIT_RATIO
 from Feature_Engineering import FeatureSelector
 from Evaluation import ModelEvaluator
 from Models import ModelTrainer
+from pathlib import Path
+
+# Get the correct data path relative to this file
+SCRIPT_DIR = Path(__file__).parent
+PROJECT_ROOT = SCRIPT_DIR.parent.parent
+DATA_PATH = PROJECT_ROOT / 'stage1' / 'processed_data' / 'Stage1.3.4_Final' / 'train_final.csv'
 
 # data
-data = pd.read_csv(r"D:\Downloads\Depi_project_Data-science\stage1\processed_data\Stage1.3.4_Final\train_final.csv")
+data = pd.read_csv(DATA_PATH)
 
 # Trains the best Random Forest model using all features and evaluates its performance.
 def train_best_random_forest(data, target_col='Weekly_Sales', save_path=None):

@@ -14,7 +14,7 @@ print("STEP 1.1: DATA LOADING & MERGING")
 print("="*80)
 
 # Define file paths (relative to stage1/ directory)
-BASE_PATH = '../Datasets/walmart-recruiting-store-sales-forecasting/'
+BASE_PATH = '../datasets/walmart-recruiting-store-sales-forecasting/'
 TRAIN_PATH = os.path.join(BASE_PATH, 'train.csv')
 TEST_PATH = os.path.join(BASE_PATH, 'test.csv')
 STORES_PATH = os.path.join(BASE_PATH, 'stores.csv')
