@@ -20,12 +20,14 @@ Complete guide for deploying the sales forecasting system to a cloud server with
 ## Prerequisites
 
 ### Required
+
 - Cloud account (Azure/AWS/GCP or any VPS provider)
 - Domain name (optional but recommended)
 - Git installed on your local machine
 - Docker installed (for containerized deployment)
 
 ### Server Requirements
+
 - **Minimum**: 2 vCPU, 4GB RAM, 20GB disk
 - **Recommended**: 4 vCPU, 8GB RAM, 50GB disk
 - OS: Ubuntu 20.04/22.04 or similar Linux distribution
@@ -39,6 +41,7 @@ This method works on **any cloud provider** (Azure, AWS, GCP, DigitalOcean, Lino
 ### Step 1: Get a Server
 
 **Option A: Azure VM**
+
 ```bash
 # Create resource group
 az group create --name walmart-forecast-rg --location eastus
@@ -59,6 +62,7 @@ az vm open-port --port 443 --resource-group walmart-forecast-rg --name forecast-
 ```
 
 **Option B: AWS EC2**
+
 ```bash
 # Launch EC2 instance (t3.medium, Ubuntu 22.04)
 # Open ports 80, 443 in Security Group
@@ -67,6 +71,7 @@ ssh -i your-key.pem ubuntu@your-ec2-ip
 ```
 
 **Option C: Any VPS Provider**
+
 - Create Ubuntu 20.04/22.04 server (2+ CPU, 4+ GB RAM)
 - Ensure ports 80 and 443 are open
 - Get the server's public IP address
@@ -138,10 +143,12 @@ server_name your-domain.com www.your-domain.com;
 ```
 
 Then update your domain's DNS records:
+
 - **A Record**: Point to your server's IP address
 - **CNAME**: `www` → your-domain.com
 
 Wait 5-10 minutes for DNS propagation, then restart:
+
 ```bash
 docker-compose -f docker-compose.production.yml restart nginx
 ```
@@ -149,11 +156,13 @@ docker-compose -f docker-compose.production.yml restart nginx
 ### Step 6: Access Your Deployment
 
 **Using IP Address:**
+
 - Dashboard: `http://YOUR-SERVER-IP/`
 - API: `http://YOUR-SERVER-IP/api/`
 - API Docs: `http://YOUR-SERVER-IP/api/docs`
 
 **Using Domain Name:**
+
 - Dashboard: `http://your-domain.com/`
 - API: `http://your-domain.com/api/`
 - API Docs: `http://your-domain.com/api/docs`
@@ -232,6 +241,7 @@ az webapp config appsettings set \
 ```
 
 Access:
+
 - Dashboard: `https://walmart-forecast-dashboard.azurewebsites.net/`
 - API: `https://walmart-forecast-api.azurewebsites.net/`
 
@@ -522,15 +532,15 @@ For static assets, configure a CDN like Cloudflare.
 
 ### Cloud Provider Costs (Monthly)
 
-| Provider | Configuration | Estimated Cost |
-|----------|--------------|----------------|
-| **Azure VM** | Standard_D2s_v3 (2 vCPU, 8GB) | ~$70-90/month |
-| **AWS EC2** | t3.medium (2 vCPU, 4GB) | ~$30-40/month |
-| **GCP VM** | e2-medium (2 vCPU, 4GB) | ~$25-35/month |
-| **DigitalOcean** | 2 vCPU, 4GB RAM droplet | $24/month |
-| **Linode** | 2 vCPU, 4GB RAM | $24/month |
+| Provider         | Configuration                 | Estimated Cost |
+| ---------------- | ----------------------------- | -------------- |
+| **Azure VM**     | Standard_D2s_v3 (2 vCPU, 8GB) | ~$70-90/month  |
+| **AWS EC2**      | t3.medium (2 vCPU, 4GB)       | ~$30-40/month  |
+| **GCP VM**       | e2-medium (2 vCPU, 4GB)       | ~$25-35/month  |
+| **DigitalOcean** | 2 vCPU, 4GB RAM droplet       | $24/month      |
+| **Linode**       | 2 vCPU, 4GB RAM               | $24/month      |
 
-*Note: Add ~$10-15/month for load balancer/domain if needed*
+_Note: Add ~$10-15/month for load balancer/domain if needed_
 
 ---
 
@@ -550,6 +560,7 @@ For static assets, configure a CDN like Cloudflare.
 ## Support
 
 For issues or questions:
+
 - GitHub: https://github.com/ahmedhaithamamer/Depi_project_Data-science
 - Check logs: `docker-compose logs`
 - Review documentation: `DEPLOYMENT_GUIDE.md`
