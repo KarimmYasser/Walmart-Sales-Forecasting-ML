@@ -27,7 +27,7 @@ print("TRAINING PRODUCTION MODEL")
 print("="*70)
 
 # Import and run training
-from Best_model import Best_model_results
+from Best_model import Best_model_results  # type: ignore
 
 # Train and save the model
 model_save_path = Path(__file__).parent / 'models' / 'best_model.pkl'

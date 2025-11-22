@@ -193,27 +193,34 @@
 **Feature Importance Analysis** (from actual model):
 
 **Time/Season Patterns (48.65%)** - Nearly half!
+
 - Day of week: 22.71% (Most important single feature!)
 - Month cycles: 8.01%
 - Weekends 15-30% higher than weekdays
 
 **Promotions (22.61%)**
+
 - MarkDown tracking captures 20-40% sales boost
 - Multiple promotions = multiplicative effect
 
 **Historical Sales (14.07%)**
+
 - Real past data for each Store+Dept
 - Sales_Lag1 (last week): 6.09%
 
 **Store Characteristics (9.18%)**
+
 - Store size: 7.54% (3rd most important!)
 - Type A/B/C: Large stores = 2-3x sales
 
 **External Factors (4.05%)**
+
 - Unemployment, temperature, CPI
 
 **Holiday (1.44%)**
+
 - Special events impact
+
 7. **Economic Factors** (2%) - CPI, unemployment
 
 **Smart Engineering**: 39 features created from 10 original variables
@@ -282,6 +289,7 @@
 - Historical accuracy trends
 
 **Plus: REST API** 🔌
+
 - 6+ endpoints for programmatic access
 - JSON responses < 10ms
 - Swagger docs at /docs
@@ -309,6 +317,7 @@
 - ✅ Feature importance analysis (22.71% day-of-week impact)
 
 **Real-World Validation**:
+
 - Predictions vary 3.5x based on realistic scenarios
 - December weekend + promotions → $2.28M
 - Summer weekday + no promos → $642K
@@ -431,24 +440,28 @@
 ### What Makes This System Special
 
 **Real Historical Data Integration**:
+
 - Loads 50,000 most recent sales records
 - For each prediction: looks up actual Store+Dept history
 - Calculates real lag features (not static defaults)
 - Result: Predictions vary realistically ($642K-$2.28M)
 
 **Intelligent Feature Engineering**:
+
 - 44 features from original 10 data points
 - Cyclical encoding (sin/cos) for time patterns
 - Rolling statistics (7-week windows)
 - Promotion impact tracking
 
 **Production-Ready Architecture**:
+
 - Docker containerization (3 services)
 - REST API + Interactive Dashboard
 - MLflow experiment tracking
 - Automated monitoring & drift detection
 
 **Key Differentiators**:
+
 - ✅ Uses ACTUAL historical data (not estimates)
 - ✅ 22.71% importance on day-of-week (most critical)
 - ✅ Learns unique pattern for each 4,455 store-dept combinations

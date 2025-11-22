@@ -4,20 +4,23 @@ Runs experiments with different configurations and logs to MLflow
 """
 
 import sys
-import os
-sys.path.append('../stage3/ML_models')
+from pathlib import Path
+
+# Add stage3/ML_models to path using absolute path
+PROJECT_ROOT = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(PROJECT_ROOT / 'stage3' / 'ML_models'))
 
 import pandas as pd
 import numpy as np
 from datetime import datetime
-from mlflow_tracking import MLflowTracker
-from model_registry import ModelRegistry
+from .mlflow_tracking import MLflowTracker
+from .model_registry import ModelRegistry
 
 # Import from stage 3
-from Forecaster import SalesForecaster
-from Best_model import train_best_random_forest, data
-from Config import RANDOM_FOREST_PARAMS, XGBOOST_PARAMS, LIGHTGBM_PARAMS
-from Feature_Engineering import FeatureSelector
+from Forecaster import SalesForecaster  # type: ignore
+from Best_model import train_best_random_forest, data  # type: ignore
+from Config import RANDOM_FOREST_PARAMS, XGBOOST_PARAMS, LIGHTGBM_PARAMS  # type: ignore
+from Feature_Engineering import FeatureSelector  # type: ignore
 
 
 class ExperimentRunner:

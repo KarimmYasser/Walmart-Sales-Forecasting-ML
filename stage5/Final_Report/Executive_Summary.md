@@ -118,6 +118,7 @@ Historical Data → AI Model → Weekly Forecasts → Business Actions
 ### What Makes It Accurate
 
 **Feature Importance Analysis Reveals**:
+
 1. **Time Patterns (48.65%)**: Day of week most critical - weekends 15-30% higher sales
 2. **Promotions (22.61%)**: Markdown tracking captures promotional impact
 3. **Historical Sales (14.07%)**: Real past data for each store/department
@@ -125,6 +126,7 @@ Historical Data → AI Model → Weekly Forecasts → Business Actions
 5. **External Factors (4.05%)**: Economic indicators provide context
 
 **Prediction Intelligence**:
+
 - Model produces $642K-$2.28M range (3.5x variance) based on scenario
 - Captures seasonal patterns: December 40-50% higher than summer
 - Learns unique patterns for each of 4,455 store-department combinations

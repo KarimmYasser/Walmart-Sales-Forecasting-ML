@@ -290,6 +290,7 @@ Tested models with **5 feature stages**:
 | Accuracy | 99.96%  | ✅ Production Ready             |
 
 **Model Characteristics**:
+
 - **Algorithm**: Random Forest with 100 estimators
 - **Features**: 44 engineered features from 421,570 training samples
 - **Historical Data**: Integrates 50,000 most recent records for lag feature calculation
@@ -372,7 +373,7 @@ class SalesPredictor:
     def __init__(self):
         self.model = joblib.load('models/best_model.pkl')
         self.historical_data = self._load_historical_data()  # 50,000 records
-        
+
     def _get_historical_sales(self, store, dept, date):
         """Looks up ACTUAL historical sales before prediction date"""
         store_dept_data = self.historical_data[
@@ -470,33 +471,37 @@ docker-compose up --build
 
 **Feature Importance Distribution** (from actual model analysis):
 
-| Category | Combined Importance | Key Features |
-|----------|-------------------|--------------|
-| **Time/Season** | **48.65%** | DayOfWeek_Sin (22.71%), Month_Cos (8.01%), Month_Sin (6.82%) |
-| **Promotions** | **22.61%** | MarkDown1 (5.94%), MarkDown4 (5.61%), MarkDown5 (5.48%) |
-| **Historical Sales** | **14.07%** | Sales_Lag1 (6.09%), Rolling_Mean_7 (4.23%), Sales_Lag2 (2.01%) |
-| **Store Characteristics** | **9.18%** | Size (7.54%), Type_B (0.92%), Type_C (0.72%) |
-| **External Factors** | **4.05%** | Unemployment (1.82%), Temperature (1.13%), CPI (0.67%) |
-| **Holiday** | **1.44%** | IsHoliday (1.44%) |
+| Category                  | Combined Importance | Key Features                                                   |
+| ------------------------- | ------------------- | -------------------------------------------------------------- |
+| **Time/Season**           | **48.65%**          | DayOfWeek_Sin (22.71%), Month_Cos (8.01%), Month_Sin (6.82%)   |
+| **Promotions**            | **22.61%**          | MarkDown1 (5.94%), MarkDown4 (5.61%), MarkDown5 (5.48%)        |
+| **Historical Sales**      | **14.07%**          | Sales_Lag1 (6.09%), Rolling_Mean_7 (4.23%), Sales_Lag2 (2.01%) |
+| **Store Characteristics** | **9.18%**           | Size (7.54%), Type_B (0.92%), Type_C (0.72%)                   |
+| **External Factors**      | **4.05%**           | Unemployment (1.82%), Temperature (1.13%), CPI (0.67%)         |
+| **Holiday**               | **1.44%**           | IsHoliday (1.44%)                                              |
 
 **Critical Findings**:
 
-1. **DayOfWeek_Sin (22.71%) - Most Important Feature**: 
+1. **DayOfWeek_Sin (22.71%) - Most Important Feature**:
+
    - Weekend vs weekday patterns drive 22.71% of prediction power
    - Saturday sales typically 15-30% higher than Monday
    - Model captures cyclical weekly patterns via sin/cos encoding
 
 2. **Time/Season Dominates (48.65%)**:
+
    - Holiday months (Nov/Dec) show 40-50% higher sales
    - Summer months (June-Aug) show 10-20% lower sales
    - Cyclical encoding (sin/cos) captures seasonal patterns effectively
 
-3. **Historical Sales (14.07%)**: 
+3. **Historical Sales (14.07%)**:
+
    - Real historical data integration essential
    - Sales_Lag1 (last week) = 6.09% importance (6th highest individual feature)
    - Each Store+Dept has unique historical pattern learned by model
 
 4. **Store Size (7.54% - 3rd Most Important)**:
+
    - Direct correlation with sales capacity
    - 200K+ sq ft stores = 2-3x sales of 100K stores
    - Type A stores (largest) have highest variance
@@ -507,6 +512,7 @@ docker-compose up --build
    - Active promotions can boost sales by 20-40%
 
 **Prediction Variance Validation**:
+
 - Minimum scenario (Summer weekday, small store, no promos): **$642,000**
 - Maximum scenario (December weekend, large store, all markdowns): **$2,280,000**
 - **3.5x range** confirms model sensitivity to feature changes
