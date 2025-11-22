@@ -1,0 +1,101 @@
+# Production Docker Compose Configuration
+# Includes Nginx reverse proxy for single-domain deployment
+# Access: http://your-domain/ (dashboard) and http://your-domain/api/ (API)
+
+version: '3.8'
+
+services:
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: sales_forecast_nginx
+    ports:
+      - "80:80"
+      - "443:443"  # For HTTPS (requires SSL certificates)
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      # Uncomment for SSL certificates
+      # - ./ssl:/etc/ssl:ro
+    depends_on:
+      - api
+      - dashboard
+    networks:
+      - sales_forecast_network
+    restart: unless-stopped
+
+  # FastAPI Backend
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sales_forecast_api
+    command: uvicorn deployment.api:app --host 0.0.0.0 --port 8000 --workers 4
+    expose:
+      - "8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MODEL_PATH=/app/models/best_model.pkl
+    volumes:
+      - ./models:/app/models:ro
+      - ./datasets:/app/datasets:ro
+      - ./stage1:/app/stage1:ro
+    networks:
+      - sales_forecast_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Streamlit Dashboard
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sales_forecast_dashboard
+    command: streamlit run dashboard/app.py --server.port=8501 --server.address=0.0.0.0 --server.baseUrlPath="" --server.enableCORS=false --server.enableXsrfProtection=false
+    expose:
+      - "8501"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - API_URL=http://api:8000
+    volumes:
+      - ./models:/app/models:ro
+      - ./datasets:/app/datasets:ro
+      - ./stage1:/app/stage1:ro
+    networks:
+      - sales_forecast_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # MLflow Tracking Server (Optional - for model management)
+  mlflow:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sales_forecast_mlflow
+    command: mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./mlruns
+    expose:
+      - "5000"
+    volumes:
+      - ./mlruns:/app/mlruns
+      - ./mlflow.db:/app/mlflow.db
+    networks:
+      - sales_forecast_network
+    restart: unless-stopped
+
+networks:
+  sales_forecast_network:
+    driver: bridge
+
+# Optional: Add persistent volumes for data
+# volumes:
+#   model_data:
+#   training_data:
