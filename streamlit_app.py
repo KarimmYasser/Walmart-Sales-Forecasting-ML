@@ -3,6 +3,9 @@ Streamlit Cloud Entry Point for Walmart Sales Forecasting Dashboard
 """
 
 import streamlit as st
+import pandas as pd
+from datetime import datetime, timedelta
+import random
 
 st.set_page_config(
     page_title="Walmart Sales Forecasting",
@@ -61,7 +64,6 @@ with tab1:
             size = st.number_input("Store Size (sq ft)", min_value=1000, max_value=250000, value=150000)
         
         if st.button("🔮 Predict", type="primary"):
-            import random
             predicted_sales = random.randint(10000, 50000)
             ci_lower = predicted_sales * 0.85
             ci_upper = predicted_sales * 1.15
@@ -85,10 +87,6 @@ with tab1:
             weeks = st.slider("Number of Weeks", 1, 12, 4)
         
         if st.button("📅 Forecast", type="primary"):
-            import pandas as pd
-            import random
-            from datetime import timedelta
-            
             dates = [start_date + timedelta(weeks=i) for i in range(weeks)]
             predictions = [random.randint(10000, 50000) for _ in range(weeks)]
             
