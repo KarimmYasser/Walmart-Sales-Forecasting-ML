@@ -14,13 +14,11 @@ import pandas as pd
 import numpy as np
 import os
 
-print("="*80)
 print("STEP 1.3.1: CREATE TIME-BASED FEATURES")
-print("="*80)
 
 print("\n[1] Loading cleaned data...")
-train = pd.read_csv('processed_data/Stage1.2/train_cleaned_step2.csv')
-test = pd.read_csv('processed_data/Stage1.2/test_cleaned_step2.csv')
+train = pd.read_csv('stage1/processed_data/Stage1.2/train_cleaned_step2.csv')
+test = pd.read_csv('stage1/processed_data/Stage1.2/test_cleaned_step2.csv')
 train['Date'] = pd.to_datetime(train['Date'])
 test['Date'] = pd.to_datetime(test['Date'])
 print(f"Loaded: train {train.shape}, test {test.shape}")
@@ -60,7 +58,7 @@ test = create_time_features(test, "Test Data")
 print("Created 20 time-based features")
 
 print("\n[3] Saving data with time features...")
-output_dir = 'processed_data/Stage1.3.1'
+output_dir = 'stage1/processed_data/Stage1.3.1'
 os.makedirs(output_dir, exist_ok=True)
 train_output = os.path.join(output_dir, 'train_time_features.csv')
 test_output = os.path.join(output_dir, 'test_time_features.csv')
@@ -68,7 +66,5 @@ train.to_csv(train_output, index=False)
 test.to_csv(test_output, index=False)
 print(f"Saved: {train_output}, {test_output}")
 
-print("\n" + "="*80)
-print("STEP 1.3.1 COMPLETED!")
-print("="*80)
+print("\nSTEP 1.3.1 COMPLETED!")
 

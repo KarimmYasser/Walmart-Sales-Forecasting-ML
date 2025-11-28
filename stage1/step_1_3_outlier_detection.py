@@ -18,12 +18,10 @@ import os
 sns.set_style("whitegrid")
 plt.rcParams['figure.figsize'] = (12, 6)
 
-print("="*80)
 print("STEP 1.3: OUTLIER DETECTION & ANALYSIS")
-print("="*80)
 
 print("\n[1] Loading cleaned data...")
-train = pd.read_csv('processed_data/Stage1.2/train_cleaned_step2.csv')
+train = pd.read_csv('stage1/processed_data/Stage1.2/train_cleaned_step2.csv')
 train['Date'] = pd.to_datetime(train['Date'])
 print(f"Loaded: {train.shape}")
 
@@ -40,7 +38,7 @@ total_outliers = len(outliers_lower) + len(outliers_upper)
 print(f"Found {total_outliers:,} outliers ({total_outliers/len(train)*100:.2f}%)")
 
 print("\n[3] Creating visualizations...")
-os.makedirs('visualizations/Stage1.3', exist_ok=True)
+os.makedirs('stage1/visualizations/Stage1.3', exist_ok=True)
 
 # Box plot by store type
 plt.figure(figsize=(10, 6))
@@ -50,7 +48,7 @@ plt.suptitle('')
 plt.xlabel('Store Type')
 plt.ylabel('Weekly Sales ($)')
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.3/boxplot_sales_by_type.png', dpi=300, bbox_inches='tight')
+plt.savefig('stage1/visualizations/Stage1.3/boxplot_sales_by_type.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 # Histogram
@@ -63,7 +61,7 @@ plt.ylabel('Frequency')
 plt.title('Distribution of Weekly Sales with IQR Bounds')
 plt.legend()
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.3/histogram_sales_distribution.png', dpi=300, bbox_inches='tight')
+plt.savefig('stage1/visualizations/Stage1.3/histogram_sales_distribution.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 # Holiday impact boxplot
@@ -75,7 +73,7 @@ plt.xlabel('Is Holiday Week?')
 plt.ylabel('Weekly Sales ($)')
 plt.xticks([1, 2], ['Non-Holiday', 'Holiday'])
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.3/boxplot_holiday_impact.png', dpi=300, bbox_inches='tight')
+plt.savefig('stage1/visualizations/Stage1.3/boxplot_holiday_impact.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 # Sales over time
@@ -89,13 +87,11 @@ plt.title('Weekly Sales Over Time with Outlier Bounds')
 plt.legend()
 plt.xticks(rotation=45)
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.3/scatter_sales_over_time.png', dpi=300, bbox_inches='tight')
+plt.savefig('stage1/visualizations/Stage1.3/scatter_sales_over_time.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 print("Saved 4 visualization files")
 
 print("\n[4] Decision: Keep all outliers (valid business scenarios)")
 
-print("\n" + "="*80)
-print("STEP 1.3 COMPLETED!")
-print("="*80)
+print("\nSTEP 1.3 COMPLETED!")

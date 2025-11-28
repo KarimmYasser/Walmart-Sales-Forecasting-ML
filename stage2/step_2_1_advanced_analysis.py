@@ -16,15 +16,10 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from datetime import datetime
 import json
 import os
-import warnings
-warnings.filterwarnings('ignore')
 
-print("="*80)
 print("MILESTONE 2 - TASK 2.1: ADVANCED DATA ANALYSIS")
-print("="*80)
 
 # Determine correct path to Stage 1 output (works from stage2/ or project root)
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -247,7 +242,5 @@ save_path = os.path.join(output_base, 'visualizations', '03_holiday_impact.png')
 plt.savefig(save_path, dpi=300, bbox_inches='tight')
 plt.close()
 
-print("\n" + "="*80)
-print("TASK 2.1 COMPLETE - Advanced Data Analysis")
-print("="*80)
+print("\nTASK 2.1 COMPLETE - Advanced Data Analysis")
 

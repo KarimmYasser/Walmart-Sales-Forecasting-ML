@@ -9,12 +9,11 @@ import pandas as pd
 import numpy as np
 import os
 
-print("="*80)
-print("STEP 1.1: DATA LOADING & MERGING")
-print("="*80)
 
-# Define file paths (relative to stage1/ directory)
-BASE_PATH = '../datasets/walmart-recruiting-store-sales-forecasting/'
+print("STEP 1.1: DATA LOADING & MERGING")
+
+# Define file paths (relative to project root directory)
+BASE_PATH = 'stage1/datasets/walmart-recruiting-store-sales-forecasting/'
 TRAIN_PATH = os.path.join(BASE_PATH, 'train.csv')
 TEST_PATH = os.path.join(BASE_PATH, 'test.csv')
 STORES_PATH = os.path.join(BASE_PATH, 'stores.csv')
@@ -39,7 +38,7 @@ test_full = test_full.merge(features, on=['Store', 'Date', 'IsHoliday'], how='le
 print(f"Merged: train_full {train_full.shape}, test_full {test_full.shape}")
 
 print("\n[3] Saving merged datasets...")
-output_dir = 'processed_data/Stage1.1'
+output_dir = 'stage1/processed_data/Stage1.1'
 os.makedirs(output_dir, exist_ok=True)
 train_output = os.path.join(output_dir, 'train_merged.csv')
 test_output = os.path.join(output_dir, 'test_merged.csv')
@@ -47,7 +46,5 @@ train_full.to_csv(train_output, index=False)
 test_full.to_csv(test_output, index=False)
 print(f"Saved: {train_output}, {test_output}")
 
-print("\n" + "="*80)
-print("STEP 1.1 COMPLETED!")
-print("="*80)
+print("\nSTEP 1.1 COMPLETED!")
 

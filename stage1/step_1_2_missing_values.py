@@ -62,13 +62,11 @@ def display_statistics(df, dataset_name):
         non_zero_pct = (non_zero_count / len(df)) * 100
 
 
-print("="*80)
 print("STEP 1.2: HANDLING MISSING VALUES")
-print("="*80)
 
 print("\n[1] Loading datasets...")
-train = pd.read_csv('processed_data/Stage1.1/train_merged.csv')
-test = pd.read_csv('processed_data/Stage1.1/test_merged.csv')
+train = pd.read_csv('stage1/processed_data/Stage1.1/train_merged.csv')
+test = pd.read_csv('stage1/processed_data/Stage1.1/test_merged.csv')
 print(f"Loaded: train {train.shape}, test {test.shape}")
 
 print("\n[2] Analyzing missing values...")
@@ -81,7 +79,7 @@ test_clean, test_new_cols = handle_missing_values(test, "Test Data")
 print(f"Processed: Added {len(train_new_cols)} indicator columns")
 
 print("\n[4] Saving cleaned datasets...")
-output_dir = 'processed_data/Stage1.2'
+output_dir = 'stage1/processed_data/Stage1.2'
 os.makedirs(output_dir, exist_ok=True)
 train_output = os.path.join(output_dir, 'train_cleaned_step2.csv')
 test_output = os.path.join(output_dir, 'test_cleaned_step2.csv')
@@ -89,7 +87,5 @@ train_clean.to_csv(train_output, index=False)
 test_clean.to_csv(test_output, index=False)
 print(f"Saved: {train_output}, {test_output}")
 
-print("\n" + "="*80)
-print(" STEP 1.2 COMPLETED!")
-print("="*80)
+print("\nSTEP 1.2 COMPLETED!")
 

@@ -18,19 +18,19 @@ Output: outputs/enhanced_features/
 
 import pandas as pd
 import numpy as np
-from datetime import datetime, timedelta
 import json
 import os
-import warnings
-warnings.filterwarnings('ignore')
 
-print("="*80)
 print("MILESTONE 2 - TASK 2.2: ENHANCED FEATURE ENGINEERING")
-print("="*80)
+
+# Determine correct path to Stage 1 output
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(script_dir)
+stage1_output = os.path.join(project_root, 'stage1', 'processed_data', 'Stage1.3.4_Final')
 
 # Load and prepare data
-train = pd.read_csv('../stage1/processed_data/Stage1.3.4_Final/train_final.csv')
-test = pd.read_csv('../stage1/processed_data/Stage1.3.4_Final/test_final.csv')
+train = pd.read_csv(os.path.join(stage1_output, 'train_final.csv'))
+test = pd.read_csv(os.path.join(stage1_output, 'test_final.csv'))
 train['Date'] = pd.to_datetime(train['Date'])
 test['Date'] = pd.to_datetime(test['Date'])
 train = train.sort_values(['Store', 'Dept', 'Date']).reset_index(drop=True)
@@ -175,9 +175,10 @@ train = create_time_aggregations(train, has_sales=True)
 test = create_time_aggregations(test, has_sales=False)
 
 # Save Enhanced Datasets
-os.makedirs('outputs/enhanced_features', exist_ok=True)
-train.to_csv('outputs/enhanced_features/train_enhanced.csv', index=False)
-test.to_csv('outputs/enhanced_features/test_enhanced.csv', index=False)
+output_dir = os.path.join(script_dir, 'outputs', 'enhanced_features')
+os.makedirs(output_dir, exist_ok=True)
+train.to_csv(os.path.join(output_dir, 'train_enhanced.csv'), index=False)
+test.to_csv(os.path.join(output_dir, 'test_enhanced.csv'), index=False)
 
 # Create feature summary
 new_features = {
@@ -222,10 +223,8 @@ feature_summary = {
     'total_features_now': train.shape[1]
 }
 
-with open('outputs/enhanced_features/feature_summary.json', 'w') as f:
+with open(os.path.join(output_dir, 'feature_summary.json'), 'w') as f:
     json.dump(feature_summary, f, indent=4, default=str)
 
-print("\n" + "="*80)
-print(f"TASK 2.2 COMPLETE - Enhanced Feature Engineering ({train.shape[1]} features)")
-print("="*80)
+print(f"\nTASK 2.2 COMPLETE - Enhanced Feature Engineering ({train.shape[1]} features)")
 

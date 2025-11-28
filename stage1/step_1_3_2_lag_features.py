@@ -14,13 +14,11 @@ import pandas as pd
 import numpy as np
 import os
 
-print("="*80)
 print("STEP 1.3.2: CREATE LAG FEATURES")
-print("="*80)
 
 print("\n[1] Loading data with time features...")
-train = pd.read_csv('processed_data/Stage1.3.1/train_time_features.csv')
-test = pd.read_csv('processed_data/Stage1.3.1/test_time_features.csv')
+train = pd.read_csv('stage1/processed_data/Stage1.3.1/train_time_features.csv')
+test = pd.read_csv('stage1/processed_data/Stage1.3.1/test_time_features.csv')
 train['Date'] = pd.to_datetime(train['Date'])
 test['Date'] = pd.to_datetime(test['Date'])
 train = train.sort_values(['Store', 'Dept', 'Date']).reset_index(drop=True)
@@ -76,7 +74,7 @@ for feature in lag_features:
 print("Created lag features for test using train history")
 
 print("\n[5] Saving data with lag features...")
-output_dir = 'processed_data/Stage1.3.2'
+output_dir = 'stage1/processed_data/Stage1.3.2'
 os.makedirs(output_dir, exist_ok=True)
 train_output = os.path.join(output_dir, 'train_lag_features.csv')
 test_output = os.path.join(output_dir, 'test_lag_features.csv')
@@ -84,7 +82,5 @@ train.to_csv(train_output, index=False)
 test.to_csv(test_output, index=False)
 print(f"Saved: {train_output}, {test_output}")
 
-print("\n" + "="*80)
-print("STEP 1.3.2 COMPLETED!")
-print("="*80)
+print("\nSTEP 1.3.2 COMPLETED!")
 

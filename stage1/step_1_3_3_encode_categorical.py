@@ -12,13 +12,11 @@ import pandas as pd
 import numpy as np
 import os
 
-print("="*80)
 print("STEP 1.3.3: ENCODE CATEGORICAL VARIABLES")
-print("="*80)
 
 print("\n[1] Loading data with lag features...")
-train = pd.read_csv('processed_data/Stage1.3.2/train_lag_features.csv')
-test = pd.read_csv('processed_data/Stage1.3.2/test_lag_features.csv')
+train = pd.read_csv('stage1/processed_data/Stage1.3.2/train_lag_features.csv')
+test = pd.read_csv('stage1/processed_data/Stage1.3.2/test_lag_features.csv')
 print(f"Loaded: train {train.shape}, test {test.shape}")
 
 print("\n[2] One-hot encoding Store Type...")
@@ -28,7 +26,7 @@ type_columns = [col for col in train_encoded.columns if col.startswith('Type_')]
 print(f"Encoded Type column to: {type_columns}")
 
 print("\n[3] Saving encoded data...")
-output_dir = 'processed_data/Stage1.3.3'
+output_dir = 'stage1/processed_data/Stage1.3.3'
 os.makedirs(output_dir, exist_ok=True)
 train_output = os.path.join(output_dir, 'train_encoded.csv')
 test_output = os.path.join(output_dir, 'test_encoded.csv')
@@ -36,6 +34,4 @@ train_encoded.to_csv(train_output, index=False)
 test_encoded.to_csv(test_output, index=False)
 print(f"Saved: {train_output}, {test_output}")
 
-print("\n" + "="*80)
-print("STEP 1.3.3 COMPLETED!")
-print("="*80)
+print("\nSTEP 1.3.3 COMPLETED!")

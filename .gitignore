@@ -11,7 +11,7 @@
 # Excel files
 *.xlsx
 *.xls
-
+*.csv
 # Pickle files (exclude all except the specific model)
 *.pkl
 *.pickle
@@ -67,7 +67,7 @@ predictions/
 *.jpeg
 *.gif
 *.svg
-*.pdf
+
 
 # ============================================================================
 # PYTHON - Standard Python gitignore

@@ -14,28 +14,24 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from datetime import datetime
-import warnings
 import os
-warnings.filterwarnings('ignore')
+
 
 sns.set_style("whitegrid")
 sns.set_palette("husl")
 plt.rcParams['figure.figsize'] = (14, 6)
 
-print("="*80)
 print("STEP 1.4: EXPLORATORY DATA ANALYSIS (EDA)")
-print("="*80)
 
 print("\n[1] Loading data...")
-train = pd.read_csv('processed_data/Stage1.2/train_cleaned_step2.csv')
+train = pd.read_csv('stage1/processed_data/Stage1.2/train_cleaned_step2.csv')
 train['Date'] = pd.to_datetime(train['Date'])
 train['Year'] = train['Date'].dt.year
 train['Month'] = train['Date'].dt.month
 train['Quarter'] = train['Date'].dt.quarter
 print(f"Loaded: {train.shape}")
 
-os.makedirs('visualizations/Stage1.4', exist_ok=True)
+os.makedirs('stage1/visualizations/Stage1.4', exist_ok=True)
 
 print("\n[2] Analyzing sales trends...")
 
@@ -48,18 +44,18 @@ plt.xlabel('Date')
 plt.ylabel('Total Weekly Sales ($)')
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.4/01_overall_sales_trend.png', dpi=300, bbox_inches='tight')
+plt.savefig('stage1/visualizations/Stage1.4/01_overall_sales_trend.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 # Sales by year
 yearly_sales = train.groupby('Year')['Weekly_Sales'].sum().reset_index()
 plt.figure(figsize=(10, 6))
-plt.bar(yearly_sales['Year'], yearly_sales['sum'], color=['#3498db', '#e74c3c', '#2ecc71'])
+plt.bar(yearly_sales['Year'], yearly_sales['Weekly_Sales'], color=['#3498db', '#e74c3c', '#2ecc71'])
 plt.title('Total Sales by Year', fontsize=16, fontweight='bold')
 plt.xlabel('Year')
 plt.ylabel('Total Sales ($)')
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.4/02_sales_by_year.png', dpi=300, bbox_inches='tight')
+plt.savefig('stage1/visualizations/Stage1.4/02_sales_by_year.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 print("\n[3] Analyzing seasonality...")
@@ -81,7 +77,7 @@ plt.xlabel('Month')
 plt.ylabel('Average Weekly Sales ($)')
 plt.xticks(range(1, 13), month_names, rotation=45)
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.4/03_monthly_seasonality.png', dpi=300, bbox_inches='tight')
+plt.savefig('stage1/visualizations/Stage1.4/03_monthly_seasonality.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 # Quarterly pattern
@@ -94,7 +90,7 @@ plt.xlabel('Quarter')
 plt.ylabel('Average Weekly Sales ($)')
 plt.xticks([1, 2, 3, 4], ['Q1 (Jan-Mar)', 'Q2 (Apr-Jun)', 'Q3 (Jul-Sep)', 'Q4 (Oct-Dec)'])
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.4/04_quarterly_pattern.png', dpi=300, bbox_inches='tight')
+plt.savefig('stage1/visualizations/Stage1.4/04_quarterly_pattern.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 print("\n[4] Analyzing holiday impact...")
@@ -114,7 +110,7 @@ plt.bar(categories, counts, color=['#3498db', '#e74c3c'], edgecolor='black')
 plt.title('Number of Weeks')
 plt.ylabel('Week Count')
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.4/05_holiday_impact.png', dpi=300, bbox_inches='tight')
+plt.savefig('stage1/visualizations/Stage1.4/05_holiday_impact.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 print("\n[5] Analyzing store types...")
@@ -135,7 +131,7 @@ plt.title('Number of Records by Store Type')
 plt.xlabel('Store Type')
 plt.ylabel('Record Count')
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.4/06_store_type_comparison.png', dpi=300, bbox_inches='tight')
+plt.savefig('stage1/visualizations/Stage1.4/06_store_type_comparison.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 print("\n[6] Analyzing promotion impact...")
@@ -166,7 +162,7 @@ plt.title('Sales Impact of Promotional Markdowns')
 plt.xticks(x, promo_df['Promotion'])
 plt.legend()
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.4/07_promotion_impact.png', dpi=300, bbox_inches='tight')
+plt.savefig('stage1/visualizations/Stage1.4/07_promotion_impact.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 print("\n[7] Analyzing external factors...")
@@ -179,7 +175,7 @@ sns.heatmap(correlation_data, annot=True, cmap='coolwarm', center=0, square=True
             linewidths=1, cbar_kws={"shrink": 0.8}, fmt='.3f')
 plt.title('Correlation: External Factors vs Weekly Sales')
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.4/08_external_factors_correlation.png', dpi=300, bbox_inches='tight')
+plt.savefig('stage1/visualizations/Stage1.4/08_external_factors_correlation.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 # Scatter plots
@@ -205,7 +201,7 @@ axes[1, 1].set_ylabel('Weekly Sales ($)')
 axes[1, 1].set_title('Unemployment vs Sales')
 
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.4/09_external_factors_scatter.png', dpi=300, bbox_inches='tight')
+plt.savefig('stage1/visualizations/Stage1.4/09_external_factors_scatter.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 print("\n[8] Analyzing departments...")
@@ -219,11 +215,9 @@ plt.ylabel('Department')
 plt.title('Top 10 Departments by Total Sales')
 plt.gca().invert_yaxis()
 plt.tight_layout()
-plt.savefig('visualizations/Stage1.4/10_top_departments.png', dpi=300, bbox_inches='tight')
+plt.savefig('stage1/visualizations/Stage1.4/10_top_departments.png', dpi=300, bbox_inches='tight')
 plt.close()
 
 print("Created 10 visualization files")
 
-print("\n" + "="*80)
-print("EXPLORATORY DATA ANALYSIS COMPLETED!")
-print("="*80)
+print("\nEXPLORATORY DATA ANALYSIS COMPLETED!")
