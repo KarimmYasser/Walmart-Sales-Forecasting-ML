@@ -1,0 +1,66 @@
+# Docker ignore file - excludes files from build context
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+ENV/
+env/
+
+# MLflow
+mlruns/
+.mlruns/
+
+# Logs
+*.log
+logs/
+monitoring/logs/
+
+# Test files
+tests/
+test_*.py
+*_test.py
+
+# Documentation
+*.md
+!requirements.txt
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large data files
+*.csv
+*.pkl
+*.h5
+*.parquet
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Docker files
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Scripts not needed in container
+test_docker.ps1
+deploy.sh
