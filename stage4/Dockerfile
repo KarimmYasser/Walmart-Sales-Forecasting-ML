@@ -8,8 +8,6 @@ WORKDIR /app
 # Install system dependencies and build tools in one layer
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
-    git \
-    git-lfs \
     gcc \
     g++ \
     && rm -rf /var/lib/apt/lists/* \

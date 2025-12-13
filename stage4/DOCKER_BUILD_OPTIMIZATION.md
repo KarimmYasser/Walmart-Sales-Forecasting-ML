@@ -3,6 +3,7 @@
 ## Problem: Slow Docker Builds (20+ minutes)
 
 The original build was taking 1000+ seconds just for `pip install` due to:
+
 - Installing all packages at once (poor caching)
 - No build tools for compiling C extensions
 - Large requirements.txt with many dependencies
@@ -12,11 +13,13 @@ The original build was taking 1000+ seconds just for `pip install` due to:
 ### Optimizations Applied:
 
 #### 1. **Added Build Tools**
+
 ```dockerfile
 gcc g++  # Required for compiling numpy, scipy, scikit-learn
 ```
 
 #### 2. **Split pip install into Stages**
+
 Instead of installing everything at once, we install in groups:
 
 ```dockerfile
@@ -36,7 +39,9 @@ RUN pip install mlflow scipy python-dateutil ...
 **Why?** Docker caches each layer. If only visualization changes, stages 1-2 are reused from cache.
 
 #### 3. **Created .dockerignore**
+
 Excludes unnecessary files from build context:
+
 - Python cache (`__pycache__/`)
 - Logs and test files
 - Documentation (`.md` files)
@@ -46,39 +51,47 @@ Excludes unnecessary files from build context:
 **Result**: Build context reduced from ~130MB to ~10MB
 
 #### 4. **Removed Obsolete Version**
+
 Removed `version: "3.8"` from docker-compose.yml (obsolete warning)
 
 ## Build Time Comparison
 
-| Metric | Before | After | Improvement |
-|--------|--------|-------|-------------|
-| **pip install time** | 1000s+ | ~300s | 70% faster |
-| **Total build time** | 23+ min | ~8 min | 65% faster |
-| **Build context size** | 130MB | 10MB | 92% smaller |
-| **Cache hit rate** | Low | High | Better |
+| Metric                 | Before  | After  | Improvement |
+| ---------------------- | ------- | ------ | ----------- |
+| **pip install time**   | 1000s+  | ~300s  | 70% faster  |
+| **Total build time**   | 23+ min | ~8 min | 65% faster  |
+| **Build context size** | 130MB   | 10MB   | 92% smaller |
+| **Cache hit rate**     | Low     | High   | Better      |
 
 ## Quick Build Commands
 
 ### Fresh Build (No Cache)
+
 ```bash
 cd stage4
 docker-compose build --no-cache
 ```
+
 **Time**: ~8 minutes first run
 
 ### Rebuild (With Cache)
+
 ```bash
 docker-compose build
 ```
+
 **Time**: ~2 minutes if only code changed
 
 ### Build Single Service
+
 ```bash
 docker-compose build api
 ```
+
 **Time**: ~5 minutes
 
 ### Speed Up with Parallel Builds
+
 ```bash
 docker-compose build --parallel
 ```
@@ -99,25 +112,33 @@ Docker caches layers in order. Put rarely-changing steps early:
 ## Troubleshooting Slow Builds
 
 ### Issue: "Still taking 20+ minutes"
+
 **Solutions**:
+
 1. Check internet speed (pip downloads ~500MB)
 2. Use local PyPI mirror
 3. Pre-download wheels
 4. Use multi-stage builds
 
 ### Issue: "Build fails during numpy/scipy"
+
 **Solution**: Ensure gcc/g++ installed
+
 ```dockerfile
 RUN apt-get install -y gcc g++
 ```
 
 ### Issue: "Cache never hits"
+
 **Solution**: Don't change requirements.txt frequently
+
 - Pin versions in production
 - Use flexible versions (>=) in development
 
 ### Issue: "Build context takes forever to send"
+
 **Solution**: Check .dockerignore
+
 ```bash
 # See what's being sent
 docker-compose build --progress=plain
@@ -137,7 +158,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --user --no-cache-dir -r requirements.txt
 
-# Runtime stage  
+# Runtime stage
 FROM python:3.10-slim
 WORKDIR /app
 COPY --from=builder /root/.local /root/.local
@@ -146,6 +167,7 @@ ENV PATH=/root/.local/bin:$PATH
 ```
 
 **Benefits**:
+
 - Smaller final image (~800MB vs 1.5GB)
 - Faster deployments
 - Better security (no build tools in production)
@@ -197,6 +219,7 @@ docker-compose build --progress=plain
 ## Expected Timeline
 
 **First Build** (no cache):
+
 - Downloading base image: 1-2 min
 - Installing system packages: 3-5 min
 - Installing Python packages: 3-5 min
@@ -204,12 +227,14 @@ docker-compose build --progress=plain
 - **Total**: ~8-12 minutes
 
 **Subsequent Builds** (with cache):
+
 - Using cached layers: 30 sec
 - Installing new packages: 1-2 min
 - Copying application: 10 sec
 - **Total**: ~2-3 minutes
 
 **Code-Only Changes**:
+
 - Everything cached except copy: 30 sec
 - **Total**: ~30 seconds
 
